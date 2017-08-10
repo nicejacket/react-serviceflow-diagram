@@ -1,0 +1,25 @@
+{
+  "name": "react-serviceflow-explorer",
+  "version": "1.0.0",
+  "description": "react版本的serviceflow explorer",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhou84034339@sina.com",
+  "license": "ISC",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.2",
+    "source-map-loader": "^0.2.1",
+    "tslint": "^5.6.0",
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.2"
+  },
+  "dependencies": {
+    "@types/react": "^16.0.2",
+    "@types/react-dom": "^15.5.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
