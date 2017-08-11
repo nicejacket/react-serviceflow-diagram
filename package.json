@@ -17,9 +17,12 @@
     "webpack": "^3.5.2"
   },
   "dependencies": {
+    "@types/raphael": "^2.1.30",
     "@types/react": "^16.0.2",
     "@types/react-dom": "^15.5.2",
+    "raphael": "^2.2.7",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-raphael": "^0.9.0-rc"
   }
 }
