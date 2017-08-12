@@ -4,17 +4,21 @@
   "description": "react版本的serviceflow explorer",
   "main": "index.js",
   "scripts": {
-    "start": "webpack",
+    "build": "webpack --progress --colors",
+    "start": "webpack-dev-server --devtool eval-source-map --progress --colors --hot --inline --port 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "zhou84034339@sina.com",
   "license": "ISC",
   "devDependencies": {
+    "adf-tslint-rules": "0.0.3",
     "awesome-typescript-loader": "^3.2.2",
+    "codelyzer": "^3.1.2",
     "source-map-loader": "^0.2.1",
     "tslint": "^5.6.0",
     "typescript": "^2.4.2",
-    "webpack": "^3.5.2"
+    "webpack": "^3.5.2",
+    "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
     "@types/raphael": "^2.1.30",
@@ -22,7 +26,6 @@
     "@types/react-dom": "^15.5.2",
     "raphael": "^2.2.7",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-raphael": "^0.9.0-rc"
+    "react-dom": "^15.6.1"
   }
 }
