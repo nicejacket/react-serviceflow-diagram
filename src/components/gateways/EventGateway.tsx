@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Set from '../Raphael/Set';
 import Gateway from './Gateway';
-import IconPentagon from '../icons/IconPentagon';
+import IconPentagon from '../icons/RaphaelIconPentagon';
 
 export interface EventGatewayProps {
   x?: number;

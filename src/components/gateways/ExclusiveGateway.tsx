@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Set from '../Raphael/Set';
 import Gateway from './Gateway';
-import IconCross from '../icons/IconCross';
+import IconCross from '../icons/RaphaelIconCross';
 
 export interface ExclusiveGatewayProps {
   x?: number;

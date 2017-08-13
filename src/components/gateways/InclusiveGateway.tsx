@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Gateway from './Gateway';
 import Set from '../Raphael/Set';
-import IconCircle from '../icons/IconCircle';
+import IconCircle from '../icons/RaphaelIconCircle';
 
 export interface InclusiveGatewayProps {
   x?: number;

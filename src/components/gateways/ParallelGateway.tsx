@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Set from '../Raphael/Set';
 import Gateway from './Gateway';
-import IconPlus from '../icons/IconPlus';
+import IconPlus from '../icons/RaphaelIconPlus';
 
 export interface ParallelGatewayProps {
   x?: number;
@@ -24,7 +24,6 @@ export default class ParallelGatway extends React.Component<ParallelGatewayProps
   }
 
   render() {
-
     return <Set>
         <Gateway {...this.props} />
         <IconPlus {...this.props} />

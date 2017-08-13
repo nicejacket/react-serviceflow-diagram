@@ -8,14 +8,20 @@ import InclusiveGateway from './components/gateways/InclusiveGateway';
 import ParallelGatway from './components/gateways/ParallelGateway';
 import ExclusiveGateway from './components/gateways/ExclusiveGateway';
 import EventGateway from './components/gateways/EventGateway';
+import Event from './components/events/Event';
+import DiagramIconTimer from './components/icons/DiagramIconTimer';
 
 ReactDOM.render(<Paper width={400} height={500}>
   <Set>
     <IconBoxPublish />
-    <Gateway x={0} y={100}/>
+    <Gateway x={0} y={100} />
     <InclusiveGateway x={0} y={164} />
     <ParallelGatway x={0} y={228} />
     <ExclusiveGateway x={0} y={292} />
     <EventGateway x={0} y={358} />
+    <DiagramIconTimer x={0} y={426} />
+  </Set>
+  <Set>
+    <Event x={100} y={0} />
   </Set>
 </Paper>, document.getElementById('example'));
