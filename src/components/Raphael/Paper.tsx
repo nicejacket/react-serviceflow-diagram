@@ -3,6 +3,10 @@ import * as ReactDOM from 'react-dom';
 import * as Raphael from 'raphael';
 import { createPaper, updatePaper } from './Utils';
 
+/**
+ * 该包实现参照react-raphael实现
+ * @link https://github.com/liuhong1happy/react-raphael
+ */
 export interface PaperProps {
   x?: number;
   y?: number;
