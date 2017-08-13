@@ -56,8 +56,8 @@ export function create(parentId: string, type: string, props: any) {
       break;
     }
     case 'circle': {
-      const { x, y, r } = props;
-      element = findedParent.paper.circle(x, y, r);
+      const { x, y, r, ...others } = props;
+      element = findedParent.paper.circle(x, y, r).attr(convertProps(others));
       break;
     }
     case 'ellipse': {
@@ -71,9 +71,9 @@ export function create(parentId: string, type: string, props: any) {
       break;
     }
     case 'path': {
-      let { d } = props;
+      let { d, ...others } = props;
       if (!d || d.length == 0) d = 'M0,0L0,0Z';
-      element = findedParent.paper.path(d);
+      element = findedParent.paper.path(d).attr(convertProps(others));
       break;
     }
     case 'print': {
@@ -234,7 +234,7 @@ export function updateElementProps(element: any, props: any) {
           break;
         }
         case 'transform': {
-          if (typeof props[key] === 'object') element.transform(props.transform);
+          if (typeof props[key] === 'string') element.transform(props.transform);
           break;
         }
         case 'translate': {
@@ -318,3 +318,13 @@ export function removeElement(element: any) {
   if (elements.length > 0) elements[0].element.remove();
 }
 
+function convertProps(props: any) {
+  const newProps: any = {};
+
+  Object.keys(props).forEach(prop => {
+    const newPropName = prop.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
+    newProps[newPropName] = props[prop];
+  });
+
+  return newProps;
+}
