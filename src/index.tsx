@@ -10,16 +10,22 @@ import ExclusiveGateway from './components/gateways/ExclusiveGateway';
 import EventGateway from './components/gateways/EventGateway';
 import Event from './components/events/Event';
 import DiagramIconTimer from './components/icons/DiagramIconTimer';
+import DiagramIconMessage from './components/icons/DiagramIconMessage';
+import DiagramIconError from './components/icons/DiagramIconError';
+import DiagramIconSignal from './components/icons/DiagramIconSignal';
 
 ReactDOM.render(<Paper width={400} height={500}>
   <Set>
     <IconBoxPublish />
     <Gateway x={0} y={100} />
-    <InclusiveGateway x={0} y={164} />
-    <ParallelGatway x={0} y={228} />
-    <ExclusiveGateway x={0} y={292} />
-    <EventGateway x={0} y={358} />
-    <DiagramIconTimer x={0} y={426} />
+    <InclusiveGateway x={0} y={140} />
+    <ParallelGatway x={0} y={180} />
+    <ExclusiveGateway x={0} y={220} />
+    <EventGateway x={0} y={260} />
+    <DiagramIconTimer x={0} y={300} />
+    <DiagramIconMessage x={0} y={340} />
+    <DiagramIconError x={0} y={380} />
+    <DiagramIconSignal x={0} y={420} />
   </Set>
   <Set>
     <Event x={100} y={0} />

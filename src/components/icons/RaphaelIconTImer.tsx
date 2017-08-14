@@ -15,12 +15,9 @@ export interface RaphaelIconTimerProps extends BaseElementProps {}
 export default class RaphaelIconTimer extends React.Component<RaphaelIconTimerProps, any> {
 
   render() {
-    const { x, y, width, height } = this.props;
-    const tx = x + width / 4;
-    const ty = y + height / 4;
-    return (<Path
-    d={PATH}
-    transform={`T${tx},${ty}`}
-    />);
+    const { x, y, width, height, stroke, fill } = this.props;
+    const px = x + width / 4;
+    const py = y + height / 4;
+    return (<Path d={PATH} stroke={stroke} fill={fill} transform={`T${px},${py}`} />);
   }
 }
