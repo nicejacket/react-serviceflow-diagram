@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-export interface IconContainerEventProps {
+export interface DiagramIconContainerEventProps {
   type?: string;
 }
 
-export default class IconContainerEvent extends React.Component<IconContainerEventProps, any> {
+export default class DiagramIconContainerEvent extends React.Component<DiagramIconContainerEventProps, any> {
 
 }

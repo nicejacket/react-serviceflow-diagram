@@ -1,24 +1,17 @@
 import * as React from 'react';
 import Circle from '../Raphael/Circle';
+import BaseElementProps from '../BaseElementProps';
 
-export interface IconCircleProps {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  stroke?: string;
-  strokeWidth?: number;
-  fill?: string;
-  fillOpacity?: string;
+export interface RaphaelIconCircleProps extends BaseElementProps {
   radius?: number;
 }
 
-export default class IconCircle extends React.Component<IconCircleProps, any> {
+export default class RaphaelIconCircle extends React.Component<RaphaelIconCircleProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
-    width: 64,
-    height: 64,
+    width: 40,
+    height: 40,
     strokeWidth: 2.5,
     radius: 9.75,
   }

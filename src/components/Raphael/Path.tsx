@@ -13,7 +13,7 @@ export interface PathProps {
 export default class Path extends React.Component<any, any> {
   static defaultProps = {
     stroke: '#000',
-    strokeWidth: 2,
+    strokeWidth: 1,
   }
 
   element: Element = null;

@@ -1,15 +1,8 @@
 import * as React from 'react';
-import IconCircle from '../icons/RaphaelIconCircle';
+import RaphaelIconCircle from '../icons/RaphaelIconCircle';
+import BaseElementProps from '../BaseElementProps';
 
-export interface EventProps {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  stroke?: string;
-  fill?: string;
-  fillOpacity?: string;
-  strokeWidth?: number;
+export interface EventProps extends BaseElementProps {
   radius?: number;
 }
 
@@ -23,6 +16,6 @@ export default class Event extends React.Component<EventProps, any> {
 
   render() {
     const { x, y, width, height } = this.props;
-    return <IconCircle {...this.props} />;
+    return <RaphaelIconCircle {...this.props} />;
   }
 }

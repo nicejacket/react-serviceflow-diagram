@@ -1,17 +1,10 @@
 import * as React from 'react';
 import Gateway from './Gateway';
 import Set from '../Raphael/Set';
-import IconCircle from '../icons/RaphaelIconCircle';
+import RaphaelIconCircle from '../icons/RaphaelIconCircle';
+import BaseElementProps from '../BaseElementProps';
 
-export interface InclusiveGatewayProps {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  stroke?: string;
-  strokeWidth?: number;
-  fill?: string;
-  fillOpacity?: string;
+export interface InclusiveGatewayProps extends BaseElementProps {
   radius?: number;
 }
 
@@ -19,17 +12,17 @@ export default class InclusiveGateway extends React.Component<InclusiveGatewayPr
   static defaultProps = {
     x: 0,
     y: 0,
-    width: 64,
-    height: 64,
+    width: 40,
+    height: 40,
     strokeWidth: 2.5,
     radius: 9.75,
   }
 
   render() {
-    const { radius, ...others } = this.props;
+    const { x, y, width, height } = this.props;
     return (<Set>
-      <IconCircle radius={radius} {...others} />
-      <Gateway {...others} />
+      <RaphaelIconCircle {...this.props} />
+      <Gateway x={x} y={y} width={width} height={height} />
     </Set>);
   }
 }

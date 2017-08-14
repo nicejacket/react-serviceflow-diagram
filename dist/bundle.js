@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "E:\\workspace\\react-serviceflow-explorer/dist";
+/******/ 	__webpack_require__.p = "D:\\workspace\\react-serviceflow-explorer/dist";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 43);
@@ -1636,7 +1636,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var ReactDOM = __webpack_require__(17);
-var Utils_1 = __webpack_require__(20);
+var Utils_1 = __webpack_require__(21);
 var Set = (function (_super) {
     __extends(Set, _super);
     function Set(props) {
@@ -1790,31 +1790,37 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var Path_1 = __webpack_require__(13);
 var Gateway = (function (_super) {
     __extends(Gateway, _super);
-    function Gateway(props) {
-        var _this = _super.call(this, props) || this;
-        var x = props.x, y = props.y, width = props.width, height = props.height, stroke = props.stroke, fillColors = props.fillColors, fillOpacity = props.fillOpacity;
-        _this.state = { x: x, y: y, width: width, height: height, stroke: stroke, fillColors: fillColors, fillOpacity: fillOpacity };
-        return _this;
+    function Gateway() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Gateway.prototype.render = function () {
-        var _a = this.state, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
         var path = 'M' + x + ' ' + (y + (height / 2)) +
             'L' + (x + (width / 2)) + ' ' + (y + height) +
             'L' + (x + width) + ' ' + (y + (height / 2)) +
             'L' + (x + (width / 2)) + ' ' + y + 'z';
-        return React.createElement(Path_1.default, { d: path });
+        return React.createElement(Path_1.default, __assign({ d: path }, this.props));
     };
     Gateway.defaultProps = {
         x: 0,
         y: 0,
-        width: 64,
-        height: 64,
+        width: 40,
+        height: 40,
         stroke: '#585858',
+        strokeWidth: 2,
     };
     return Gateway;
 }(React.Component));
@@ -1847,7 +1853,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
-var Element_1 = __webpack_require__(21);
+var Element_1 = __webpack_require__(22);
 var Path = (function (_super) {
     __extends(Path, _super);
     function Path() {
@@ -1864,7 +1870,7 @@ var Path = (function (_super) {
     };
     Path.defaultProps = {
         stroke: '#000',
-        strokeWidth: 2,
+        strokeWidth: 1,
     };
     return Path;
 }(React.Component));
@@ -2135,6 +2141,64 @@ module.exports = ReactDOM;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(4);
+var Circle_1 = __webpack_require__(50);
+var RaphaelIconCircle = (function (_super) {
+    __extends(RaphaelIconCircle, _super);
+    function RaphaelIconCircle() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RaphaelIconCircle.prototype.render = function () {
+        var _a = this.props, radius = _a.radius, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["radius", "x", "y", "width", "height"]);
+        return React.createElement(Circle_1.default, __assign({ r: radius, x: x + width / 2, y: y + height / 2 }, others));
+    };
+    RaphaelIconCircle.defaultProps = {
+        x: 0,
+        y: 0,
+        width: 40,
+        height: 40,
+        strokeWidth: 2.5,
+        radius: 9.75,
+    };
+    return RaphaelIconCircle;
+}(React.Component));
+exports.default = RaphaelIconCircle;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var inherits = __webpack_require__(0)
@@ -2209,7 +2273,7 @@ module.exports = XhrReceiver;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2231,7 +2295,7 @@ module.exports = XHRCorsObject;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2613,7 +2677,7 @@ function convertProps(props) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2631,7 +2695,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var ReactDOM = __webpack_require__(17);
-var Utils_1 = __webpack_require__(20);
+var Utils_1 = __webpack_require__(21);
 var Element = (function (_super) {
     __extends(Element, _super);
     function Element(props) {
@@ -2678,64 +2742,6 @@ var Element = (function (_super) {
     return Element;
 }(React.Component));
 exports.default = Element;
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(4);
-var Circle_1 = __webpack_require__(50);
-var IconCircle = (function (_super) {
-    __extends(IconCircle, _super);
-    function IconCircle() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    IconCircle.prototype.render = function () {
-        var _a = this.props, radius = _a.radius, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["radius", "x", "y", "width", "height"]);
-        return React.createElement(Circle_1.default, __assign({ r: radius, x: x + width / 2, y: y + height / 2 }, others));
-    };
-    IconCircle.defaultProps = {
-        x: 0,
-        y: 0,
-        width: 64,
-        height: 64,
-        strokeWidth: 2.5,
-        radius: 9.75,
-    };
-    return IconCircle;
-}(React.Component));
-exports.default = IconCircle;
 
 
 /***/ }),
@@ -3725,7 +3731,7 @@ module.exports = AbstractXHRObject;
 
 var inherits = __webpack_require__(0)
   , AjaxBasedTransport = __webpack_require__(11)
-  , XhrReceiver = __webpack_require__(18)
+  , XhrReceiver = __webpack_require__(19)
   , XDRObject = __webpack_require__(23)
   ;
 
@@ -3765,7 +3771,7 @@ module.exports = XdrStreamingTransport;
 var inherits = __webpack_require__(0)
   , AjaxBasedTransport = __webpack_require__(11)
   , EventSourceReceiver = __webpack_require__(83)
-  , XHRCorsObject = __webpack_require__(19)
+  , XHRCorsObject = __webpack_require__(20)
   , EventSourceDriver = __webpack_require__(34)
   ;
 
@@ -3994,8 +4000,8 @@ module.exports = HtmlFileTransport;
 
 var inherits = __webpack_require__(0)
   , AjaxBasedTransport = __webpack_require__(11)
-  , XhrReceiver = __webpack_require__(18)
-  , XHRCorsObject = __webpack_require__(19)
+  , XhrReceiver = __webpack_require__(19)
+  , XHRCorsObject = __webpack_require__(20)
   , XHRLocalObject = __webpack_require__(14)
   ;
 
@@ -4412,7 +4418,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var ReactDOM = __webpack_require__(17);
-var Utils_1 = __webpack_require__(20);
+var Utils_1 = __webpack_require__(21);
 var Paper = (function (_super) {
     __extends(Paper, _super);
     function Paper(props) {
@@ -4549,7 +4555,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
-var Element_1 = __webpack_require__(21);
+var Element_1 = __webpack_require__(22);
 var Image = (function (_super) {
     __extends(Image, _super);
     function Image() {
@@ -4600,36 +4606,27 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var Gateway_1 = __webpack_require__(12);
 var Set_1 = __webpack_require__(9);
-var RaphaelIconCircle_1 = __webpack_require__(22);
+var RaphaelIconCircle_1 = __webpack_require__(18);
 var InclusiveGateway = (function (_super) {
     __extends(InclusiveGateway, _super);
     function InclusiveGateway() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     InclusiveGateway.prototype.render = function () {
-        var _a = this.props, radius = _a.radius, others = __rest(_a, ["radius"]);
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
         return (React.createElement(Set_1.default, null,
-            React.createElement(RaphaelIconCircle_1.default, __assign({ radius: radius }, others)),
-            React.createElement(Gateway_1.default, __assign({}, others))));
+            React.createElement(RaphaelIconCircle_1.default, __assign({}, this.props)),
+            React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height })));
     };
     InclusiveGateway.defaultProps = {
         x: 0,
         y: 0,
-        width: 64,
-        height: 64,
+        width: 40,
+        height: 40,
         strokeWidth: 2.5,
         radius: 9.75,
     };
@@ -4664,7 +4661,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
-var Element_1 = __webpack_require__(21);
+var Element_1 = __webpack_require__(22);
 var Circle = (function (_super) {
     __extends(Circle, _super);
     function Circle() {
@@ -4724,15 +4721,16 @@ var ParallelGatway = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ParallelGatway.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
         return React.createElement(Set_1.default, null,
-            React.createElement(Gateway_1.default, __assign({}, this.props)),
+            React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height }),
             React.createElement(RaphaelIconPlus_1.default, __assign({}, this.props)));
     };
     ParallelGatway.defaultProps = {
         x: 0,
         y: 0,
-        width: 64,
-        height: 64,
+        width: 40,
+        height: 40,
         strokeWidth: 3,
     };
     return ParallelGatway;
@@ -4767,29 +4765,29 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var Path_1 = __webpack_require__(13);
-var IconPlus = (function (_super) {
-    __extends(IconPlus, _super);
-    function IconPlus() {
+var RaphaelIconPlus = (function (_super) {
+    __extends(RaphaelIconPlus, _super);
+    function RaphaelIconPlus() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    IconPlus.prototype.render = function () {
+    RaphaelIconPlus.prototype.render = function () {
         var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
-        var px = x + width / 4;
-        var py = y + height / 4;
+        var px = x + ((width - 32) / 2);
+        var py = y + ((height - 32) / 2);
         var PATH_DATA = 'M 6.75,16 L 25.75,16 M 16,6.75 L 16,25.75';
-        var transform = 'T' + (this.props.x + this.props.width / 4) + ',' + (this.props.y + this.props.height / 4);
+        var transform = "T" + px + "," + py;
         return React.createElement(Path_1.default, __assign({ d: PATH_DATA }, this.props, { transform: transform }));
     };
-    IconPlus.defaultProps = {
+    RaphaelIconPlus.defaultProps = {
         x: 0,
         y: 0,
-        width: 64,
-        height: 64,
+        width: 40,
+        height: 40,
         strokeWidth: 3,
     };
-    return IconPlus;
+    return RaphaelIconPlus;
 }(React.Component));
-exports.default = IconPlus;
+exports.default = RaphaelIconPlus;
 
 
 /***/ }),
@@ -4827,15 +4825,16 @@ var ExclusiveGateway = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ExclusiveGateway.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
         return (React.createElement(Set_1.default, null,
-            React.createElement(Gateway_1.default, __assign({}, this.props)),
+            React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height }),
             React.createElement(RaphaelIconCross_1.default, __assign({}, this.props))));
     };
     ExclusiveGateway.defaultProps = {
         x: 0,
         y: 0,
-        width: 64,
-        height: 64,
+        width: 40,
+        height: 40,
         strokeWidth: 3,
     };
     return ExclusiveGateway;
@@ -4859,34 +4858,51 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var Path_1 = __webpack_require__(13);
-var IconCross = (function (_super) {
-    __extends(IconCross, _super);
-    function IconCross() {
+var RaphaelIconCross = (function (_super) {
+    __extends(RaphaelIconCross, _super);
+    function RaphaelIconCross() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    IconCross.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
+    RaphaelIconCross.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["x", "y", "width", "height"]);
         var quarterWidth = width / 4;
         var quarterHeight = height / 4;
         var DATA = 'M' + (x + quarterWidth + 3) + ' ' + (y + quarterHeight + 3) +
             'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + 3 * quarterHeight - 3) +
             'M' + (x + quarterWidth + 3) + ' ' + (y + 3 * quarterHeight - 3) +
             'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + quarterHeight + 3);
-        return React.createElement(Path_1.default, { d: DATA });
+        return React.createElement(Path_1.default, __assign({ d: DATA }, others));
     };
-    IconCross.defaultProps = {
+    RaphaelIconCross.defaultProps = {
         x: 0,
         y: 0,
         width: 64,
         height: 64,
         strokeWidth: 3,
     };
-    return IconCross;
+    return RaphaelIconCross;
 }(React.Component));
-exports.default = IconCross;
+exports.default = RaphaelIconCross;
 
 
 /***/ }),
@@ -4913,26 +4929,44 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var Set_1 = __webpack_require__(9);
 var Gateway_1 = __webpack_require__(12);
 var RaphaelIconPentagon_1 = __webpack_require__(56);
+var RaphaelIconCircle_1 = __webpack_require__(18);
 var EventGateway = (function (_super) {
     __extends(EventGateway, _super);
     function EventGateway() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     EventGateway.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, pentaStrokeWidth = _a.pentaStrokeWidth, strokeWidth = _a.strokeWidth, others = __rest(_a, ["x", "y", "width", "height", "circleRadiusInner", "circleRadiusOuter", "pentaStrokeWidth", "strokeWidth"]);
+        var psProps = { x: x, y: y, width: width, height: height };
         return (React.createElement(Set_1.default, null,
-            React.createElement(Gateway_1.default, __assign({}, this.props)),
-            React.createElement(RaphaelIconPentagon_1.default, __assign({}, this.props))));
+            React.createElement(Gateway_1.default, __assign({}, psProps)),
+            React.createElement(RaphaelIconCircle_1.default, __assign({}, psProps, { radius: circleRadiusInner, strokeWidth: strokeWidth }, others)),
+            React.createElement(RaphaelIconCircle_1.default, __assign({}, psProps, { radius: circleRadiusOuter, strokeWidth: strokeWidth }, others)),
+            React.createElement(RaphaelIconPentagon_1.default, __assign({}, psProps, { strokeWidth: pentaStrokeWidth }, others))));
     };
     EventGateway.defaultProps = {
         x: 0,
         y: 0,
-        width: 64,
-        height: 64,
+        width: 40,
+        height: 40,
+        strokeWidth: 0.5,
+        circleRadiusInner: 10.4,
+        circleRadiusOuter: 11.7,
+        pentaStrokeWidth: 1.39999998,
     };
     return EventGateway;
 }(React.Component));
@@ -4966,27 +5000,27 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var Path_1 = __webpack_require__(13);
-var IconPentagon = (function (_super) {
-    __extends(IconPentagon, _super);
-    function IconPentagon() {
+var RaphaelIconPentagon = (function (_super) {
+    __extends(RaphaelIconPentagon, _super);
+    function RaphaelIconPentagon() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    IconPentagon.prototype.render = function () {
+    RaphaelIconPentagon.prototype.render = function () {
         var PENTAGON = 'M 20.327514,22.344972 L 11.259248,22.344216 L 8.4577203,13.719549' +
             ' L 15.794545,8.389969 L 23.130481,13.720774 L 20.327514,22.344972 z';
-        var transform = 'T' + (this.props.x + this.props.width / 4) + ',' + (this.props.y + this.props.height / 4);
+        var transform = 'T' + (this.props.x + (this.props.width - 32) / 2) + ',' + (this.props.y + (this.props.height - 32) / 2);
         return React.createElement(Path_1.default, __assign({ d: PENTAGON }, this.props, { transform: transform }));
     };
-    IconPentagon.defaultProps = {
+    RaphaelIconPentagon.defaultProps = {
         x: 0,
         y: 0,
         width: 64,
         height: 64,
         strokeLinejoin: 'bevel',
     };
-    return IconPentagon;
+    return RaphaelIconPentagon;
 }(React.Component));
-exports.default = IconPentagon;
+exports.default = RaphaelIconPentagon;
 
 
 /***/ }),
@@ -5015,7 +5049,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
-var RaphaelIconCircle_1 = __webpack_require__(22);
+var RaphaelIconCircle_1 = __webpack_require__(18);
 var Event = (function (_super) {
     __extends(Event, _super);
     function Event() {
@@ -5063,7 +5097,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(4);
 var Set_1 = __webpack_require__(9);
-var RaphaelIconCircle_1 = __webpack_require__(22);
+var RaphaelIconCircle_1 = __webpack_require__(18);
 var RaphaelIconTImer_1 = __webpack_require__(59);
 var DiagramIconTimer = (function (_super) {
     __extends(DiagramIconTimer, _super);
@@ -7825,8 +7859,8 @@ if (Driver) {
 
 var inherits = __webpack_require__(0)
   , AjaxBasedTransport = __webpack_require__(11)
-  , XhrReceiver = __webpack_require__(18)
-  , XHRCorsObject = __webpack_require__(19)
+  , XhrReceiver = __webpack_require__(19)
+  , XHRCorsObject = __webpack_require__(20)
   , XHRLocalObject = __webpack_require__(14)
   , browser = __webpack_require__(15)
   ;
@@ -8210,7 +8244,7 @@ module.exports = HtmlfileReceiver;
 var inherits = __webpack_require__(0)
   , AjaxBasedTransport = __webpack_require__(11)
   , XdrStreamingTransport = __webpack_require__(32)
-  , XhrReceiver = __webpack_require__(18)
+  , XhrReceiver = __webpack_require__(19)
   , XDRObject = __webpack_require__(23)
   ;
 
@@ -9616,7 +9650,7 @@ var EventEmitter = __webpack_require__(5).EventEmitter
   , inherits = __webpack_require__(0)
   , urlUtils = __webpack_require__(6)
   , XDR = __webpack_require__(23)
-  , XHRCors = __webpack_require__(19)
+  , XHRCors = __webpack_require__(20)
   , XHRLocal = __webpack_require__(14)
   , XHRFake = __webpack_require__(98)
   , InfoIframe = __webpack_require__(99)

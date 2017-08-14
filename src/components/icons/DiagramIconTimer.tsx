@@ -2,16 +2,9 @@ import * as React from 'react';
 import Set from '../Raphael/Set';
 import IconCircle from './RaphaelIconCircle';
 import RaphaelIconTimer from './RaphaelIconTImer';
+import BaseElementProps from '../BaseElementProps';
 
-export interface DiagramIconTimerProps {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  stroke?: string;
-  fill?: string;
-  fillOpacity?: string;
-  strokeWidth?: number;
+export interface DiagramIconTimerProps extends BaseElementProps {
   raidus?: number;
 }
 

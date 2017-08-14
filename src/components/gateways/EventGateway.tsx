@@ -1,31 +1,36 @@
 import * as React from 'react';
 import Set from '../Raphael/Set';
 import Gateway from './Gateway';
-import IconPentagon from '../icons/RaphaelIconPentagon';
+import RaphaelIconPentagon from '../icons/RaphaelIconPentagon';
+import BaseElementProps from '../BaseElementProps';
+import RaphaelIconCircle from '../icons/RaphaelIconCircle';
 
-export interface EventGatewayProps {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  stroke?: string;
-  strokeWidth?: number;
-  fill?: string;
-  fillOpacity?: string;
+export interface EventGatewayProps extends BaseElementProps {
+  circleRadiusInner?: number;
+  circleRadiusOuter?: number;
+  pentaStrokeWidth?: number;
 }
 
 export default class EventGateway extends React.Component<EventGatewayProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
-    width: 64,
-    height: 64,
+    width: 40,
+    height: 40,
+    strokeWidth: 0.5,
+    circleRadiusInner: 10.4,
+    circleRadiusOuter: 11.7,
+    pentaStrokeWidth: 1.39999998,
   }
 
   render() {
+    const { x, y, width, height, circleRadiusInner, circleRadiusOuter, pentaStrokeWidth, strokeWidth, ...others } = this.props;
+    const psProps = { x, y, width, height };
     return (<Set>
-      <Gateway {...this.props} />
-      <IconPentagon {...this.props} />
+      <Gateway {...psProps} />
+      <RaphaelIconCircle {...psProps} radius={circleRadiusInner} strokeWidth={strokeWidth} {...others}  />
+      <RaphaelIconCircle {...psProps} radius={circleRadiusOuter} strokeWidth={strokeWidth} {...others}  />
+      <RaphaelIconPentagon {...psProps} strokeWidth={pentaStrokeWidth} {...others} />
     </Set>);
   }
 }
