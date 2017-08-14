@@ -16,8 +16,8 @@ export default class RaphaelIconTimer extends React.Component<RaphaelIconTimerPr
 
   render() {
     const { x, y, width, height, stroke, fill } = this.props;
-    const px = x + width / 4;
-    const py = y + height / 4;
+    const px = x + (width - 20) / 2;
+    const py = y + (height - 20) / 2;
     return (<Path d={PATH} stroke={stroke} fill={fill} transform={`T${px},${py}`} />);
   }
 }

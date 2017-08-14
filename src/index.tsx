@@ -13,6 +13,9 @@ import DiagramIconTimer from './components/icons/DiagramIconTimer';
 import DiagramIconMessage from './components/icons/DiagramIconMessage';
 import DiagramIconError from './components/icons/DiagramIconError';
 import DiagramIconSignal from './components/icons/DiagramIconSignal';
+import DiagramIconContainerEvent from './components/icons/DragramIconContainerEvent';
+import StartEvent from './components/events/StartEvent';
+import EndEvent from './components/events/EndEvent';
 
 ReactDOM.render(<Paper width={400} height={500}>
   <Set>
@@ -26,8 +29,11 @@ ReactDOM.render(<Paper width={400} height={500}>
     <DiagramIconMessage x={0} y={340} />
     <DiagramIconError x={0} y={380} />
     <DiagramIconSignal x={0} y={420} />
+    <DiagramIconContainerEvent x={0} y={460} type="timer" />
   </Set>
   <Set>
-    <Event x={100} y={0} />
+    <Event x={100} y={0} eventDefinition={{ type: 'timer' }} />
+    <StartEvent x={100} y={40} />
+    <EndEvent x={100} y={80} />
   </Set>
 </Paper>, document.getElementById('example'));

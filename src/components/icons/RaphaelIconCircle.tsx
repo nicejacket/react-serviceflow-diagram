@@ -18,6 +18,7 @@ export default class RaphaelIconCircle extends React.Component<RaphaelIconCircle
 
   render() {
     const { radius, x, y, width, height, ...others } = this.props;
+    console.log(x, y, width, height, radius);
     return <Circle r={radius} x={x + width / 2} y={y + height / 2} {...others} />;
   }
 }

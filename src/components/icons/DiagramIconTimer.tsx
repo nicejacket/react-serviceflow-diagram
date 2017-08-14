@@ -1,27 +1,29 @@
 import * as React from 'react';
 import Set from '../Raphael/Set';
-import IconCircle from './RaphaelIconCircle';
+import RaphaelIconCircle from './RaphaelIconCircle';
 import RaphaelIconTimer from './RaphaelIconTImer';
 import BaseElementProps from '../BaseElementProps';
 
 export interface DiagramIconTimerProps extends BaseElementProps {
-  raidus?: number;
+  radius?: number;
 }
 
 export default class DiagramIconTimer extends React.Component<DiagramIconTimerProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
-    width: 36,
-    height: 36,
-    radius: 18,
+    width: 20,
+    height: 20,
+    radius: 10,
+    strokeWidth: 1,
   }
 
   render() {
+    const { stroke, fill, radius, ...others } = this.props;
     return(<Set>
-        <IconCircle {...this.props} stroke="black" fill="none" />
+        <RaphaelIconCircle {...others} radius={radius} stroke="black" fill="none" />
         <RaphaelIconTimer
-          {...this.props}
+          {...others}
           stroke="none"
           fill="#585858"
         />
