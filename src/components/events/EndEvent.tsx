@@ -1,6 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import Event from './Event';
+import Tooltip from '../tooltip/Tooltip';
 
 export interface EndEventProps extends BaseElementProps {
   radius?: number;
@@ -15,6 +16,6 @@ export default class EndEvent extends React.Component<EndEventProps, any> {
   }
 
   render() {
-    return <Event {...this.props} />;
+    return <Tooltip><Event {...this.props} /></Tooltip>;
   }
 }

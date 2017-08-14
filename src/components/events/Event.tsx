@@ -19,10 +19,10 @@ export default class Event extends React.Component<EventProps, any> {
   }
 
   render() {
-    const { x, y, width, height, iconFill } = this.props;
+    const { x, y, width, height, iconFill, ...others } = this.props;
     return (<Set>
       <DiagramIconContainerEvent x={x} y={y} width={width} height={height} fill={iconFill} />
-      <RaphaelIconCircle {...this.props} />;
+      <RaphaelIconCircle {...this.props} />
     </Set>);
   }
 }
