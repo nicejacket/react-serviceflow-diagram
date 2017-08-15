@@ -22,7 +22,6 @@ export default class Rect extends React.Component<RectProps, any> {
   }
 
   render() {
-    console.log(this.props, 'rect');
     return (<Element
       ref={(node: any) => { this.element = node; }}
       type="rect"

@@ -22,12 +22,18 @@ import Pool from './components/swimlanes/Pool';
 import Lane from './components/swimlanes/Lane';
 import SubProcess from './components/structural/SubProcess';
 import EventSubProcess from './components/structural/EventSubProcess';
-import DiagramIconUserTask from './components/icons/DiagramIconUserTask';
+import DiagramIconUser from './components/icons/DiagramIconUser';
 import RaphaelIconBoxPublish from './components/icons/RaphaelIconBoxPublish';
 import RaphaelIconBusinessRule from './components/icons/RaphaelIconBusinessRule';
 import RaphaelIconCamel from './components/icons/RaphaelIconCamel';
 import RaphaelIconManual from './components/icons/RaphaelIconManual';
 import RaphaelIconGoogleDrivePublish from './components/icons/RaphaelIconGoogleDrivePublish';
+import RaphaelIconMule from './components/icons/RaphaelIconMule';
+import RaphaelIconReceive from './components/icons/RaphaelIconReceive';
+import RaphaelIconRestCall from './components/icons/RaphaelIconRestCall';
+import RaphaelIconScript from './components/icons/RaphaelIconScript';
+import RaphaelIconSend from './components/icons/RaphaelIconSend';
+import RaphaelIconService from './components/icons/RaphaelIconService';
 
 ReactDOM.render(<Paper width={400} height={500}>
   <Set>
@@ -55,11 +61,17 @@ ReactDOM.render(<Paper width={400} height={500}>
     <Lane x={160} y={40} text="这个是个提示信息lane" width={100} height={36} />
     <SubProcess x={160} y={80} width={100} height={36} stroke="green" fill="#FFF" />
     <EventSubProcess x={160} y={120} width={100} height={36} stroke="red" fill="#FFF" />
-    <DiagramIconUserTask x={160} y={160} />
+    <DiagramIconUser x={160} y={160} />
     <RaphaelIconBoxPublish x={180} y={160} width={20} height={20} />
     <RaphaelIconBusinessRule x={200} y={160} stroke="#000" fill="red" />
     <RaphaelIconCamel x={220} y={160} stroke="#000" fill="green" />
     <RaphaelIconManual x={240} y={160} stroke="blue" fill="yellow" />
     <RaphaelIconGoogleDrivePublish x={260} y={160} />
+    <RaphaelIconMule x={160} y={200} />
+    <RaphaelIconReceive x={180} y={200} />
+    <RaphaelIconRestCall x={200} y={200} />
+    <RaphaelIconScript x={220} y={200} />
+    <RaphaelIconSend x={240} y={200} />
+    <RaphaelIconService x={260} y={200} />
   </Set>
 </Paper>, document.getElementById('example'));
