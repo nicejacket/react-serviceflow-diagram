@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Path from '../Raphael/Path';
 import BaseElementProps from '../BaseElementProps';
+import Tooltip from '../tooltip/Tooltip';
 
 export interface GatewayProps extends BaseElementProps {}
 
@@ -12,6 +13,8 @@ export default class Gateway extends React.Component<GatewayProps, any> {
     height: 40,
     stroke: '#585858',
     strokeWidth: 2,
+    fill: '#FFF',
+    fillOpacity: '',
   }
 
   render() {
@@ -20,6 +23,6 @@ export default class Gateway extends React.Component<GatewayProps, any> {
             'L' + (x + (width / 2)) + ' ' + (y + height) +
             'L' + (x + width) + ' ' + (y + (height / 2)) +
             'L' + (x + (width / 2)) + ' ' + y + 'z';
-    return <Path d={path} {...this.props} />
+    return <Tooltip><Path d={path} {...this.props} />{this.props.children}</Tooltip>;
   }
 }

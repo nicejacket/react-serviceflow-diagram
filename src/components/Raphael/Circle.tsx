@@ -24,6 +24,7 @@ export default class Circle extends React.Component<CircleProps, any> {
     return (<Element
       ref={(node: any) => { this.element = node; }}
       type="circle"
+      fill="#FFF"
       {...this.props}
     />);
   }
