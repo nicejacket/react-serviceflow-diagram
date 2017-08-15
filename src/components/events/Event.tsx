@@ -1,8 +1,8 @@
 import * as React from 'react';
 import RaphaelIconCircle from '../icons/RaphaelIconCircle';
 import BaseElementProps from '../BaseElementProps';
-import Set from '../Raphael/Set';
 import DiagramIconContainerEvent from '../icons/DragramIconContainerEvent';
+import Tooltip from '../tooltip/Tooltip';
 
 export interface EventProps extends BaseElementProps {
   radius?: number;
@@ -20,9 +20,9 @@ export default class Event extends React.Component<EventProps, any> {
 
   render() {
     const { x, y, width, height, iconFill, ...others } = this.props;
-    return (<Set>
-      <DiagramIconContainerEvent x={x} y={y} width={width} height={height} fill={iconFill} />
+    return (<Tooltip>
       <RaphaelIconCircle {...this.props} />
-    </Set>);
+      <DiagramIconContainerEvent x={x} y={y} width={width} height={height} fill={iconFill} />
+    </Tooltip>);
   }
 }

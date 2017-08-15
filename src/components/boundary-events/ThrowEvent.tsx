@@ -1,0 +1,37 @@
+import * as React from 'react';
+import BaseElementProps from '../BaseElementProps';
+import Tooltip from '../tooltip/Tooltip';
+import RaphaelIconCircle from '../icons/RaphaelIconCircle';
+import DiagramIconContainerEvent from '../icons/DragramIconContainerEvent';
+
+export interface ThrowEventProps extends BaseElementProps {
+  circleRadiusInner?: number;
+  circleRadiusOuter?: number;
+  signalFill?: string;
+  type?: string;
+}
+
+export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
+  static defaultProps = {
+    x: 0,
+    y: 0,
+    width: 30,
+    height: 30,
+    stroke: '#585858',
+    fill: '#FFF',
+    fillOpacity: '',
+    strokeWidth: 1,
+    signalFill: 'black',
+    circleRadiusInner: 12,
+    circleRadiusOuter: 15,
+  }
+
+  render() {
+    const { fill, signalFill, type, circleRadiusInner, circleRadiusOuter, ...others } = this.props;
+    return (<Tooltip>
+      <RaphaelIconCircle fill={fill} radius={circleRadiusOuter} {...others} />
+      <RaphaelIconCircle fill={fill} radius={circleRadiusInner} {...others} />
+      <DiagramIconContainerEvent fill={signalFill} type={type} {...others} />
+    </Tooltip>);
+  }
+}

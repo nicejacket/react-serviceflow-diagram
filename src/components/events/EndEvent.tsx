@@ -16,6 +16,6 @@ export default class EndEvent extends React.Component<EndEventProps, any> {
   }
 
   render() {
-    return <Tooltip><Event {...this.props} /></Tooltip>;
+    return <Event {...this.props} />;
   }
 }

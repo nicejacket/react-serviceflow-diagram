@@ -83,8 +83,8 @@ export function create(parentId: string, type: string, props: any) {
       break;
     }
     case 'rect': {
-      let { x, y, width, height, r } = props;
-      element = findedParent.paper.rect(x, y, width, height, r);
+      let { x, y, width, height, r, ... others } = props;
+      element = findedParent.paper.rect(x, y, width, height, r).attr(convertProps(others));
       break;
     }
     case 'text': {
@@ -288,8 +288,7 @@ export function updateElement(element: RaphaelElement, type: string, props: any,
       break;
     }
     case 'rect': {
-      const { x, y, width, height, r } = props;
-      element.attr({ x, y, width, height, r });
+      element.attr(props);
       break;
     }
     case 'text': {

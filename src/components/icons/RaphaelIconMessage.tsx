@@ -10,8 +10,8 @@ export interface RaphaelIconMessageProps extends BaseElementProps {}
 export default class RaphaelIconMessage extends React.Component<RaphaelIconMessageProps, any> {
   render() {
     const { x, y, width, height, ...others } = this.props;
-    const px = x + (width - 28) / 2;
-    const py = y + (height - 28) / 2;
+    const px = x + (width - 18) / 2;
+    const py = y + (height - 18) / 2;
     console.log(x, y, px, py, width, height);
     return <Path d={PATH} {...others} transform={`T${px},${py}`} />;
   }
