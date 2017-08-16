@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
-import Rect from '../Raphael/Rect';
+import Rect from '../raphael/Rect';
 
 export interface SubProcessProps extends BaseElementProps {
   radius?: number;

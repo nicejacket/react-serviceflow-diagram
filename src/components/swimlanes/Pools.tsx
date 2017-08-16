@@ -1,9 +1,8 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Set from '../Raphael/Set';
+import Set from '../raphael/Set';
 import Pool from './Pool';
 import Lanes from './Lanes';
-import { pool } from '../../../../alfresco-ng2-components/ng2-components/ng2-activiti-diagrams/src/assets/diagramSwimlanes.mock';
 
 export interface PoolsProps {
   pools?: Array<any>;

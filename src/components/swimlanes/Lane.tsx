@@ -1,8 +1,8 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Set from '../Raphael/Set';
-import Rect from '../Raphael/Rect';
-import Text from '../Raphael/Text';
+import Set from '../raphael/Set';
+import Rect from '../raphael/Rect';
+import Text from '../raphael/Text';
 
 export interface LaneProps extends BaseElementProps {
   text?: string;

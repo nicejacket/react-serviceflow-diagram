@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Gateway from './Gateway';
-import Set from '../Raphael/Set';
-import RaphaelIconCircle from '../icons/RaphaelIconCircle';
+import Set from '../raphael/Set';
+import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import BaseElementProps from '../BaseElementProps';
 
 export interface InclusiveGatewayProps extends BaseElementProps {

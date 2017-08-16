@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import RaphaelIconMessage from './RaphaelIconMessage';
+import RaphaelIconMessage from '../raphael/icons/RaphaelIconMessage';
 
 export interface DiagramIconMessageProps extends BaseElementProps {
 

@@ -1704,6 +1704,7 @@ var Tooltip = (function (_super) {
         };
         _this.root = null;
         _this.tooltip = null;
+        _this.leave = true;
         _this.loopSet = function (set) {
             set.forEach(function (item) {
                 if (item.type === 'set') {
@@ -1718,12 +1719,18 @@ var Tooltip = (function (_super) {
             });
         };
         _this.onMouseEnterHandler = function (e) {
+            _this.leave = false;
+            setTimeout(_this.onShowTooltipHandler.bind(_this, e), 10);
+        };
+        _this.onShowTooltipHandler = function (e) {
             var tooltip = ReactDOM.findDOMNode(_this.tooltip);
             var props = e.target.getBoundingClientRect();
             var top = props.top + (props.height / 2);
             var marginLeft = -1 * (tooltip.offsetWidth / 2);
             var marginTop = -1 * (tooltip.offsetHeight / 2);
             var left = props.left + (props.width / 2);
+            if (_this.state.visible)
+                return;
             if (_this.props.position === exports.POSITION.LEFT || _this.props.position === exports.POSITION.RIGHT) {
                 left = (props.width / 2);
                 if (top + marginTop < 0) {
@@ -1757,16 +1764,16 @@ var Tooltip = (function (_super) {
             else {
                 tooltip.style.top = props.top + props.height + 10 + 'px';
             }
-            _this.onShowHandler();
-        };
-        _this.onHideHandler = function () {
-            _this.setState({ visible: false });
-        };
-        _this.onShowHandler = function () {
             _this.setState({ visible: true });
         };
+        _this.onHideHandler = function () {
+            if (_this.leave) {
+                _this.setState({ visible: false });
+            }
+        };
         _this.onMouseLevelAndScrollHandler = function (e) {
-            _this.onHideHandler();
+            _this.leave = true;
+            setTimeout(_this.onHideHandler, 10);
         };
         return _this;
     }
@@ -3050,9 +3057,9 @@ var Event = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Event.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, iconFill = _a.iconFill, others = __rest(_a, ["x", "y", "width", "height", "iconFill"]);
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, fill = _a.fill, iconFill = _a.iconFill, others = __rest(_a, ["x", "y", "width", "height", "fill", "iconFill"]);
         return (React.createElement(Tooltip_1.default, null,
-            React.createElement(RaphaelIconCircle_1.default, __assign({}, this.props)),
+            React.createElement(RaphaelIconCircle_1.default, __assign({ fill: fill }, this.props)),
             React.createElement(DragramIconContainerEvent_1.default, { x: x, y: y, width: width, height: height, fill: iconFill })));
     };
     Event.defaultProps = {
@@ -3060,6 +3067,7 @@ var Event = (function (_super) {
         y: 0,
         width: 32,
         height: 32,
+        fill: '#FFF',
     };
     return Event;
 }(React.Component));
@@ -6410,7 +6418,7 @@ var StartEvent = (function (_super) {
         return (React.createElement(Event_1.default, __assign({}, this.props)));
     };
     StartEvent.defaultProps = {
-        iconFill: 'none',
+        iconFill: '#FFF',
         radius: 15,
         strokeWidth: 1,
     };

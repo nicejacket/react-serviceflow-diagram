@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Set from '../Raphael/Set';
+import Set from '../raphael/Set';
 import Gateway from './Gateway';
-import IconPlus from '../icons/RaphaelIconPlus';
+import IconPlus from '../raphael/icons/RaphaelIconPlus';
 import BaseElementProps from '../BaseElementProps';
 
 export interface ParallelGatewayProps extends BaseElementProps {

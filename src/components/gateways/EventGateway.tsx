@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Set from '../Raphael/Set';
+import Set from '../raphael/Set';
 import Gateway from './Gateway';
-import RaphaelIconPentagon from '../icons/RaphaelIconPentagon';
+import RaphaelIconPentagon from '../raphael/icons/RaphaelIconPentagon';
 import BaseElementProps from '../BaseElementProps';
-import RaphaelIconCircle from '../icons/RaphaelIconCircle';
+import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 
 export interface EventGatewayProps extends BaseElementProps {
   circleRadiusInner?: number;

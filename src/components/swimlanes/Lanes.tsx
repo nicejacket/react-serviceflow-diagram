@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Lane from './Lane';
-import Set from '../Raphael/Set';
+import Set from '../raphael/Set';
 
 export interface LanesProps {
   lanes?: Array<any>;

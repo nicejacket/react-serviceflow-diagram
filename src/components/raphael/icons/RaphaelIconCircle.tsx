@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Circle from '../Raphael/Circle';
-import BaseElementProps from '../BaseElementProps';
+import Circle from '../Circle';
+import BaseElementProps from '../../BaseElementProps';
 
 export interface RaphaelIconCircleProps extends BaseElementProps {
   radius?: number;

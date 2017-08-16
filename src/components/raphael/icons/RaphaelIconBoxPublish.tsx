@@ -1,6 +1,6 @@
 import * as React from 'react';
-import BaseElementProps from '../BaseElementProps';
-import Image from '../Raphael/Image';
+import BaseElementProps from '../../BaseElementProps';
+import Image from '../Image';
 
 const DATA = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAjCAYAAADxG9hnAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI WXMAAA7DAAAO
       wwHHb6hkAAAAB3RJTUUH3wQXDxwCFNe28AAACsdJREFUWMOVmGmMXtV5x3/POfe+ y2yeGc/mwbMZG9tDMGBTKC5GCU4pbYmSRlmowlIFJWnUprSiy4dI/UA/9EsVifZDmy

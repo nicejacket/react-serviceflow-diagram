@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Path from '../Raphael/Path';
-import BaseElementProps from '../BaseElementProps';
+import Path from '../Path';
+import BaseElementProps from '../../BaseElementProps';
 
 export interface RaphaelIconPentagonProps extends BaseElementProps {
   strokeLinejoin?: string;

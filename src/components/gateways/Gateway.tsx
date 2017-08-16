@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Path from '../Raphael/Path';
+import Path from '../raphael/Path';
 import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Paper from './components/Raphael/Paper';
-import Set from './components/Raphael/Set';
+import Paper from './components/raphael/Paper';
+import Set from './components/raphael/Set';
 import Gateway from './components/gateways/Gateway';
 import InclusiveGateway from './components/gateways/InclusiveGateway';
 import ParallelGatway from './components/gateways/ParallelGateway';
@@ -23,17 +23,17 @@ import Lane from './components/swimlanes/Lane';
 import SubProcess from './components/structural/SubProcess';
 import EventSubProcess from './components/structural/EventSubProcess';
 import DiagramIconUser from './components/icons/DiagramIconUser';
-import RaphaelIconBoxPublish from './components/icons/RaphaelIconBoxPublish';
-import RaphaelIconBusinessRule from './components/icons/RaphaelIconBusinessRule';
-import RaphaelIconCamel from './components/icons/RaphaelIconCamel';
-import RaphaelIconManual from './components/icons/RaphaelIconManual';
-import RaphaelIconGoogleDrivePublish from './components/icons/RaphaelIconGoogleDrivePublish';
-import RaphaelIconMule from './components/icons/RaphaelIconMule';
-import RaphaelIconReceive from './components/icons/RaphaelIconReceive';
-import RaphaelIconRestCall from './components/icons/RaphaelIconRestCall';
-import RaphaelIconScript from './components/icons/RaphaelIconScript';
-import RaphaelIconSend from './components/icons/RaphaelIconSend';
-import RaphaelIconService from './components/icons/RaphaelIconService';
+import RaphaelIconBoxPublish from './components/raphael/icons/RaphaelIconBoxPublish';
+import RaphaelIconBusinessRule from './components/raphael/icons/RaphaelIconBusinessRule';
+import RaphaelIconCamel from './components/raphael/icons/RaphaelIconCamel';
+import RaphaelIconManual from './components/raphael/icons/RaphaelIconManual';
+import RaphaelIconGoogleDrivePublish from './components/raphael/icons/RaphaelIconGoogleDrivePublish';
+import RaphaelIconMule from './components/raphael/icons/RaphaelIconMule';
+import RaphaelIconReceive from './components/raphael/icons/RaphaelIconReceive';
+import RaphaelIconRestCall from './components/raphael/icons/RaphaelIconRestCall';
+import RaphaelIconScript from './components/raphael/icons/RaphaelIconScript';
+import RaphaelIconSend from './components/raphael/icons/RaphaelIconSend';
+import RaphaelIconService from './components/raphael/icons/RaphaelIconService';
 
 ReactDOM.render(<Paper width={400} height={500}>
   <Set>

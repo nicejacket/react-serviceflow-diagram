@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import RaphaelIconUser from './RaphaelIconUser';
+import RaphaelIconUser from '../raphael/icons/RaphaelIconUser';
 
 export interface DiagramIconUserProps extends BaseElementProps {
   opacity?: number;

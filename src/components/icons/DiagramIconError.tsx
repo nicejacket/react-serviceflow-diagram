@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import RaphaelIconError from './RaphaelIconError';
+import RaphaelIconError from '../raphael/icons/RaphaelIconError';
 
 export interface DiagramIconErrorProps extends BaseElementProps {}
 

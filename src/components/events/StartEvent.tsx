@@ -9,7 +9,7 @@ export interface StartEventProps extends BaseElementProps {
 
 export default class StartEvent extends React.Component<StartEventProps, any> {
   static defaultProps = {
-    iconFill: 'none',
+    iconFill: '#FFF',
     radius: 15,
     strokeWidth: 1,
   }

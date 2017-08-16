@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Set from '../Raphael/Set';
-import RaphaelIconCircle from './RaphaelIconCircle';
-import RaphaelIconTimer from './RaphaelIconTImer';
+import Set from '../raphael/Set';
+import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
+import RaphaelIconTimer from '../raphael/icons/RaphaelIconTImer';
 import BaseElementProps from '../BaseElementProps';
 
 export interface DiagramIconTimerProps extends BaseElementProps {

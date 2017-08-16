@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Set from '../Raphael/Set';
-import Element from '../Raphael/Element';
+import Set from '../raphael/Set';
+import Element from '../raphael/Element';
 import './Tooltip.less';
 
 const CLS_PREFIX = 'sf-tooltip-diagram';
@@ -32,6 +32,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   root: React.ReactInstance = null;
   tooltip: React.ReactInstance = null;
+  leave: boolean = true;
 
   componentDidMount() {
     setTimeout(() => {
@@ -60,6 +61,11 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
   }
 
   onMouseEnterHandler = (e: any) => {
+    this.leave = false;
+    setTimeout(this.onShowTooltipHandler.bind(this, e), 10);
+  }
+
+  onShowTooltipHandler = (e: any) => {
     const tooltip: any = ReactDOM.findDOMNode(this.tooltip);
     const props = e.target.getBoundingClientRect();
     const top = props.top + (props.height / 2);
@@ -67,6 +73,8 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     const marginTop = -1 * (tooltip.offsetHeight / 2);
     
     let left = props.left + (props.width / 2);
+
+    if (this.state.visible) return;
 
     if (this.props.position === POSITION.LEFT || this.props.position === POSITION.RIGHT) {
       left = (props.width / 2);
@@ -97,19 +105,18 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
       tooltip.style.top = props.top + props.height + 10 + 'px';
     }
 
-    this.onShowHandler();
-  }
-
-  onHideHandler = () => {
-    this.setState({ visible: false });
-  }
-
-  onShowHandler = () => {
     this.setState({ visible: true });
   }
 
+  onHideHandler = () => {
+    if (this.leave) {
+      this.setState({ visible: false });
+    }
+  }
+
   onMouseLevelAndScrollHandler = (e: any) => {
-    this.onHideHandler();
+    this.leave = true;
+    setTimeout(this.onHideHandler, 10);
   }
 
   render() {

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import BaseElementProps from '../BaseElementProps';
-import Path from '../Raphael/Path';
+import BaseElementProps from '../../BaseElementProps';
+import Path from '../Path';
 
 const PATH = `m 16.704699,5.9229055 q 0.358098,0 0.608767,0.2506681 0.250669,0.250668 0.250669,0.6087677 0,0.3580997
       -0.250669,0.6087677 -0.250669,0.2506679 -0.608767,0.2506679 -0.358098,0 -0.608767,-0.2506679 -0.250669,-0.250668
