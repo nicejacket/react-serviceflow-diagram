@@ -5,11 +5,11 @@ import DiagramIconSignal from './DiagramIconSignal';
 import DiagramIconMessage from './DiagramIconMessage';
 import BaseElementProps from '../BaseElementProps';
 
-export interface DiagramIconContainerEventProps extends BaseElementProps {
+export interface DiagramContainerIconEventProps extends BaseElementProps {
   type?: string;
 }
 
-export default class DiagramIconContainerEvent extends React.Component<DiagramIconContainerEventProps, any> {
+export default class DiagramContainerIconEvent extends React.Component<DiagramContainerIconEventProps, any> {
   render() {
     const { type, ...others } = this.props;
     switch (type) {

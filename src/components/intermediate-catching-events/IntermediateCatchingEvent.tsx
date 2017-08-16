@@ -2,7 +2,7 @@ import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
-import DiagramIconContainerEvent from '../icons/DragramIconContainerEvent';
+import DiagramContainerIconEvent from '../icons/DiagramContainerIconEvent';
 
 export interface IntermediateCatchingEventProps extends BaseElementProps {
   circleRadiusInner?: number;
@@ -30,7 +30,7 @@ export default class IntermediateCatchingEvent extends React.Component<Intermedi
     return (<Tooltip>
       <RaphaelIconCircle radius={circleRadiusOuter} {...others} />
       <RaphaelIconCircle radius={circleRadiusInner} {...others} />
-      <DiagramIconContainerEvent type={type} {...others} />
+      <DiagramContainerIconEvent type={type} {...others} />
     </Tooltip>);
   }
 }

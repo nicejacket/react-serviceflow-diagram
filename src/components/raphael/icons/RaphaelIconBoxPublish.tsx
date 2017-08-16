@@ -33,9 +33,16 @@ const DATA = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAjCAYAAADxG9hn
       4Nz9XlzasvfucPXwCQH+z7Kd949il6e3qCt97d/xdjUzNfyVTUbAyy2bwxqWwymBuqpV/z XMtlRTXVyUawYjDWrgDxeESdxHFpJi4sjqyvrXntxT/65ssAR06dSw/zzz/6
       F7753O8D8NHHR9rO nL+wZ2pqYl0cxyoIoqsm0LK49ehKKLNGp3gE1JRF+9qoU3JBIDVVuZGvffWLZ2oa7rgCcPLMBe7f 0c3/APbD8KaWhlC3AAAAAElFTkSuQmCC`;
 
-export interface RaphaelIconBoxPublishProps extends BaseElementProps {}
+export interface RaphaelIconBoxPublishProps extends BaseElementProps { }
 
 export default class RaphaelIconBoxPublish extends React.Component<RaphaelIconBoxPublishProps, any> {
+  static defaultPropx = {
+    x: 0,
+    y: 0,
+    width: 20,
+    height: 20,
+  }
+
   render() {
     const { x, y, width, height } = this.props;
     return (<Image

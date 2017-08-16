@@ -21,12 +21,15 @@ export default class Element extends React.Component<any, any> {
       loaded: true
     });
   }
+
   componentDidUpdate() {
-    updateElement(this.element,this.props.type,this.props,this.handleUpdate.bind(this));
+    updateElement(this.element, this.props.type, this.props, this.handleUpdate.bind(this));
   }
+
   componentWillUnmount() {
     removeElement(this.element);
   }
+
   getElement() {
     return this.element;
   }
@@ -36,11 +39,13 @@ export default class Element extends React.Component<any, any> {
       this.props.load(element);
     }
   }
+
   handleUpdate(element: Element) {
     if (this.props.update) {
       this.props.update(element);
     }
   }
+
   render() {
     if (this.state.loaded) return null;
     return (<div ref='root' className={`raphael-${this.props.type}`} />);

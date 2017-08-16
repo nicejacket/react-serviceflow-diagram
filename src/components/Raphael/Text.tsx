@@ -5,6 +5,9 @@ import BaseElementProps from '../BaseElementProps';
 export interface TextProps extends BaseElementProps {
   text?: string;
   transform?: string;
+  fontSize?: number;
+  fontFamily?: string;
+  textAnchor?: string;
 }
 
 export default class Text extends React.Component<TextProps, any> {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
-import DiagramIconContainerEvent from '../icons/DragramIconContainerEvent';
+import DiagramContainerIconEvent from '../icons/DiagramContainerIconEvent';
 
 export interface BoundaryEventProps extends BaseElementProps {
   circleRadiusInner?: number;
@@ -31,7 +31,7 @@ export default class BoundaryEvent extends React.Component<BoundaryEventProps, a
     return (<Tooltip>
       <RaphaelIconCircle radius={circleRadiusOuter} fill={fill} {...others} />
       <RaphaelIconCircle radius={circleRadiusInner} fill={fill} {...others} />
-      <DiagramIconContainerEvent fill={signalFill} type={type} {...others} />
+      <DiagramContainerIconEvent fill={signalFill} type={type} {...others} />
     </Tooltip>);
   }
 }

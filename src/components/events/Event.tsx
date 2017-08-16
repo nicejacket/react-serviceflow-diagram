@@ -1,7 +1,7 @@
 import * as React from 'react';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import BaseElementProps from '../BaseElementProps';
-import DiagramIconContainerEvent from '../icons/DragramIconContainerEvent';
+import DiagramContainerIconEvent from '../icons/DiagramContainerIconEvent';
 import Tooltip from '../tooltip/Tooltip';
 
 export interface EventProps extends BaseElementProps {
@@ -23,7 +23,7 @@ export default class Event extends React.Component<EventProps, any> {
     const { x, y, width, height, fill, iconFill, ...others } = this.props;
     return (<Tooltip>
       <RaphaelIconCircle fill={fill} {...this.props} />
-      <DiagramIconContainerEvent x={x} y={y} width={width} height={height} fill={iconFill} />
+      <DiagramContainerIconEvent x={x} y={y} width={width} height={height} fill={iconFill} />
     </Tooltip>);
   }
 }
