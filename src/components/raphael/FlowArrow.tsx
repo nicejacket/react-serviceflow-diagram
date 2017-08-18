@@ -8,7 +8,7 @@ import * as Raphael from 'raphael';
 const ARROW_WIDTH = 4;
 
 export interface FlowArrowProps extends BaseElementProps {
-  points: any;
+  points: Array<any>;
 }
 
 export default class FlowArrow extends React.Component<FlowArrowProps, any> {

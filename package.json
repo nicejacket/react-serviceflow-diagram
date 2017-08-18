@@ -30,6 +30,7 @@
     "@types/react-dom": "^15.5.2",
     "raphael": "^2.2.7",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "whatwg-fetch": "^2.0.3"
   }
 }

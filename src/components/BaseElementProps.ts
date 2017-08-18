@@ -7,4 +7,5 @@ export default interface BaseElementProps {
   strokeWidth?: number;
   fill?: string;
   fillOpacity?: number;
+  data?: any;
 }
