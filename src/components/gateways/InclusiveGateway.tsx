@@ -19,8 +19,8 @@ export default class InclusiveGateway extends React.Component<InclusiveGatewayPr
   }
 
   render() {
-    const { x, y, width, height } = this.props;
-    return (<Gateway x={x} y={y} width={width} height={height}>
+    const { radius, strokeWidth, ...others } = this.props;
+    return (<Gateway {...others}>
       <RaphaelIconCircle {...this.props} />
     </Gateway>);
   }

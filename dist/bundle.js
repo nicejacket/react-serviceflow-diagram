@@ -732,6 +732,8 @@ var Tooltip = (function (_super) {
             setTimeout(_this.onShowTooltipHandler.bind(_this, e), 10);
         };
         _this.onShowTooltipHandler = function (e) {
+            if (!e.target || !e.target.getBoundingClientRect)
+                return;
             var tooltip = ReactDOM.findDOMNode(_this.tooltip);
             var props = e.target.getBoundingClientRect();
             var top = props.top + (props.height / 2);
@@ -782,7 +784,7 @@ var Tooltip = (function (_super) {
         };
         _this.onMouseLevelAndScrollHandler = function (e) {
             _this.leave = true;
-            setTimeout(_this.onHideHandler, 10);
+            setTimeout(_this.onHideHandler, 500);
         };
         return _this;
     }
@@ -801,16 +803,20 @@ var Tooltip = (function (_super) {
     Tooltip.prototype.render = function () {
         var _this = this;
         var cls = this.state.visible ? CLS_PREFIX + "-tooltip is-active" : CLS_PREFIX + "-tooltip";
+        var _a = this.props.data, data = _a === void 0 ? {} : _a;
         return (React.createElement(Set_1.default, { ref: function (node) { _this.root = node; } },
-            React.createElement("div", { ref: function (node) { _this.tooltip = node; }, className: cls },
-                React.createElement("div", { className: CLS_PREFIX + "-tooltip-header" }, "\u7C7B\u578B \u540D\u5B57|id"),
+            React.createElement("div", { ref: function (node) { _this.tooltip = node; }, className: cls, onMouseEnter: this.onMouseEnterHandler, onMouseLeave: this.onMouseLevelAndScrollHandler },
+                React.createElement("div", { className: CLS_PREFIX + "-tooltip-header" },
+                    data.type,
+                    " ",
+                    data.name || data.id),
                 React.createElement("div", { className: CLS_PREFIX + "-tooltip-body" },
-                    React.createElement("div", { className: CLS_PREFIX + "-tooltip-name-property" },
-                        React.createElement("span", { className: CLS_PREFIX + "-propertyName" }, "name:"),
-                        React.createElement("span", { className: CLS_PREFIX + "-propertyValue" }, "\u5C0F\u660E")),
-                    React.createElement("div", { className: CLS_PREFIX + "-tooltip-general-property" },
-                        React.createElement("span", { className: CLS_PREFIX + "-propertyName" }, "name:"),
-                        React.createElement("span", { className: CLS_PREFIX + "-propertyValue" }, "\u5C0F\u660E")))),
+                    data.name ? React.createElement("div", { className: CLS_PREFIX + "-tooltip-name-property" },
+                        React.createElement("span", { className: CLS_PREFIX + "-propertyName" }, "Name:"),
+                        React.createElement("span", { className: CLS_PREFIX + "-propertyValue" }, data.name)) : null,
+                    data.properties ? data.properties.map(function (prop) { return React.createElement("div", { className: CLS_PREFIX + "-tooltip-general-property", key: prop.name + "-" + prop.value },
+                        React.createElement("span", { className: CLS_PREFIX + "-propertyName" }, prop.name),
+                        React.createElement("span", { className: CLS_PREFIX + "-propertyValue" }, prop.value)); }) : null)),
             this.props.children));
     };
     Tooltip.defaultProps = {
@@ -1915,7 +1921,8 @@ var Task = (function (_super) {
     }
     Task.prototype.render = function () {
         var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, text = _a.text, radius = _a.radius, children = _a.children, others = __rest(_a, ["x", "y", "width", "height", "text", "radius", "children"]);
-        return (React.createElement(Tooltip_1.default, null,
+        var data = others.data;
+        return (React.createElement(Tooltip_1.default, { data: data },
             React.createElement(Rect_1.default, __assign({ x: x, y: y, width: width, height: height, r: radius }, others)),
             React.createElement(MultilineText_1.default, { text: text, x: x + (width / 2), y: y + (height / 2) }),
             children));
@@ -2444,6 +2451,15 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Path_1 = __webpack_require__(5);
@@ -2454,13 +2470,13 @@ var Gateway = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Gateway.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, data = _a.data, others = __rest(_a, ["x", "y", "width", "height", "data"]);
         var path = 'M' + x + ' ' + (y + (height / 2)) +
             'L' + (x + (width / 2)) + ' ' + (y + height) +
             'L' + (x + width) + ' ' + (y + (height / 2)) +
             'L' + (x + (width / 2)) + ' ' + y + 'z';
-        return React.createElement(Tooltip_1.default, null,
-            React.createElement(Path_1.default, __assign({ d: path }, this.props)),
+        return React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(Path_1.default, __assign({ d: path }, others)),
             this.props.children);
     };
     Gateway.defaultProps = {
@@ -3340,10 +3356,11 @@ var Event = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Event.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, fill = _a.fill, iconFill = _a.iconFill, others = __rest(_a, ["x", "y", "width", "height", "fill", "iconFill"]);
-        return (React.createElement(Tooltip_1.default, null,
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, fill = _a.fill, iconFill = _a.iconFill, data = _a.data, others = __rest(_a, ["x", "y", "width", "height", "fill", "iconFill", "data"]);
+        var type = data && data.eventDefinition && data.eventDefinition.type;
+        return (React.createElement(Tooltip_1.default, { data: data },
             React.createElement(RaphaelIconCircle_1.default, __assign({ fill: fill }, this.props)),
-            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, width: width, height: height, fill: iconFill })));
+            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, type: type, width: width, height: height, fill: iconFill })));
     };
     Event.defaultProps = {
         x: 0,
@@ -4946,6 +4963,10 @@ exports.DATA = {
             width: 30.0,
             height: 30.0,
             type: "StartEvent",
+            eventDefinition: {
+                type: "timer",
+                timeDuration: "PT1H"
+            },
             properties: []
         }, {
             id: "exclusiveGw",
@@ -4966,7 +4987,7 @@ exports.DATA = {
             properties: [
                 {
                     name: "Documentation",
-                    value: "This task has a timer\n on it"
+                    value: "This task has a timer on it"
                 }
             ]
         }, {
@@ -5315,8 +5336,8 @@ var Diagram = (function (_super) {
     function Diagram() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.renderElement = function (ele) {
-            var x = ele.x, y = ele.y, width = ele.width, height = ele.height, name = ele.name, others = __rest(ele, ["x", "y", "width", "height", "name"]);
-            var id = others.id;
+            var x = ele.x, y = ele.y, width = ele.width, height = ele.height, others = __rest(ele, ["x", "y", "width", "height"]);
+            var id = others.id, name = others.name;
             var props = { x: +x, y: +y, width: +width, height: +height, data: others };
             switch (ele.type) {
                 case 'StartEvent':
@@ -5332,15 +5353,15 @@ var Diagram = (function (_super) {
                 case 'EndEvent':
                     return React.createElement(EndEvent_1.default, __assign({}, props, { key: id }));
                 case 'UserTask':
-                    return React.createElement(UserTask_1.default, __assign({}, props, { text: name }));
+                    return React.createElement(UserTask_1.default, __assign({}, props, { text: name, key: id }));
                 case 'ManualTask':
-                    return React.createElement(ManualTask_1.default, __assign({}, props, { text: name }));
+                    return React.createElement(ManualTask_1.default, __assign({}, props, { text: name, key: id }));
                 case 'ServiceTask':
-                    return React.createElement(ServiceTask_1.default, __assign({}, props, { text: name }));
+                    return React.createElement(ServiceTask_1.default, __assign({}, props, { text: name, key: id }));
                 case 'ReceiveTask':
-                    return React.createElement(ReceiveTask_1.default, __assign({}, props, { text: name }));
+                    return React.createElement(ReceiveTask_1.default, __assign({}, props, { text: name, key: id }));
                 case 'ScriptTask':
-                    return React.createElement(ScriptTask_1.default, __assign({}, props, { text: name }));
+                    return React.createElement(ScriptTask_1.default, __assign({}, props, { text: name, key: id }));
                 case 'BusinessRuleTask':
                     return React.createElement(BusinessRuleTask_1.default, __assign({}, props, { text: name }));
                 case 'BoundaryEvent':
@@ -6563,6 +6584,15 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Gateway_1 = __webpack_require__(21);
@@ -6573,8 +6603,8 @@ var ExclusiveGateway = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ExclusiveGateway.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
-        return (React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height },
+        var _a = this.props, strokeWidth = _a.strokeWidth, others = __rest(_a, ["strokeWidth"]);
+        return (React.createElement(Gateway_1.default, __assign({}, others),
             React.createElement(RaphaelIconCross_1.default, __assign({}, this.props))));
     };
     ExclusiveGateway.defaultProps = {
@@ -6676,6 +6706,15 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Gateway_1 = __webpack_require__(21);
@@ -6686,8 +6725,8 @@ var InclusiveGateway = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     InclusiveGateway.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
-        return (React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height },
+        var _a = this.props, radius = _a.radius, strokeWidth = _a.strokeWidth, others = __rest(_a, ["radius", "strokeWidth"]);
+        return (React.createElement(Gateway_1.default, __assign({}, others),
             React.createElement(RaphaelIconCircle_1.default, __assign({}, this.props))));
     };
     InclusiveGateway.defaultProps = {
@@ -6749,7 +6788,7 @@ var EventGateway = (function (_super) {
     EventGateway.prototype.render = function () {
         var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, pentaStrokeWidth = _a.pentaStrokeWidth, strokeWidth = _a.strokeWidth, others = __rest(_a, ["x", "y", "width", "height", "circleRadiusInner", "circleRadiusOuter", "pentaStrokeWidth", "strokeWidth"]);
         var psProps = { x: x, y: y, width: width, height: height };
-        return (React.createElement(Gateway_1.default, __assign({}, psProps),
+        return (React.createElement(Gateway_1.default, __assign({}, psProps, others),
             React.createElement(RaphaelIconCircle_1.default, __assign({}, psProps, { radius: circleRadiusInner, strokeWidth: strokeWidth }, others)),
             React.createElement(RaphaelIconCircle_1.default, __assign({}, psProps, { radius: circleRadiusOuter, strokeWidth: strokeWidth }, others)),
             React.createElement(RaphaelIconPentagon_1.default, __assign({}, psProps, { strokeWidth: pentaStrokeWidth }, others))));
@@ -6843,6 +6882,15 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Gateway_1 = __webpack_require__(21);
@@ -6853,8 +6901,8 @@ var ParallelGatway = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ParallelGatway.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
-        return (React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height },
+        var _a = this.props, strokeWidth = _a.strokeWidth, others = __rest(_a, ["strokeWidth"]);
+        return (React.createElement(Gateway_1.default, __assign({}, others),
             React.createElement(RaphaelIconPlus_1.default, __assign({}, this.props))));
     };
     ParallelGatway.defaultProps = {
@@ -7909,7 +7957,7 @@ var BoundaryEvent = (function (_super) {
     }
     BoundaryEvent.prototype.render = function () {
         var _a = this.props, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, signalFill = _a.signalFill, fill = _a.fill, data = _a.data, others = __rest(_a, ["circleRadiusInner", "circleRadiusOuter", "signalFill", "fill", "data"]);
-        var type = data && data.eventDefinition ? data.eventDefinition.type : null;
+        var type = data && data.eventDefinition && data.eventDefinition.type;
         return (React.createElement(Tooltip_1.default, null,
             React.createElement(RaphaelIconCircle_1.default, __assign({ radius: circleRadiusOuter, fill: fill }, others)),
             React.createElement(RaphaelIconCircle_1.default, __assign({ radius: circleRadiusInner, fill: fill }, others)),
@@ -7977,7 +8025,8 @@ var ThrowEvent = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ThrowEvent.prototype.render = function () {
-        var _a = this.props, fill = _a.fill, signalFill = _a.signalFill, type = _a.type, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, others = __rest(_a, ["fill", "signalFill", "type", "circleRadiusInner", "circleRadiusOuter"]);
+        var _a = this.props, fill = _a.fill, signalFill = _a.signalFill, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, data = _a.data, others = __rest(_a, ["fill", "signalFill", "circleRadiusInner", "circleRadiusOuter", "data"]);
+        var type = data && data.eventDefinition && data.eventDefinition.type;
         return (React.createElement(Tooltip_1.default, null,
             React.createElement(RaphaelIconCircle_1.default, __assign({ fill: fill, radius: circleRadiusOuter }, others)),
             React.createElement(RaphaelIconCircle_1.default, __assign({ fill: fill, radius: circleRadiusInner }, others)),
@@ -8204,14 +8253,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Tooltip_1 = __webpack_require__(8);
@@ -8222,7 +8263,7 @@ var SequenceFlow = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     SequenceFlow.prototype.render = function () {
-        return (React.createElement(Tooltip_1.default, __assign({}, this.props),
+        return (React.createElement(Tooltip_1.default, { data: this.props.flow },
             React.createElement(FlowArrow_1.default, { points: this.props.flow.waypoints })));
     };
     return SequenceFlow;

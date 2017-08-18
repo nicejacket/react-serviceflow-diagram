@@ -8,7 +8,6 @@ export interface ThrowEventProps extends BaseElementProps {
   circleRadiusInner?: number;
   circleRadiusOuter?: number;
   signalFill?: string;
-  type?: string;
 }
 
 export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
@@ -27,7 +26,8 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
   }
 
   render() {
-    const { fill, signalFill, type, circleRadiusInner, circleRadiusOuter, ...others } = this.props;
+    const { fill, signalFill, circleRadiusInner, circleRadiusOuter, data, ...others } = this.props;
+    const type = data && data.eventDefinition && data.eventDefinition.type;
     return (<Tooltip>
       <RaphaelIconCircle fill={fill} radius={circleRadiusOuter} {...others} />
       <RaphaelIconCircle fill={fill} radius={circleRadiusInner} {...others} />

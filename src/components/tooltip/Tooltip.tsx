@@ -12,6 +12,7 @@ interface TooltipState {
 
 export interface TooltipProps {
   position?: string;
+  data?: any;
 }
 
 export const POSITION = {
@@ -66,6 +67,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
   }
 
   onShowTooltipHandler = (e: any) => {
+    if (!e.target || !e.target.getBoundingClientRect) return;
     const tooltip: any = ReactDOM.findDOMNode(this.tooltip);
     const props = e.target.getBoundingClientRect();
     const top = props.top + (props.height / 2);
@@ -116,24 +118,29 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   onMouseLevelAndScrollHandler = (e: any) => {
     this.leave = true;
-    setTimeout(this.onHideHandler, 10);
+    setTimeout(this.onHideHandler, 500);
   }
 
   render() {
     const cls = this.state.visible ? `${CLS_PREFIX}-tooltip is-active` : `${CLS_PREFIX}-tooltip`;
+    const { data = {} } = this.props;
 
     return (<Set ref={node => { this.root = node; }}>
-      <div ref={node => { this.tooltip = node;}} className={cls}>
-        <div className={`${CLS_PREFIX}-tooltip-header`}>类型 名字|id</div>
+      <div ref={node => { this.tooltip = node;}} className={cls} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLevelAndScrollHandler}>
+        <div className={`${CLS_PREFIX}-tooltip-header`}>{data.type} {data.name || data.id}</div>
         <div className={`${CLS_PREFIX}-tooltip-body`}>
-          <div className={`${CLS_PREFIX}-tooltip-name-property`}>
-            <span className={`${CLS_PREFIX}-propertyName`}>name:</span>
-            <span className={`${CLS_PREFIX}-propertyValue`}>小明</span>
-          </div>
-          <div className={`${CLS_PREFIX}-tooltip-general-property`}>
-            <span className={`${CLS_PREFIX}-propertyName`}>name:</span>
-            <span className={`${CLS_PREFIX}-propertyValue`}>小明</span>
-          </div>
+          {
+            data.name ? <div className={`${CLS_PREFIX}-tooltip-name-property`}>
+              <span className={`${CLS_PREFIX}-propertyName`}>Name:</span>
+              <span className={`${CLS_PREFIX}-propertyValue`}>{data.name}</span>
+            </div> : null
+          }
+          {
+            data.properties ? data.properties.map((prop: any) => <div className={`${CLS_PREFIX}-tooltip-general-property`} key={`${prop.name}-${prop.value}`}>
+                <span className={`${CLS_PREFIX}-propertyName`}>{prop.name}</span>
+                <span className={`${CLS_PREFIX}-propertyValue`}>{prop.value}</span>
+              </div>) : null
+          }
         </div>
       </div>
       {this.props.children}

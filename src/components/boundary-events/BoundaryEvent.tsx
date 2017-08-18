@@ -8,7 +8,6 @@ export interface BoundaryEventProps extends BaseElementProps {
   circleRadiusInner?: number;
   circleRadiusOuter?: number;
   signalFill?: string;
-  type?: string;
 }
 
 export default class BoundaryEvent extends React.Component<BoundaryEventProps, any> {
@@ -28,7 +27,7 @@ export default class BoundaryEvent extends React.Component<BoundaryEventProps, a
 
   render() {
     const { circleRadiusInner, circleRadiusOuter, signalFill, fill, data, ...others } = this.props;
-    const type = data && data.eventDefinition ? data.eventDefinition.type : null;
+    const type = data && data.eventDefinition && data.eventDefinition.type;
     return (<Tooltip>
       <RaphaelIconCircle radius={circleRadiusOuter} fill={fill} {...others} />
       <RaphaelIconCircle radius={circleRadiusInner} fill={fill} {...others} />

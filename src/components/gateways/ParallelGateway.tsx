@@ -17,8 +17,8 @@ export default class ParallelGatway extends React.Component<ParallelGatewayProps
   }
 
   render() {
-    const { x, y, width, height } = this.props;
-    return (<Gateway x={x} y={y} width={width} height={height}>
+    const { strokeWidth, ...others } = this.props;
+    return (<Gateway {...others}>
       <IconPlus {...this.props} />
     </Gateway>);
   }

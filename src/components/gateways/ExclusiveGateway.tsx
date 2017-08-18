@@ -16,8 +16,8 @@ export default class ExclusiveGateway extends React.Component<ExclusiveGatewayPr
   }
 
   render() {
-    const { x, y, width, height } = this.props;
-    return (<Gateway x={x} y={y} width={width} height={height}>
+    const { strokeWidth, ...others } = this.props;
+    return (<Gateway {...others}>
       <IconCross {...this.props} />
     </Gateway>);
   }

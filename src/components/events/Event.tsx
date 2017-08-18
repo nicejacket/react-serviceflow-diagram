@@ -20,10 +20,11 @@ export default class Event extends React.Component<EventProps, any> {
   }
 
   render() {
-    const { x, y, width, height, fill, iconFill, ...others } = this.props;
-    return (<Tooltip>
+    const { x, y, width, height, fill, iconFill, data, ...others } = this.props;
+    const type = data && data.eventDefinition && data.eventDefinition.type;
+    return (<Tooltip data={data}>
       <RaphaelIconCircle fill={fill} {...this.props} />
-      <DiagramContainerIconEvent x={x} y={y} width={width} height={height} fill={iconFill} />
+      <DiagramContainerIconEvent x={x} y={y} type={type} width={width} height={height} fill={iconFill} />
     </Tooltip>);
   }
 }

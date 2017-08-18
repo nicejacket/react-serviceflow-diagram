@@ -18,11 +18,11 @@ export default class Gateway extends React.Component<GatewayProps, any> {
   }
 
   render() {
-    const { x, y, width, height } = this.props;
+    const { x, y, width, height, data, ...others } = this.props;
     const path = 'M' + x + ' ' + (y + (height / 2)) +
             'L' + (x + (width / 2)) + ' ' + (y + height) +
             'L' + (x + width) + ' ' + (y + (height / 2)) +
             'L' + (x + (width / 2)) + ' ' + y + 'z';
-    return <Tooltip><Path d={path} {...this.props} />{this.props.children}</Tooltip>;
+    return <Tooltip data={data}><Path d={path} {...others} />{this.props.children}</Tooltip>;
   }
 }

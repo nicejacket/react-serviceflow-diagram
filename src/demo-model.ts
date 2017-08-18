@@ -8,6 +8,10 @@ export const DATA = {
          width:30.0,
          height:30.0,
          type:"StartEvent",
+         eventDefinition:{  
+            type:"timer",
+            timeDuration:"PT1H"
+         },
          properties:[]
       }, {  
          id:"exclusiveGw",
@@ -28,7 +32,7 @@ export const DATA = {
          properties:[  
             {  
                name:"Documentation",
-               value:"This task has a timer\n on it"
+               value:"This task has a timer on it"
             }
          ]
       }, {  

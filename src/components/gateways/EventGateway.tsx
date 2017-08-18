@@ -26,7 +26,7 @@ export default class EventGateway extends React.Component<EventGatewayProps, any
   render() {
     const { x, y, width, height, circleRadiusInner, circleRadiusOuter, pentaStrokeWidth, strokeWidth, ...others } = this.props;
     const psProps = { x, y, width, height };
-    return (<Gateway {...psProps}>
+    return (<Gateway {...psProps} {...others}>
       <RaphaelIconCircle {...psProps} radius={circleRadiusInner} strokeWidth={strokeWidth} {...others}  />
       <RaphaelIconCircle {...psProps} radius={circleRadiusOuter} strokeWidth={strokeWidth} {...others}  />
       <RaphaelIconPentagon {...psProps} strokeWidth={pentaStrokeWidth} {...others} />

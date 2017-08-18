@@ -21,7 +21,8 @@ export default class Task extends React.Component<TaskProps, any> {
 
   render() {
     const { x, y, width, height, text, radius, children, ...others } = this.props;
-    return (<Tooltip>
+    const { data } = others;
+    return (<Tooltip data={data}>
       <Rect x={x} y={y} width={width} height={height} r={radius} {...others} />
       <MultilineText text={text} x={x + (width / 2)} y={y + (height / 2)} />
       {children}

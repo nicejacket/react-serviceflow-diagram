@@ -10,7 +10,7 @@ export interface SequenceFlowProps extends BaseElementProps {
 
 export default class SequenceFlow extends React.Component<SequenceFlowProps, any> {
   render() {
-    return (<Tooltip {...this.props}>
+    return (<Tooltip data={this.props.flow}>
       <FlowArrow points={this.props.flow.waypoints}/>
     </Tooltip>)
   }

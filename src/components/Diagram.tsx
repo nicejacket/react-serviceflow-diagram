@@ -30,8 +30,8 @@ export interface DiagramProps {
 
 export default class Diagram extends React.Component<DiagramProps, any> {
   renderElement = (ele: DiagramElementModel) => {
-    const { x, y, width, height, name, ...others } = ele;
-    const { id } = others;
+    const { x, y, width, height, ...others } = ele;
+    const { id, name } = others;
     const props = { x: +x, y: +y, width: +width, height: +height, data: others };
     switch (ele.type) {
       case 'StartEvent':
@@ -47,15 +47,15 @@ export default class Diagram extends React.Component<DiagramProps, any> {
       case 'EndEvent':
         return <EndEvent {...props} key={id} />;
       case 'UserTask':
-        return <UserTask {...props} text={name} />;
+        return <UserTask {...props} text={name} key={id} />;
       case 'ManualTask':
-        return <ManualTask {...props} text={name} />;
+        return <ManualTask {...props} text={name} key={id} />;
       case 'ServiceTask':
-        return <ServiceTask {...props} text={name} />;
+        return <ServiceTask {...props} text={name} key={id} />;
       case 'ReceiveTask':
-        return <ReceiveTask {...props} text={name} />;
+        return <ReceiveTask {...props} text={name} key={id} />;
       case 'ScriptTask':
-        return <ScriptTask {...props} text={name} />;
+        return <ScriptTask {...props} text={name} key={id} />;
       case 'BusinessRuleTask':
         return <BusinessRuleTask {...props} text={name} />;
       case 'BoundaryEvent':
