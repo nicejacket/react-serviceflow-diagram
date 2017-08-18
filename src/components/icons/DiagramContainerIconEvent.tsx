@@ -11,19 +11,20 @@ export interface DiagramContainerIconEventProps extends BaseElementProps {
 
 export default class DiagramContainerIconEvent extends React.Component<DiagramContainerIconEventProps, any> {
   render() {
-    const { type, data, ...others } = this.props;
+    const { type, x, y, width, height, data, fill } = this.props;
+    const baseProps = { x, y, width, height, data };
     switch (type) {
       case 'timer': {
-        return <DiagramIconTimer {...others} />;
+        return <DiagramIconTimer {...baseProps} />;
       }
       case 'error': {
-        return <DiagramIconError {...others} />;
+        return <DiagramIconError {...baseProps} fill={fill} />;
       }
       case 'signal': {
-        return <DiagramIconSignal {...others} />;
+        return <DiagramIconSignal {...baseProps} fill={fill} />;
       }
       case 'message': {
-        return <DiagramIconMessage {...others} />;
+        return <DiagramIconMessage {...baseProps} />;
       }
     }
     return null;

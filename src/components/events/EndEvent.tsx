@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import Event from './Event';
-import Tooltip from '../tooltip/Tooltip';
+import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
 
 export interface EndEventProps extends BaseElementProps {
   radius?: number;
@@ -11,11 +11,18 @@ export interface EndEventProps extends BaseElementProps {
 export default class EndEvent extends React.Component<EndEventProps, any> {
   static defaultProps = {
     radius: 14,
-    strokeWidth: 3,
+    strokeWidth: 4,
     iconFill: 'black',
   }
 
   render() {
-    return <Event {...this.props} />;
+    const { stroke, fill, fillOpacity, data, ...others } = this.props;
+    return (<Event
+      stroke={getBpmnColor(data, MAIN_STROKE_COLOR)}
+      fill={getFillColour(data.id)}
+      fillOpacity={getFillOpacity()}
+      data={data}
+      {...others}
+    />);
   }
 }

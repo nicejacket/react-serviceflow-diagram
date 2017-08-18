@@ -17,9 +17,9 @@ export default class RaphaelIconPlus extends React.Component<RaphaelIconPlusProp
     const { x, y, width, height } = this.props;
     const px = x + ((width - 32) / 2);
     const py = y + ((height - 32) / 2);
-    const PATH_DATA = 'M 6.75,16 L 25.75,16 M 16,6.75 L 16,25.75';
+    const PATH = 'M 6.75,16 L 25.75,16 M 16,6.75 L 16,25.75';
     const transform = `T${px},${py}`;
 
-    return <Path d={PATH_DATA} {...this.props} transform={transform} />;
+    return <Path d={PATH} {...this.props} transform={transform} />;
   }
 }

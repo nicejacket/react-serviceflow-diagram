@@ -3,6 +3,7 @@ import { Anchor } from './Anchor';
 /* tslint:disable */
 export class Polyline {
 
+    id: any = null;
     points: any = [];
     path: any = [];
     anchors: any = [];
@@ -13,7 +14,7 @@ export class Polyline {
     isDefaultConditionAvailable: any = false;
     closePath: any = false;
 
-    constructor(points: any, strokeWidth: any) {
+    constructor(uuid: any, points: any, strokeWidth: any) {
         /* Array on coordinates:
          * points: [{x: 410, y: 110}, 1
          *			{x: 570, y: 110}, 1 2
@@ -146,7 +147,7 @@ export class Polyline {
             }
         }
 
-        var anchor: any = new Anchor(Anchor.ANCHOR_TYPE.main, x, y);
+        var anchor: any = new Anchor(this.id, Anchor.ANCHOR_TYPE.main, x, y);
 
         this.anchors.push(anchor);
     }

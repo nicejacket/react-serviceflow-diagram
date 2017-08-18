@@ -30,9 +30,9 @@ export interface DiagramProps {
 
 export default class Diagram extends React.Component<DiagramProps, any> {
   renderElement = (ele: DiagramElementModel) => {
-    const { x, y, width, height, ...others } = ele;
-    const { id, name } = others;
-    const props = { x: +x, y: +y, width: +width, height: +height, data: others };
+    const { x, y, width, height, ...data } = ele;
+    const { id, name } = data;
+    const props = { x: +x, y: +y, width: +width, height: +height, data };
     switch (ele.type) {
       case 'StartEvent':
         return <StartEvent {...props} key={id} />;

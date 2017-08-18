@@ -21,9 +21,9 @@ export default class Pools extends React.Component<PoolsProps, any> {
     if (!pools || !pools.length) return null;
 
     return (<Set>
-      {pools.map(pool => {
+      {pools.map((pool, i) => {
           const { lanes, ...others } = pool;
-          return (<Set>
+          return (<Set key={i}>
             <Pool {...others} />
             <Lanes lanes={pool.lanes} />
           </Set>);

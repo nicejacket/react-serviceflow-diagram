@@ -5,14 +5,22 @@ import RaphaelIconScript from '../raphael/icons/RaphaelIconScript';
 export interface DiagramIconScriptTaskProps extends BaseElementProps { }
 
 export default class DiagramIconScriptTask extends React.Component<DiagramIconScriptTaskProps, any> {
+  static defaultProps = {
+    x: 0,
+    y: 0,
+    fill: '#72a7d0',
+    stroke: 'none',
+  }
+
   render() {
-    const { x, y, fill, stroke, ...others } = this.props;
+    const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;
     return (<RaphaelIconScript
       x={x + 4}
       y={y + 4}
-      fill="#72a7d0"
-      stroke="none"
-      {...others}
+      stroke={stroke}
+      strokeWidth={strokeWidth}
+      fill={fill}
+      fillOpacity={fillOpacity}
     />);
   }
 }

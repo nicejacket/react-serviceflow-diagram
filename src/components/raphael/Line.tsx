@@ -8,6 +8,8 @@ export interface LineProps {
   y2?: number;
   animate?: any;
   attr?: any;
+  stroke?: string;
+  strokeWidth?: number;
 }
 
 export default class Line extends React.Component<LineProps, any> {
@@ -25,7 +27,8 @@ export default class Line extends React.Component<LineProps, any> {
   }
 
   render() {
-    const { x1, x2, y1, y2, animate, attr, ...others } = this.props;
+    const { x1, x2, y1, y2, animate, attr, stroke, strokeWidth } = this.props;
+    const PATH = ['M', `${x1}`, `${y1}`, 'L', `${x2}`, `${y2}`];
     if (animate) {
       if (animate.anim) {
         for (const key in animate.anim) {
@@ -50,12 +53,14 @@ export default class Line extends React.Component<LineProps, any> {
       attr.y2 = attr.y2 || y2;
       attr.path = ['M', attr.x1, attr.y1, 'L', attr.x2, attr.y2];
     }
+
     return (<Path
       ref={(node: any) => { this.path = node; }}
-      d={['M', x1, y1, 'L', x2, y2]}
+      d={PATH}
       attr={attr}
       animate={animate}
-      {...others}
+      stroke={stroke}
+      strokeWidth={strokeWidth}
     />);
   }
 }

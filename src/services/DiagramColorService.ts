@@ -1,58 +1,52 @@
-export class DiagramColorService {
+export const CURRENT_COLOR = '#017501';
+export const COMPLETED_COLOR = '#2632aa';
+export const ACTIVITY_STROKE_COLOR = '#bbbbbb';
+export const MAIN_STROKE_COLOR = '#585858';
 
-    static CURRENT_COLOR = '#017501';
-    static COMPLETED_COLOR = '#2632aa';
-    static ACTIVITY_STROKE_COLOR = '#bbbbbb';
-    static MAIN_STROKE_COLOR = '#585858';
+export const ACTIVITY_FILL_COLOR = '#f9f9f9';
 
-    static ACTIVITY_FILL_COLOR = '#f9f9f9';
+export const TASK_STROKE = 1;
+export const TASK_HIGHLIGHT_STROKE = 2;
+export const CALL_ACTIVITY_STROKE = 2;
 
-    static TASK_STROKE = 1;
-    static TASK_HIGHLIGHT_STROKE = 2;
-    static CALL_ACTIVITY_STROKE = 2;
+let totalColors: any;
 
-    totalColors: any;
+export function setTotalColors(totalColors: any) {
+  this.totalColors = totalColors;
+}
 
-    constructor() {
-    }
+export function getFillOpacity(): number {
+  return 0.6;
+}
 
-    setTotalColors(totalColors: any) {
-        this.totalColors = totalColors;
-    }
+export function getFillColour(key: string) {
+  if (this.totalColors && this.totalColors.hasOwnProperty(key)) {
+    let colorPercentage = this.totalColors[key];
+    return this.convertColorToHsb(colorPercentage);
+  } else {
+    return ACTIVITY_FILL_COLOR;
+  }
+}
 
-    getFillOpacity(): string {
-        return '0.6';
-    }
+export function getBpmnColor(data: any, defaultColor: string) {
+  if (data.current) {
+    return CURRENT_COLOR;
+  } else if (data.completed) {
+    return COMPLETED_COLOR;
+  } else {
+    return defaultColor;
+  }
+}
 
-    getFillColour(key: string) {
-        if (this.totalColors && this.totalColors.hasOwnProperty(key)) {
-            let colorPercentage = this.totalColors[key];
-            return this.convertColorToHsb(colorPercentage);
-        } else {
-            return DiagramColorService.ACTIVITY_FILL_COLOR;
-        }
-    }
+export function getBpmnStrokeWidth(data: any) {
+  if (data.current || data.completed) {
+    return TASK_HIGHLIGHT_STROKE;
+  } else {
+    return TASK_STROKE;
+  }
+}
 
-    getBpmnColor(data: any, defaultColor: string) {
-        if (data.current) {
-            return DiagramColorService.CURRENT_COLOR;
-        } else if (data.completed) {
-            return DiagramColorService.COMPLETED_COLOR;
-        } else {
-            return defaultColor;
-        }
-    }
-
-    getBpmnStrokeWidth(data: any) {
-        if (data.current || data.completed) {
-            return DiagramColorService.TASK_HIGHLIGHT_STROKE;
-        } else {
-            return DiagramColorService.TASK_STROKE;
-        }
-    }
-
-    convertColorToHsb(colorPercentage: number): string {
-        let hue = (120.0 - (colorPercentage * 1.2)) / 360.0;
-        return 'hsb(' + hue + ', 1, 1)';
-    }
+export function convertColorToHsb(colorPercentage: number): string {
+  let hue = (120.0 - (colorPercentage * 1.2)) / 360.0;
+  return 'hsb(' + hue + ', 1, 1)';
 }

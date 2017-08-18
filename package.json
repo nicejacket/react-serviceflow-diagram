@@ -1,14 +1,14 @@
 {
-  "name": "react-serviceflow-explorer",
+  "name": "react-serviceflow-diagram",
   "version": "1.0.0",
-  "description": "react版本的serviceflow explorer",
+  "description": "react版本的serviceflow diagram",
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "zhou84034339@sina.com",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "adf-tslint-rules": "0.0.3",
     "awesome-typescript-loader": "^3.2.2",

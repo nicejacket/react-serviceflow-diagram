@@ -6,15 +6,23 @@ import Tooltip from '../tooltip/Tooltip';
 export interface DiagramIconSendTaskProps extends BaseElementProps { }
 
 export default class DiagramIconSendTask extends React.Component<DiagramIconSendTaskProps, any> {
+  static defaultProps = {
+    x: 0,
+    y: 0,
+    stroke: 'none',
+    fill: '#16964d',
+  }
+
   render() {
-    const { x, y, fill, stroke, ...others } = this.props;
-    return (<Tooltip>
+    const { x, y, fill, stroke, strokeWidth, fillOpacity, data } = this.props;
+    return (<Tooltip data={data}>
       <RaphaelIconSend
         x={x + 4}
         y={y + 4}
-        fill="#16964d"
-        stroke="none"
-        {...others}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        fill={fill}
+        fillOpacity={fillOpacity}
       />
     </Tooltip>);
   }

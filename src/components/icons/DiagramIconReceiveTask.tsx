@@ -5,14 +5,22 @@ import RaphaelIconReceive from '../raphael/icons/RaphaelIconReceive';
 export interface DiagramIconReceiveTaskProps extends BaseElementProps { }
 
 export default class DiagramIconReceiveTask extends React.Component<DiagramIconReceiveTaskProps, any> {
+  static defaultProps = {
+    x: 0,
+    y: 0,
+    stroke: 'none',
+    fill: '#16964d',
+  }
+
   render() {
-    const { x, y, fill, stroke, ...others } = this.props;
+    const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;
     return (<RaphaelIconReceive
       x={x + 4}
       y={y + 2}
-      fill="#16964d"
-      stroke="none"
-      {...others}
+      stroke={stroke}
+      strokeWidth={strokeWidth}
+      fill={fill}
+      fillOpacity={fillOpacity}
     />);
   }
 }

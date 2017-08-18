@@ -14,18 +14,32 @@ export default class Lane extends React.Component<LaneProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
-    width: 80,
-    height: 40,
     stroke: '#000',
     fill: 'none',
     strokeWidth: 1,
+    radius: 0,
   }
 
   render() {
-    const { text, textTransform, radius, x, y, width, height, ...others } = this.props;
+    const { x, y, width, height, radius, stroke, strokeWidth, fill, fillOpacity, text, textTransform } = this.props;
     return (<Set>
-      <Rect x={x} y={y} width={width} height={height} r={radius} {...others} />
-      <Text text={text} transform={textTransform} x={x + 10} y={y + height / 2} />
+      <Rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        r={radius}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        fill={fill}
+        fillOpacity={fillOpacity}
+      />
+      <Text
+        x={x + 10}
+        y={y + height / 2}
+        text={text}
+        transform={textTransform}
+      />
     </Set>);
   }
 }

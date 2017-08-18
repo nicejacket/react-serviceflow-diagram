@@ -7,6 +7,7 @@ export class Anchor {
     last: 'last'
   };
 
+  uuid: any = null;
   x: any = 0;
   y: any = 0;
   isFirst: any = false;
@@ -14,7 +15,8 @@ export class Anchor {
   typeIndex: any = 0;
   type: any = Anchor.ANCHOR_TYPE.main;
 
-  constructor(type: any, x: any, y: any) {
+  constructor(uuid: any, type: any, x: any, y: any) {
+    this.uuid = uuid;
     this.x = x;
     this.y = y;
     this.type = (type === Anchor.ANCHOR_TYPE.middle) ? Anchor.ANCHOR_TYPE.middle : Anchor.ANCHOR_TYPE.main;

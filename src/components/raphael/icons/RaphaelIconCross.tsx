@@ -18,10 +18,10 @@ export default class RaphaelIconCross extends React.Component<RaphaelIconCrossPr
     const quarterWidth = width / 4;
     const quarterHeight = height / 4;
 
-    const DATA = 'M' + (x + quarterWidth + 3) + ' ' + (y + quarterHeight + 3) +
+    const PATH = 'M' + (x + quarterWidth + 3) + ' ' + (y + quarterHeight + 3) +
       'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + 3 * quarterHeight - 3) +
       'M' + (x + quarterWidth + 3) + ' ' + (y + 3 * quarterHeight - 3) +
       'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + quarterHeight + 3);
-    return <Path d={DATA} {...others} />;
+    return <Path d={PATH} {...others} />;
   }
 }

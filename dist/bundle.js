@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./dist";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -95,7 +95,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(6);
+var Element_1 = __webpack_require__(7);
 var Path = (function (_super) {
     __extends(Path, _super);
     function Path() {
@@ -125,6 +125,68 @@ exports.default = Path;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CURRENT_COLOR = '#017501';
+exports.COMPLETED_COLOR = '#2632aa';
+exports.ACTIVITY_STROKE_COLOR = '#bbbbbb';
+exports.MAIN_STROKE_COLOR = '#585858';
+exports.ACTIVITY_FILL_COLOR = '#f9f9f9';
+exports.TASK_STROKE = 1;
+exports.TASK_HIGHLIGHT_STROKE = 2;
+exports.CALL_ACTIVITY_STROKE = 2;
+var totalColors;
+function setTotalColors(totalColors) {
+    this.totalColors = totalColors;
+}
+exports.setTotalColors = setTotalColors;
+function getFillOpacity() {
+    return 0.6;
+}
+exports.getFillOpacity = getFillOpacity;
+function getFillColour(key) {
+    if (this.totalColors && this.totalColors.hasOwnProperty(key)) {
+        var colorPercentage = this.totalColors[key];
+        return this.convertColorToHsb(colorPercentage);
+    }
+    else {
+        return exports.ACTIVITY_FILL_COLOR;
+    }
+}
+exports.getFillColour = getFillColour;
+function getBpmnColor(data, defaultColor) {
+    if (data.current) {
+        return exports.CURRENT_COLOR;
+    }
+    else if (data.completed) {
+        return exports.COMPLETED_COLOR;
+    }
+    else {
+        return defaultColor;
+    }
+}
+exports.getBpmnColor = getBpmnColor;
+function getBpmnStrokeWidth(data) {
+    if (data.current || data.completed) {
+        return exports.TASK_HIGHLIGHT_STROKE;
+    }
+    else {
+        return exports.TASK_STROKE;
+    }
+}
+exports.getBpmnStrokeWidth = getBpmnStrokeWidth;
+function convertColorToHsb(colorPercentage) {
+    var hue = (120.0 - (colorPercentage * 1.2)) / 360.0;
+    return 'hsb(' + hue + ', 1, 1)';
+}
+exports.convertColorToHsb = convertColorToHsb;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -137,9 +199,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(5);
-var Set_1 = __webpack_require__(10);
-__webpack_require__(29);
+var ReactDOM = __webpack_require__(6);
+var Set_1 = __webpack_require__(14);
+__webpack_require__(24);
 var CLS_PREFIX = 'sf-tooltip-diagram';
 exports.POSITION = {
     LEFT: 'left',
@@ -271,64 +333,6 @@ exports.default = Tooltip;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Circle_1 = __webpack_require__(20);
-var RaphaelIconCircle = (function (_super) {
-    __extends(RaphaelIconCircle, _super);
-    function RaphaelIconCircle() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RaphaelIconCircle.prototype.render = function () {
-        var _a = this.props, radius = _a.radius, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["radius", "x", "y", "width", "height"]);
-        return React.createElement(Circle_1.default, __assign({ r: radius, x: x + width / 2, y: y + height / 2 }, others));
-    };
-    RaphaelIconCircle.defaultProps = {
-        x: 0,
-        y: 0,
-        width: 40,
-        height: 40,
-        strokeWidth: 2.5,
-        radius: 9.75,
-    };
-    return RaphaelIconCircle;
-}(React.Component));
-exports.default = RaphaelIconCircle;
-
-
-/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -363,43 +367,29 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(2);
-var Rect_1 = __webpack_require__(11);
-var MultilineText_1 = __webpack_require__(43);
-var Task = (function (_super) {
-    __extends(Task, _super);
-    function Task() {
+var Circle_1 = __webpack_require__(21);
+var RaphaelIconCircle = (function (_super) {
+    __extends(RaphaelIconCircle, _super);
+    function RaphaelIconCircle() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Task.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, text = _a.text, radius = _a.radius, children = _a.children, others = __rest(_a, ["x", "y", "width", "height", "text", "radius", "children"]);
-        var data = others.data;
-        return (React.createElement(Tooltip_1.default, { data: data },
-            React.createElement(Rect_1.default, __assign({ x: x, y: y, width: width, height: height, r: radius }, others)),
-            React.createElement(MultilineText_1.default, { text: text, x: x + (width / 2), y: y + (height / 2) }),
-            children));
+    RaphaelIconCircle.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, radius = _a.radius, others = __rest(_a, ["x", "y", "radius"]);
+        return (React.createElement(Circle_1.default, __assign({ x: x, y: y, r: radius }, others)));
     };
-    Task.defaultProps = {
+    RaphaelIconCircle.defaultProps = {
         x: 0,
         y: 0,
-        width: 100,
-        height: 40,
-        radius: 4,
-        fill: '#FFF',
+        strokeWidth: 2.5,
+        radius: 9.75,
     };
-    return Task;
+    return RaphaelIconCircle;
 }(React.Component));
-exports.default = Task;
+exports.default = RaphaelIconCircle;
 
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
-
-module.exports = ReactDOM;
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -416,8 +406,62 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(5);
-var Utils_1 = __webpack_require__(9);
+var Tooltip_1 = __webpack_require__(3);
+var Rect_1 = __webpack_require__(11);
+var MultilineText_1 = __webpack_require__(45);
+var DiagramColorService_1 = __webpack_require__(2);
+var Task = (function (_super) {
+    __extends(Task, _super);
+    function Task() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Task.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, radius = _a.radius, text = _a.text, data = _a.data, children = _a.children;
+        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.ACTIVITY_STROKE_COLOR);
+        var strokeWidth = DiagramColorService_1.getBpmnStrokeWidth(data);
+        var fill = DiagramColorService_1.getFillColour(data.id);
+        var fillOpacity = DiagramColorService_1.getFillOpacity();
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(Rect_1.default, { x: x, y: y, width: width, height: height, r: radius, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
+            React.createElement(MultilineText_1.default, { x: x + width / 2, y: y + height / 2, text: text, width: width }),
+            children));
+    };
+    Task.defaultProps = {
+        x: 0,
+        y: 0,
+        radius: 4,
+    };
+    return Task;
+}(React.Component));
+exports.default = Task;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = ReactDOM;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var ReactDOM = __webpack_require__(6);
+var Utils_1 = __webpack_require__(10);
 var Element = (function (_super) {
     __extends(Element, _super);
     function Element(props) {
@@ -467,73 +511,6 @@ exports.default = Element;
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var DiagramIconTimer_1 = __webpack_require__(21);
-var DiagramIconError_1 = __webpack_require__(23);
-var DiagramIconSignal_1 = __webpack_require__(25);
-var DiagramIconMessage_1 = __webpack_require__(27);
-var DiagramContainerIconEvent = (function (_super) {
-    __extends(DiagramContainerIconEvent, _super);
-    function DiagramContainerIconEvent() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    DiagramContainerIconEvent.prototype.render = function () {
-        var _a = this.props, type = _a.type, data = _a.data, others = __rest(_a, ["type", "data"]);
-        switch (type) {
-            case 'timer': {
-                return React.createElement(DiagramIconTimer_1.default, __assign({}, others));
-            }
-            case 'error': {
-                return React.createElement(DiagramIconError_1.default, __assign({}, others));
-            }
-            case 'signal': {
-                return React.createElement(DiagramIconSignal_1.default, __assign({}, others));
-            }
-            case 'message': {
-                return React.createElement(DiagramIconMessage_1.default, __assign({}, others));
-            }
-        }
-        return null;
-    };
-    return DiagramContainerIconEvent;
-}(React.Component));
-exports.default = DiagramContainerIconEvent;
-
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -557,43 +534,77 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Path_1 = __webpack_require__(1);
-var Tooltip_1 = __webpack_require__(2);
+var DiagramIconTimer_1 = __webpack_require__(22);
+var DiagramIconError_1 = __webpack_require__(29);
+var DiagramIconSignal_1 = __webpack_require__(31);
+var DiagramIconMessage_1 = __webpack_require__(33);
+var DiagramContainerIconEvent = (function (_super) {
+    __extends(DiagramContainerIconEvent, _super);
+    function DiagramContainerIconEvent() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DiagramContainerIconEvent.prototype.render = function () {
+        var _a = this.props, type = _a.type, x = _a.x, y = _a.y, width = _a.width, height = _a.height, data = _a.data, fill = _a.fill;
+        var baseProps = { x: x, y: y, width: width, height: height, data: data };
+        switch (type) {
+            case 'timer': {
+                return React.createElement(DiagramIconTimer_1.default, __assign({}, baseProps));
+            }
+            case 'error': {
+                return React.createElement(DiagramIconError_1.default, __assign({}, baseProps, { fill: fill }));
+            }
+            case 'signal': {
+                return React.createElement(DiagramIconSignal_1.default, __assign({}, baseProps, { fill: fill }));
+            }
+            case 'message': {
+                return React.createElement(DiagramIconMessage_1.default, __assign({}, baseProps));
+            }
+        }
+        return null;
+    };
+    return DiagramContainerIconEvent;
+}(React.Component));
+exports.default = DiagramContainerIconEvent;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Tooltip_1 = __webpack_require__(3);
+var DiagramColorService_1 = __webpack_require__(2);
+var Rhombus_1 = __webpack_require__(36);
 var Gateway = (function (_super) {
     __extends(Gateway, _super);
     function Gateway() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Gateway.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, data = _a.data, others = __rest(_a, ["x", "y", "width", "height", "data"]);
-        var path = 'M' + x + ' ' + (y + (height / 2)) +
-            'L' + (x + (width / 2)) + ' ' + (y + height) +
-            'L' + (x + width) + ' ' + (y + (height / 2)) +
-            'L' + (x + (width / 2)) + ' ' + y + 'z';
-        return React.createElement(Tooltip_1.default, { data: data },
-            React.createElement(Path_1.default, __assign({ d: path }, others)),
-            this.props.children);
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, strokeWidth = _a.strokeWidth, data = _a.data;
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(Rhombus_1.default, { x: x, y: y, width: width, height: height, stroke: DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR), strokeWidth: strokeWidth, fill: DiagramColorService_1.getFillColour(data.id), fillOpacity: DiagramColorService_1.getFillOpacity() }),
+            this.props.children));
     };
     Gateway.defaultProps = {
         x: 0,
         y: 0,
-        width: 40,
-        height: 40,
-        stroke: '#585858',
         strokeWidth: 2,
-        fill: '#FFF',
-        fillOpacity: '',
     };
     return Gateway;
 }(React.Component));
@@ -601,7 +612,7 @@ exports.default = Gateway;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -982,70 +993,6 @@ function convertProps(props) {
 
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(5);
-var Utils_1 = __webpack_require__(9);
-var Set = (function (_super) {
-    __extends(Set, _super);
-    function Set(props) {
-        var _this = _super.call(this, props) || this;
-        _this.set = null;
-        _this.state = {
-            loaded: false
-        };
-        return _this;
-    }
-    Set.prototype.componentDidMount = function () {
-        var root = ReactDOM.findDOMNode(this.refs.root);
-        var parentId = root.parentElement.getAttribute("data-id");
-        var set = Utils_1.createSet(parentId, this.props, this.handleLoad.bind(this));
-        this.set = set;
-        this.setState({
-            loaded: true,
-            id: set.id
-        });
-    };
-    Set.prototype.getSet = function () {
-        return this.set;
-    };
-    Set.prototype.handleLoad = function (set) {
-        if (this.props.load) {
-            this.props.load(set);
-        }
-    };
-    Set.prototype.componentWillUnmout = function () {
-        Utils_1.removeSet(this.set);
-    };
-    Set.prototype.render = function () {
-        if (this.state.loaded) {
-            return (React.createElement("div", { ref: "root", className: "raphael-set", "data-id": this.state.id }, this.props.children));
-        }
-        else {
-            return (React.createElement("div", { ref: "root", className: "raphael-set", "data-id": this.state.id }));
-        }
-    };
-    return Set;
-}(React.Component));
-exports.default = Set;
-
-
-/***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1071,7 +1018,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(6);
+var Element_1 = __webpack_require__(7);
 var Rect = (function (_super) {
     __extends(Rect, _super);
     function Rect() {
@@ -1122,46 +1069,26 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconCircle_1 = __webpack_require__(3);
-var DiagramContainerIconEvent_1 = __webpack_require__(7);
-var Tooltip_1 = __webpack_require__(2);
+var RaphaelIconCircle_1 = __webpack_require__(4);
+var DiagramContainerIconEvent_1 = __webpack_require__(8);
+var Tooltip_1 = __webpack_require__(3);
 var Event = (function (_super) {
     __extends(Event, _super);
     function Event() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Event.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, fill = _a.fill, iconFill = _a.iconFill, data = _a.data, others = __rest(_a, ["x", "y", "width", "height", "fill", "iconFill", "data"]);
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity, iconFill = _a.iconFill, data = _a.data;
         var type = data && data.eventDefinition && data.eventDefinition.type;
         return (React.createElement(Tooltip_1.default, { data: data },
-            React.createElement(RaphaelIconCircle_1.default, __assign({ fill: fill }, this.props)),
-            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, type: type, width: width, height: height, fill: iconFill })));
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
+            React.createElement(DiagramContainerIconEvent_1.default, { type: type, x: x, y: y, width: width, height: height, fill: iconFill, data: data })));
     };
     Event.defaultProps = {
         x: 0,
         y: 0,
-        width: 32,
-        height: 32,
-        fill: '#FFF',
     };
     return Event;
 }(React.Component));
@@ -1174,18 +1101,82 @@ exports.default = Event;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(5);
-var DiagramModel_1 = __webpack_require__(15);
-var demo_model_1 = __webpack_require__(16);
-var Diagram_1 = __webpack_require__(17);
+var ReactDOM = __webpack_require__(6);
+var Utils_1 = __webpack_require__(10);
+var Set = (function (_super) {
+    __extends(Set, _super);
+    function Set(props) {
+        var _this = _super.call(this, props) || this;
+        _this.set = null;
+        _this.state = {
+            loaded: false
+        };
+        return _this;
+    }
+    Set.prototype.componentDidMount = function () {
+        var root = ReactDOM.findDOMNode(this.refs.root);
+        var parentId = root.parentElement.getAttribute("data-id");
+        var set = Utils_1.createSet(parentId, this.props, this.handleLoad.bind(this));
+        this.set = set;
+        this.setState({
+            loaded: true,
+            id: set.id
+        });
+    };
+    Set.prototype.getSet = function () {
+        return this.set;
+    };
+    Set.prototype.handleLoad = function (set) {
+        if (this.props.load) {
+            this.props.load(set);
+        }
+    };
+    Set.prototype.componentWillUnmout = function () {
+        Utils_1.removeSet(this.set);
+    };
+    Set.prototype.render = function () {
+        if (this.state.loaded) {
+            return (React.createElement("div", { ref: "root", className: "raphael-set", "data-id": this.state.id }, this.props.children));
+        }
+        else {
+            return (React.createElement("div", { ref: "root", className: "raphael-set", "data-id": this.state.id }));
+        }
+    };
+    return Set;
+}(React.Component));
+exports.default = Set;
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var ReactDOM = __webpack_require__(6);
+var DiagramModel_1 = __webpack_require__(16);
+var demo_model_1 = __webpack_require__(17);
+var Diagram_1 = __webpack_require__(18);
 var diagram = new DiagramModel_1.DiagramModel(demo_model_1.DATA);
 ReactDOM.render(React.createElement(Diagram_1.default, { diagram: diagram }), document.getElementById('example'));
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1347,7 +1338,7 @@ exports.DiagramLaneElementModel = DiagramLaneElementModel;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1431,9 +1422,9 @@ exports.DATA = {
             y: 205.12666244524905,
             width: 31.0,
             height: 31.0,
-            type: "BoundaryEvent",
+            type: "IntermediateCatchEvent",
             eventDefinition: {
-                type: "timer",
+                type: "error",
                 timeDuration: "PT10S"
             }, properties: [
                 {
@@ -1676,7 +1667,7 @@ exports.DATA = {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1710,25 +1701,25 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Paper_1 = __webpack_require__(18);
-var StartEvent_1 = __webpack_require__(19);
-var ExclusiveGateway_1 = __webpack_require__(34);
-var InclusiveGateway_1 = __webpack_require__(36);
-var EventGateway_1 = __webpack_require__(37);
-var ParallelGateway_1 = __webpack_require__(39);
-var EndEvent_1 = __webpack_require__(41);
-var UserTask_1 = __webpack_require__(42);
-var ManualTask_1 = __webpack_require__(47);
-var ServiceTask_1 = __webpack_require__(50);
-var ReceiveTask_1 = __webpack_require__(53);
-var ScriptTask_1 = __webpack_require__(56);
-var BusinessRuleTask_1 = __webpack_require__(59);
-var BoundaryEvent_1 = __webpack_require__(62);
-var ThrowEvent_1 = __webpack_require__(63);
-var IntermediateCatchingEvent_1 = __webpack_require__(64);
-var SubProcess_1 = __webpack_require__(65);
-var EventSubProcess_1 = __webpack_require__(66);
-var SequenceFlow_1 = __webpack_require__(67);
+var Paper_1 = __webpack_require__(19);
+var StartEvent_1 = __webpack_require__(20);
+var ExclusiveGateway_1 = __webpack_require__(35);
+var InclusiveGateway_1 = __webpack_require__(38);
+var EventGateway_1 = __webpack_require__(39);
+var ParallelGateway_1 = __webpack_require__(41);
+var EndEvent_1 = __webpack_require__(43);
+var UserTask_1 = __webpack_require__(44);
+var ManualTask_1 = __webpack_require__(49);
+var ServiceTask_1 = __webpack_require__(52);
+var ReceiveTask_1 = __webpack_require__(55);
+var ScriptTask_1 = __webpack_require__(58);
+var BusinessRuleTask_1 = __webpack_require__(61);
+var BoundaryEvent_1 = __webpack_require__(64);
+var ThrowEvent_1 = __webpack_require__(65);
+var IntermediateCatchingEvent_1 = __webpack_require__(66);
+var SubProcess_1 = __webpack_require__(67);
+var EventSubProcess_1 = __webpack_require__(68);
+var SequenceFlow_1 = __webpack_require__(69);
 var PADDING_WIDTH = 60;
 var PADDING_HEIGHT = 60;
 var Diagram = (function (_super) {
@@ -1736,9 +1727,9 @@ var Diagram = (function (_super) {
     function Diagram() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.renderElement = function (ele) {
-            var x = ele.x, y = ele.y, width = ele.width, height = ele.height, others = __rest(ele, ["x", "y", "width", "height"]);
-            var id = others.id, name = others.name;
-            var props = { x: +x, y: +y, width: +width, height: +height, data: others };
+            var x = ele.x, y = ele.y, width = ele.width, height = ele.height, data = __rest(ele, ["x", "y", "width", "height"]);
+            var id = data.id, name = data.name;
+            var props = { x: +x, y: +y, width: +width, height: +height, data: data };
             switch (ele.type) {
                 case 'StartEvent':
                     return React.createElement(StartEvent_1.default, __assign({}, props, { key: id }));
@@ -1790,7 +1781,7 @@ exports.default = Diagram;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1824,8 +1815,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(5);
-var Utils_1 = __webpack_require__(9);
+var ReactDOM = __webpack_require__(6);
+var Utils_1 = __webpack_require__(10);
 var Paper = (function (_super) {
     __extends(Paper, _super);
     function Paper(props) {
@@ -1888,51 +1879,6 @@ exports.default = Paper;
 
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Event_1 = __webpack_require__(13);
-var StartEvent = (function (_super) {
-    __extends(StartEvent, _super);
-    function StartEvent() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    StartEvent.prototype.render = function () {
-        return (React.createElement(Event_1.default, __assign({}, this.props)));
-    };
-    StartEvent.defaultProps = {
-        iconFill: '#FFF',
-        radius: 15,
-        strokeWidth: 1,
-    };
-    return StartEvent;
-}(React.Component));
-exports.default = StartEvent;
-
-
-/***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1956,31 +1902,36 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(6);
-var Circle = (function (_super) {
-    __extends(Circle, _super);
-    function Circle() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.element = null;
-        return _this;
+var Event_1 = __webpack_require__(13);
+var DiagramColorService_1 = __webpack_require__(2);
+var StartEvent = (function (_super) {
+    __extends(StartEvent, _super);
+    function StartEvent() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Circle.prototype.getElement = function () {
-        return this.element.getElement();
+    StartEvent.prototype.render = function () {
+        var _a = this.props, stroke = _a.stroke, fill = _a.fill, fillOpacity = _a.fillOpacity, data = _a.data, others = __rest(_a, ["stroke", "fill", "fillOpacity", "data"]);
+        return (React.createElement(Event_1.default, __assign({ stroke: DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR), fill: DiagramColorService_1.getFillColour(data.id), fillOpacity: DiagramColorService_1.getFillOpacity(), data: data }, others)));
     };
-    Circle.prototype.render = function () {
-        var _this = this;
-        return (React.createElement(Element_1.default, __assign({ ref: function (node) { _this.element = node; }, type: "circle" }, this.props)));
+    StartEvent.defaultProps = {
+        radius: 15,
+        strokeWidth: 1,
+        iconFill: 'none',
     };
-    Circle.defaultProps = {
-        x: 0,
-        y: 0,
-        r: 10,
-    };
-    return Circle;
+    return StartEvent;
 }(React.Component));
-exports.default = Circle;
+exports.default = StartEvent;
 
 
 /***/ }),
@@ -2007,42 +1958,31 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Set_1 = __webpack_require__(10);
-var RaphaelIconCircle_1 = __webpack_require__(3);
-var RaphaelIconTImer_1 = __webpack_require__(22);
-var DiagramIconTimer = (function (_super) {
-    __extends(DiagramIconTimer, _super);
-    function DiagramIconTimer() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var Element_1 = __webpack_require__(7);
+var Circle = (function (_super) {
+    __extends(Circle, _super);
+    function Circle() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.element = null;
+        return _this;
     }
-    DiagramIconTimer.prototype.render = function () {
-        var _a = this.props, stroke = _a.stroke, fill = _a.fill, radius = _a.radius, others = __rest(_a, ["stroke", "fill", "radius"]);
-        return (React.createElement(Set_1.default, null,
-            React.createElement(RaphaelIconCircle_1.default, __assign({}, others, { radius: radius, stroke: "black", fill: "none" })),
-            React.createElement(RaphaelIconTImer_1.default, __assign({}, others, { stroke: "none", fill: "#585858" }))));
+    Circle.prototype.getElement = function () {
+        return this.element.getElement();
     };
-    DiagramIconTimer.defaultProps = {
+    Circle.prototype.render = function () {
+        var _this = this;
+        return (React.createElement(Element_1.default, __assign({ ref: function (node) { _this.element = node; }, type: "circle" }, this.props)));
+    };
+    Circle.defaultProps = {
         x: 0,
         y: 0,
-        width: 20,
-        height: 20,
-        radius: 10,
-        strokeWidth: 1,
+        r: 10,
     };
-    return DiagramIconTimer;
+    return Circle;
 }(React.Component));
-exports.default = DiagramIconTimer;
+exports.default = Circle;
 
 
 /***/ }),
@@ -2063,22 +2003,37 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Path_1 = __webpack_require__(1);
-var PATH = "M 10 0 C 4.4771525 0 0 4.4771525 0 10 C 0 15.522847 4.4771525 20 10 20 C 15.522847 20 20 15.522847 20\n        10 C 20 4.4771525 15.522847 1.1842379e-15 10 0 z M 9.09375 1.03125 C 9.2292164 1.0174926 9.362825 1.0389311 9.5 1.03125 L 9.5 3.5\n        L 10.5 3.5 L 10.5 1.03125 C 15.063526 1.2867831 18.713217 4.9364738 18.96875 9.5 L 16.5 9.5 L 16.5 10.5 L 18.96875 10.5 C 18.713217\n        15.063526 15.063526 18.713217 10.5 18.96875 L 10.5 16.5 L 9.5 16.5 L 9.5 18.96875 C 4.9364738 18.713217 1.2867831 15.063526 1.03125\n        10.5 L 3.5 10.5 L 3.5 9.5 L 1.03125 9.5 C 1.279102 5.0736488 4.7225326 1.4751713 9.09375 1.03125 z M 9.5 5 L 9.5 8.0625 C 8.6373007\n        8.2844627 8 9.0680195 8 10 C 8 11.104569 8.8954305 12 10 12 C 10.931981 12 11.715537 11.362699 11.9375 10.5 L 14 10.5 L 14 9.5\n        L 11.9375 9.5 C 11.756642 8.7970599 11.20294 8.2433585 10.5 8.0625 L 10.5 5 L 9.5 5 z";
-var RaphaelIconTimer = (function (_super) {
-    __extends(RaphaelIconTimer, _super);
-    function RaphaelIconTimer() {
+var RaphaelIconCircle_1 = __webpack_require__(4);
+var RaphaelIconTImer_1 = __webpack_require__(23);
+var Tooltip_1 = __webpack_require__(3);
+var DiagramIconTimer = (function (_super) {
+    __extends(DiagramIconTimer, _super);
+    function DiagramIconTimer() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    RaphaelIconTimer.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, stroke = _a.stroke, fill = _a.fill;
-        var px = x + (width - 20) / 2;
-        var py = y + (height - 20) / 2;
-        return (React.createElement(Path_1.default, { d: PATH, stroke: stroke, fill: fill, transform: "T" + px + "," + py }));
+    DiagramIconTimer.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, circle = _a.circle, timer = _a.timer, data = _a.data;
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, radius: circle.radius, stroke: circle.stroke, strokeWidth: circle.strokeWidth, fill: circle.fill, fillOpacity: circle.fillOpacity }),
+            React.createElement(RaphaelIconTImer_1.default, { x: x + 5, y: y + 5, stroke: timer.stroke, strokeWidth: timer.strokeWidth, fill: timer.fill, fillOpacity: timer.fillOpacity })));
     };
-    return RaphaelIconTimer;
+    DiagramIconTimer.defaultProps = {
+        x: 0,
+        y: 0,
+        width: 20,
+        height: 20,
+        circle: {
+            stroke: 'black',
+            fill: 'none',
+        },
+        timer: {
+            stroke: 'none',
+            fill: '#585858'
+        }
+    };
+    return DiagramIconTimer;
 }(React.Component));
-exports.default = RaphaelIconTimer;
+exports.default = DiagramIconTimer;
 
 
 /***/ }),
@@ -2097,296 +2052,32 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconError_1 = __webpack_require__(24);
-var DiagramIconError = (function (_super) {
-    __extends(DiagramIconError, _super);
-    function DiagramIconError() {
+var Path_1 = __webpack_require__(1);
+var PATH = "M 10 0 C 4.4771525 0 0 4.4771525 0 10 C 0 15.522847 4.4771525 20 10 20 C 15.522847 20 20 15.522847 20\n      10 C 20 4.4771525 15.522847 1.1842379e-15 10 0 z M 9.09375 1.03125 C 9.2292164 1.0174926 9.362825 1.0389311 9.5 1.03125 L 9.5 3.5\n      L 10.5 3.5 L 10.5 1.03125 C 15.063526 1.2867831 18.713217 4.9364738 18.96875 9.5 L 16.5 9.5 L 16.5 10.5 L 18.96875 10.5 C 18.713217\n      15.063526 15.063526 18.713217 10.5 18.96875 L 10.5 16.5 L 9.5 16.5 L 9.5 18.96875 C 4.9364738 18.713217 1.2867831 15.063526 1.03125\n      10.5 L 3.5 10.5 L 3.5 9.5 L 1.03125 9.5 C 1.279102 5.0736488 4.7225326 1.4751713 9.09375 1.03125 z M 9.5 5 L 9.5 8.0625 C 8.6373007\n      8.2844627 8 9.0680195 8 10 C 8 11.104569 8.8954305 12 10 12 C 10.931981 12 11.715537 11.362699 11.9375 10.5 L 14 10.5 L 14 9.5\n      L 11.9375 9.5 C 11.756642 8.7970599 11.20294 8.2433585 10.5 8.0625 L 10.5 5 L 9.5 5 z";
+var RaphaelIconTimer = (function (_super) {
+    __extends(RaphaelIconTimer, _super);
+    function RaphaelIconTimer() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    DiagramIconError.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, others = __rest(_a, ["x", "y"]);
-        return React.createElement(RaphaelIconError_1.default, __assign({ x: x - 1, y: y - 1 }, others));
+    RaphaelIconTimer.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, fill = _a.fill;
+        return (React.createElement(Path_1.default, { d: PATH, stroke: stroke, fill: fill, transform: "T" + x + "," + y }));
     };
-    DiagramIconError.defaultProps = {
-        width: 40,
-        height: 40,
-        stroke: 'black',
-        strokeWidth: 1,
-    };
-    return DiagramIconError;
+    return RaphaelIconTimer;
 }(React.Component));
-exports.default = DiagramIconError;
+exports.default = RaphaelIconTimer;
 
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Path_1 = __webpack_require__(1);
-var PATH = "M 22.820839,11.171502 L 19.36734,24.58992 L 13.54138,14.281819 L 9.3386512,20.071607\n        L 13.048949,6.8323057 L 18.996148,16.132659 L 22.820839,11.171502 z";
-;
-var RaphaelIconError = (function (_super) {
-    __extends(RaphaelIconError, _super);
-    function RaphaelIconError() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RaphaelIconError.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, fill = _a.fill;
-        return React.createElement(Path_1.default, { d: PATH, stroke: stroke, fill: fill, transform: "T" + x + "," + y });
-    };
-    return RaphaelIconError;
-}(React.Component));
-exports.default = RaphaelIconError;
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var RaphaelIconSignal_1 = __webpack_require__(26);
-var DiagramIconSignal = (function (_super) {
-    __extends(DiagramIconSignal, _super);
-    function DiagramIconSignal() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    DiagramIconSignal.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, others = __rest(_a, ["x", "y"]);
-        return React.createElement(RaphaelIconSignal_1.default, __assign({ x: x - 1, y: y - 1 }, others));
-    };
-    DiagramIconSignal.defaultProps = {
-        width: 40,
-        height: 40,
-        stroke: 'black',
-        strokeWidth: 1,
-    };
-    return DiagramIconSignal;
-}(React.Component));
-exports.default = DiagramIconSignal;
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Path_1 = __webpack_require__(1);
-var PATH = "M 8.7124971,21.247342 L 23.333334,21.247342 L 16.022915,8.5759512 L 8.7124971,21.247342 z";
-var RaphaelIconSignal = (function (_super) {
-    __extends(RaphaelIconSignal, _super);
-    function RaphaelIconSignal() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RaphaelIconSignal.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["x", "y", "width", "height"]);
-        return React.createElement(Path_1.default, __assign({ d: PATH, transform: "T" + x + "," + y }, others));
-    };
-    return RaphaelIconSignal;
-}(React.Component));
-exports.default = RaphaelIconSignal;
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var RaphaelIconMessage_1 = __webpack_require__(28);
-var DiagramIconMessage = (function (_super) {
-    __extends(DiagramIconMessage, _super);
-    function DiagramIconMessage() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    DiagramIconMessage.prototype.render = function () {
-        return React.createElement(RaphaelIconMessage_1.default, __assign({}, this.props));
-    };
-    DiagramIconMessage.defaultProps = {
-        width: 40,
-        height: 40,
-        fill: '#585858',
-        strokeWidth: 1,
-        stroke: 'none',
-    };
-    return DiagramIconMessage;
-}(React.Component));
-exports.default = DiagramIconMessage;
-
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Path_1 = __webpack_require__(1);
-var PATH = "M 1 3 L 9 11 L 17 3 L 1 3 z M 1 5 L 1 13 L 5 9 L 1 5 z M 17 5 L 13 9 L 17 13 L 17 5 z M 6 10 L 1 15\n        L 17 15 L 12 10 L 9 13 L 6 10 z";
-var RaphaelIconMessage = (function (_super) {
-    __extends(RaphaelIconMessage, _super);
-    function RaphaelIconMessage() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RaphaelIconMessage.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["x", "y", "width", "height"]);
-        var px = x + (width - 18) / 2;
-        var py = y + (height - 18) / 2;
-        return React.createElement(Path_1.default, __assign({ d: PATH }, others, { transform: "T" + px + "," + py }));
-    };
-    return RaphaelIconMessage;
-}(React.Component));
-exports.default = RaphaelIconMessage;
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(30);
+var content = __webpack_require__(25);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2394,7 +2085,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(32)(content, options);
+var update = __webpack_require__(27)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2411,10 +2102,10 @@ if(false) {
 }
 
 /***/ }),
-/* 30 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(31)(undefined);
+exports = module.exports = __webpack_require__(26)(undefined);
 // imports
 
 
@@ -2425,7 +2116,7 @@ exports.push([module.i, ".sf-tooltip-diagram-tooltip {\n  transform: scale(0);\n
 
 
 /***/ }),
-/* 31 */
+/* 26 */
 /***/ (function(module, exports) {
 
 /*
@@ -2507,7 +2198,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 32 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2553,7 +2244,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(33);
+var	fixUrls = __webpack_require__(28);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -2866,7 +2557,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 33 */
+/* 28 */
 /***/ (function(module, exports) {
 
 
@@ -2961,7 +2652,122 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 34 */
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var RaphaelIconError_1 = __webpack_require__(30);
+var DiagramIconError = (function (_super) {
+    __extends(DiagramIconError, _super);
+    function DiagramIconError() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DiagramIconError.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconError_1.default, { x: x - 1, y: y - 1, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconError.defaultProps = {
+        x: 0,
+        y: 0,
+        stroke: 'black',
+        strokeWidth: 1,
+    };
+    return DiagramIconError;
+}(React.Component));
+exports.default = DiagramIconError;
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Path_1 = __webpack_require__(1);
+var PATH = "M 22.820839,11.171502 L 19.36734,24.58992 L 13.54138,14.281819 L 9.3386512,20.071607\n      L 13.048949,6.8323057 L 18.996148,16.132659 L 22.820839,11.171502 z";
+;
+var RaphaelIconError = (function (_super) {
+    __extends(RaphaelIconError, _super);
+    function RaphaelIconError() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RaphaelIconError.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, fill = _a.fill;
+        return React.createElement(Path_1.default, { d: PATH, stroke: stroke, fill: fill, transform: "T" + x + "," + y });
+    };
+    return RaphaelIconError;
+}(React.Component));
+exports.default = RaphaelIconError;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var RaphaelIconSignal_1 = __webpack_require__(32);
+var DiagramIconSignal = (function (_super) {
+    __extends(DiagramIconSignal, _super);
+    function DiagramIconSignal() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DiagramIconSignal.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconSignal_1.default, { x: x - 1, y: y - 1, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconSignal.defaultProps = {
+        x: 0,
+        y: 0,
+        width: 40,
+        height: 40,
+        stroke: 'black',
+        strokeWidth: 1,
+    };
+    return DiagramIconSignal;
+}(React.Component));
+exports.default = DiagramIconSignal;
+
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2995,23 +2801,132 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Gateway_1 = __webpack_require__(8);
-var RaphaelIconCross_1 = __webpack_require__(35);
+var Path_1 = __webpack_require__(1);
+var PATH = "M 8.7124971,21.247342 L 23.333334,21.247342 L 16.022915,8.5759512 L 8.7124971,21.247342 z";
+var RaphaelIconSignal = (function (_super) {
+    __extends(RaphaelIconSignal, _super);
+    function RaphaelIconSignal() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RaphaelIconSignal.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["x", "y", "width", "height"]);
+        return React.createElement(Path_1.default, __assign({ d: PATH, transform: "T" + x + "," + y }, others));
+    };
+    return RaphaelIconSignal;
+}(React.Component));
+exports.default = RaphaelIconSignal;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var RaphaelIconMessage_1 = __webpack_require__(34);
+var DiagramIconMessage = (function (_super) {
+    __extends(DiagramIconMessage, _super);
+    function DiagramIconMessage() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DiagramIconMessage.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconMessage_1.default, { x: x + 6, y: y + 6, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconMessage.defaultProps = {
+        x: 0,
+        y: 0,
+        width: 40,
+        height: 40,
+        fill: '#585858',
+        strokeWidth: 1,
+        stroke: 'none',
+    };
+    return DiagramIconMessage;
+}(React.Component));
+exports.default = DiagramIconMessage;
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Path_1 = __webpack_require__(1);
+var PATH = "M 1 3 L 9 11 L 17 3 L 1 3 z M 1 5 L 1 13 L 5 9 L 1 5 z M 17 5 L 13 9 L 17 13 L 17 5 z M 6 10 L 1 15\n      L 17 15 L 12 10 L 9 13 L 6 10 z";
+var RaphaelIconMessage = (function (_super) {
+    __extends(RaphaelIconMessage, _super);
+    function RaphaelIconMessage() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RaphaelIconMessage.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(Path_1.default, { d: PATH, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, transform: "T" + x + "," + y }));
+    };
+    return RaphaelIconMessage;
+}(React.Component));
+exports.default = RaphaelIconMessage;
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Gateway_1 = __webpack_require__(9);
+var RaphaelIconCross_1 = __webpack_require__(37);
+var DiagramColorService_1 = __webpack_require__(2);
 var ExclusiveGateway = (function (_super) {
     __extends(ExclusiveGateway, _super);
     function ExclusiveGateway() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ExclusiveGateway.prototype.render = function () {
-        var _a = this.props, strokeWidth = _a.strokeWidth, others = __rest(_a, ["strokeWidth"]);
-        return (React.createElement(Gateway_1.default, __assign({}, others),
-            React.createElement(RaphaelIconCross_1.default, __assign({}, this.props))));
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, strokeWidth = _a.strokeWidth, data = _a.data;
+        return (React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height, data: data },
+            React.createElement(RaphaelIconCross_1.default, { x: x, y: y, width: width, height: height, stroke: DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR), strokeWidth: strokeWidth, fill: DiagramColorService_1.getFillColour(data.id), fillOpacity: DiagramColorService_1.getFillOpacity() })));
     };
     ExclusiveGateway.defaultProps = {
         x: 0,
         y: 0,
-        width: 40,
-        height: 40,
         strokeWidth: 3,
     };
     return ExclusiveGateway;
@@ -3020,7 +2935,48 @@ exports.default = ExclusiveGateway;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Path_1 = __webpack_require__(1);
+var Rhombus = (function (_super) {
+    __extends(Rhombus, _super);
+    function Rhombus() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Rhombus.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        var PATH = 'M' + x + ' ' + (y + (height / 2)) +
+            'L' + (x + (width / 2)) + ' ' + (y + height) +
+            'L' + (x + width) + ' ' + (y + (height / 2)) +
+            'L' + (x + (width / 2)) + ' ' + y + 'z';
+        return (React.createElement(Path_1.default, { d: PATH, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    Rhombus.defaultProps = {
+        x: 0,
+        y: 0,
+    };
+    return Rhombus;
+}(React.Component));
+exports.default = Rhombus;
+
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3064,11 +3020,11 @@ var RaphaelIconCross = (function (_super) {
         var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, others = __rest(_a, ["x", "y", "width", "height"]);
         var quarterWidth = width / 4;
         var quarterHeight = height / 4;
-        var DATA = 'M' + (x + quarterWidth + 3) + ' ' + (y + quarterHeight + 3) +
+        var PATH = 'M' + (x + quarterWidth + 3) + ' ' + (y + quarterHeight + 3) +
             'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + 3 * quarterHeight - 3) +
             'M' + (x + quarterWidth + 3) + ' ' + (y + 3 * quarterHeight - 3) +
             'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + quarterHeight + 3);
-        return React.createElement(Path_1.default, __assign({ d: DATA }, others));
+        return React.createElement(Path_1.default, __assign({ d: PATH }, others));
     };
     RaphaelIconCross.defaultProps = {
         x: 0,
@@ -3080,132 +3036,6 @@ var RaphaelIconCross = (function (_super) {
     return RaphaelIconCross;
 }(React.Component));
 exports.default = RaphaelIconCross;
-
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Gateway_1 = __webpack_require__(8);
-var RaphaelIconCircle_1 = __webpack_require__(3);
-var InclusiveGateway = (function (_super) {
-    __extends(InclusiveGateway, _super);
-    function InclusiveGateway() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    InclusiveGateway.prototype.render = function () {
-        var _a = this.props, radius = _a.radius, strokeWidth = _a.strokeWidth, others = __rest(_a, ["radius", "strokeWidth"]);
-        return (React.createElement(Gateway_1.default, __assign({}, others),
-            React.createElement(RaphaelIconCircle_1.default, __assign({}, this.props))));
-    };
-    InclusiveGateway.defaultProps = {
-        x: 0,
-        y: 0,
-        width: 40,
-        height: 40,
-        strokeWidth: 2.5,
-        radius: 9.75,
-    };
-    return InclusiveGateway;
-}(React.Component));
-exports.default = InclusiveGateway;
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Gateway_1 = __webpack_require__(8);
-var RaphaelIconPentagon_1 = __webpack_require__(38);
-var RaphaelIconCircle_1 = __webpack_require__(3);
-var EventGateway = (function (_super) {
-    __extends(EventGateway, _super);
-    function EventGateway() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    EventGateway.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, pentaStrokeWidth = _a.pentaStrokeWidth, strokeWidth = _a.strokeWidth, others = __rest(_a, ["x", "y", "width", "height", "circleRadiusInner", "circleRadiusOuter", "pentaStrokeWidth", "strokeWidth"]);
-        var psProps = { x: x, y: y, width: width, height: height };
-        return (React.createElement(Gateway_1.default, __assign({}, psProps, others),
-            React.createElement(RaphaelIconCircle_1.default, __assign({}, psProps, { radius: circleRadiusInner, strokeWidth: strokeWidth }, others)),
-            React.createElement(RaphaelIconCircle_1.default, __assign({}, psProps, { radius: circleRadiusOuter, strokeWidth: strokeWidth }, others)),
-            React.createElement(RaphaelIconPentagon_1.default, __assign({}, psProps, { strokeWidth: pentaStrokeWidth }, others))));
-    };
-    EventGateway.defaultProps = {
-        x: 0,
-        y: 0,
-        width: 40,
-        height: 40,
-        strokeWidth: 0.5,
-        circleRadiusInner: 10.4,
-        circleRadiusOuter: 11.7,
-        pentaStrokeWidth: 1.39999998,
-    };
-    return EventGateway;
-}(React.Component));
-exports.default = EventGateway;
 
 
 /***/ }),
@@ -3224,38 +3054,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Path_1 = __webpack_require__(1);
-var RaphaelIconPentagon = (function (_super) {
-    __extends(RaphaelIconPentagon, _super);
-    function RaphaelIconPentagon() {
+var Gateway_1 = __webpack_require__(9);
+var RaphaelIconCircle_1 = __webpack_require__(4);
+var DiagramColorService_1 = __webpack_require__(2);
+var InclusiveGateway = (function (_super) {
+    __extends(InclusiveGateway, _super);
+    function InclusiveGateway() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    RaphaelIconPentagon.prototype.render = function () {
-        var PENTAGON = 'M 20.327514,22.344972 L 11.259248,22.344216 L 8.4577203,13.719549' +
-            ' L 15.794545,8.389969 L 23.130481,13.720774 L 20.327514,22.344972 z';
-        var transform = 'T' + (this.props.x + (this.props.width - 32) / 2) + ',' + (this.props.y + (this.props.height - 32) / 2);
-        return React.createElement(Path_1.default, __assign({ d: PENTAGON }, this.props, { transform: transform }));
+    InclusiveGateway.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, radius = _a.radius, strokeWidth = _a.strokeWidth, data = _a.data;
+        return (React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height, data: data },
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, radius: radius, stroke: DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR), strokeWidth: strokeWidth, fill: DiagramColorService_1.getFillColour(data.id), fillOpacity: DiagramColorService_1.getFillOpacity() })));
     };
-    RaphaelIconPentagon.defaultProps = {
+    InclusiveGateway.defaultProps = {
         x: 0,
         y: 0,
-        width: 64,
-        height: 64,
-        strokeLinejoin: 'bevel',
+        strokeWidth: 2.5,
+        radius: 9.75,
     };
-    return RaphaelIconPentagon;
+    return InclusiveGateway;
 }(React.Component));
-exports.default = RaphaelIconPentagon;
+exports.default = InclusiveGateway;
 
 
 /***/ }),
@@ -3274,42 +3096,114 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Gateway_1 = __webpack_require__(8);
-var RaphaelIconPlus_1 = __webpack_require__(40);
+var Gateway_1 = __webpack_require__(9);
+var RaphaelIconCircle_1 = __webpack_require__(4);
+var Pentagon_1 = __webpack_require__(40);
+var DiagramColorService_1 = __webpack_require__(2);
+var EventGateway = (function (_super) {
+    __extends(EventGateway, _super);
+    function EventGateway() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    EventGateway.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, pentaStrokeWidth = _a.pentaStrokeWidth, strokeWidth = _a.strokeWidth, data = _a.data;
+        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR);
+        var fill = DiagramColorService_1.getFillColour(data.id);
+        var fillOpacity = DiagramColorService_1.getFillOpacity();
+        return (React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height, data: data },
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, radius: circleRadiusInner, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, radius: circleRadiusOuter, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
+            React.createElement(Pentagon_1.default, { x: x, y: y, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity })));
+    };
+    EventGateway.defaultProps = {
+        x: 0,
+        y: 0,
+        strokeWidth: 0.5,
+        circleRadiusInner: 10.4,
+        circleRadiusOuter: 11.7,
+        pentaStrokeWidth: 1.39999998,
+    };
+    return EventGateway;
+}(React.Component));
+exports.default = EventGateway;
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Path_1 = __webpack_require__(1);
+var PATH = 'M 20.327514,22.344972 L 11.259248,22.344216 L 8.4577203,13.719549' +
+    ' L 15.794545,8.389969 L 23.130481,13.720774 L 20.327514,22.344972 z';
+var Pentagon = (function (_super) {
+    __extends(Pentagon, _super);
+    function Pentagon() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Pentagon.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y;
+        return React.createElement(Path_1.default, { d: PATH, transform: "T" + (x + 4) + ", " + (y + 4) });
+    };
+    Pentagon.defaultProps = {
+        x: 0,
+        y: 0,
+        strokeLinejoin: 'bevel',
+    };
+    return Pentagon;
+}(React.Component));
+exports.default = Pentagon;
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Gateway_1 = __webpack_require__(9);
+var RaphaelIconPlus_1 = __webpack_require__(42);
+var DiagramColorService_1 = __webpack_require__(2);
 var ParallelGatway = (function (_super) {
     __extends(ParallelGatway, _super);
     function ParallelGatway() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ParallelGatway.prototype.render = function () {
-        var _a = this.props, strokeWidth = _a.strokeWidth, others = __rest(_a, ["strokeWidth"]);
-        return (React.createElement(Gateway_1.default, __assign({}, others),
-            React.createElement(RaphaelIconPlus_1.default, __assign({}, this.props))));
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, strokeWidth = _a.strokeWidth, data = _a.data;
+        return (React.createElement(Gateway_1.default, { x: x, y: y, width: width, height: height, data: data },
+            React.createElement(RaphaelIconPlus_1.default, { x: x, y: y, stroke: DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR), strokeWidth: strokeWidth, fill: DiagramColorService_1.getFillColour(data.id), fillOpacity: DiagramColorService_1.getFillOpacity() })));
     };
     ParallelGatway.defaultProps = {
         x: 0,
         y: 0,
-        width: 40,
-        height: 40,
         strokeWidth: 3,
     };
     return ParallelGatway;
@@ -3318,7 +3212,7 @@ exports.default = ParallelGatway;
 
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3353,9 +3247,9 @@ var RaphaelIconPlus = (function (_super) {
         var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height;
         var px = x + ((width - 32) / 2);
         var py = y + ((height - 32) / 2);
-        var PATH_DATA = 'M 6.75,16 L 25.75,16 M 16,6.75 L 16,25.75';
+        var PATH = 'M 6.75,16 L 25.75,16 M 16,6.75 L 16,25.75';
         var transform = "T" + px + "," + py;
-        return React.createElement(Path_1.default, __assign({ d: PATH_DATA }, this.props, { transform: transform }));
+        return React.createElement(Path_1.default, __assign({ d: PATH }, this.props, { transform: transform }));
     };
     RaphaelIconPlus.defaultProps = {
         x: 0,
@@ -3367,93 +3261,6 @@ var RaphaelIconPlus = (function (_super) {
     return RaphaelIconPlus;
 }(React.Component));
 exports.default = RaphaelIconPlus;
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Event_1 = __webpack_require__(13);
-var EndEvent = (function (_super) {
-    __extends(EndEvent, _super);
-    function EndEvent() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    EndEvent.prototype.render = function () {
-        return React.createElement(Event_1.default, __assign({}, this.props));
-    };
-    EndEvent.defaultProps = {
-        radius: 14,
-        strokeWidth: 3,
-        iconFill: 'black',
-    };
-    return EndEvent;
-}(React.Component));
-exports.default = EndEvent;
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Task_1 = __webpack_require__(4);
-var DiagramIconUserTask_1 = __webpack_require__(45);
-var UserTask = (function (_super) {
-    __extends(UserTask, _super);
-    function UserTask() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    UserTask.prototype.render = function () {
-        return (React.createElement(Task_1.default, __assign({}, this.props),
-            React.createElement(DiagramIconUserTask_1.default, __assign({}, this.props))));
-    };
-    return UserTask;
-}(React.Component));
-exports.default = UserTask;
 
 
 /***/ }),
@@ -3472,9 +3279,107 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Text_1 = __webpack_require__(44);
+var Event_1 = __webpack_require__(13);
+var DiagramColorService_1 = __webpack_require__(2);
+var EndEvent = (function (_super) {
+    __extends(EndEvent, _super);
+    function EndEvent() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    EndEvent.prototype.render = function () {
+        var _a = this.props, stroke = _a.stroke, fill = _a.fill, fillOpacity = _a.fillOpacity, data = _a.data, others = __rest(_a, ["stroke", "fill", "fillOpacity", "data"]);
+        return (React.createElement(Event_1.default, __assign({ stroke: DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR), fill: DiagramColorService_1.getFillColour(data.id), fillOpacity: DiagramColorService_1.getFillOpacity(), data: data }, others)));
+    };
+    EndEvent.defaultProps = {
+        radius: 14,
+        strokeWidth: 4,
+        iconFill: 'black',
+    };
+    return EndEvent;
+}(React.Component));
+exports.default = EndEvent;
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Task_1 = __webpack_require__(5);
+var DiagramIconUserTask_1 = __webpack_require__(47);
+var UserTask = (function (_super) {
+    __extends(UserTask, _super);
+    function UserTask() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    UserTask.prototype.render = function () {
+        return (React.createElement(Task_1.default, __assign({}, this.props),
+            React.createElement(DiagramIconUserTask_1.default, __assign({}, this.props))));
+    };
+    return UserTask;
+}(React.Component));
+exports.default = UserTask;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Text_1 = __webpack_require__(46);
 var TEXT_PADDING = 3;
 var MultilineText = (function (_super) {
     __extends(MultilineText, _super);
@@ -3531,7 +3436,7 @@ exports.default = MultilineText;
 
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3556,7 +3461,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(6);
+var Element_1 = __webpack_require__(7);
 var Text = (function (_super) {
     __extends(Text, _super);
     function Text() {
@@ -3582,90 +3487,6 @@ exports.default = Text;
 
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var RaphaelIconUser_1 = __webpack_require__(46);
-var DiagramIconUserTask = (function (_super) {
-    __extends(DiagramIconUserTask, _super);
-    function DiagramIconUserTask() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    DiagramIconUserTask.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, others = __rest(_a, ["x", "y", "fill", "stroke"]);
-        return (React.createElement(RaphaelIconUser_1.default, __assign({ x: x + 4, y: y + 4, fill: "#d1b575", stroke: "none" }, others)));
-    };
-    return DiagramIconUserTask;
-}(React.Component));
-exports.default = DiagramIconUserTask;
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Path_1 = __webpack_require__(1);
-var PATH = "m 1,17 16,0 0,-1.7778 -5.333332,-3.5555 0,-1.7778 c 1.244444,0 1.244444,-2.3111 1.244444,-2.3111\n    l 0,-3.0222 C 12.555557,0.8221 9.0000001,1.0001 9.0000001,1.0001 c 0,0 -3.5555556,-0.178 -3.9111111,3.5555 l 0,3.0222 c\n    0,0 0,2.3111 1.2444443,2.3111 l 0,1.7778 L 1,15.2222 1,17 17,17";
-var RaphaelIconUser = (function (_super) {
-    __extends(RaphaelIconUser, _super);
-    function RaphaelIconUser() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RaphaelIconUser.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, opacity = _a.opacity;
-        return (React.createElement(Path_1.default, { d: PATH, transform: "T" + x + "," + y, fillOpacity: opacity, stroke: stroke, fill: fill }));
-    };
-    return RaphaelIconUser;
-}(React.Component));
-exports.default = RaphaelIconUser;
-
-
-/***/ }),
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3681,30 +3502,27 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Task_1 = __webpack_require__(4);
-var DiagramIconManualTask_1 = __webpack_require__(48);
-var ManualTask = (function (_super) {
-    __extends(ManualTask, _super);
-    function ManualTask() {
+var RaphaelIconUser_1 = __webpack_require__(48);
+var DiagramIconUserTask = (function (_super) {
+    __extends(DiagramIconUserTask, _super);
+    function DiagramIconUserTask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    ManualTask.prototype.render = function () {
-        return (React.createElement(Task_1.default, __assign({}, this.props),
-            React.createElement(DiagramIconManualTask_1.default, __assign({}, this.props))));
+    DiagramIconUserTask.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconUser_1.default, { x: x + 4, y: y + 4, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
     };
-    return ManualTask;
+    DiagramIconUserTask.defaultProps = {
+        x: 0,
+        y: 0,
+        stroke: 'none',
+        fill: '#d1b575',
+    };
+    return DiagramIconUserTask;
 }(React.Component));
-exports.default = ManualTask;
+exports.default = DiagramIconUserTask;
 
 
 /***/ }),
@@ -3723,6 +3541,43 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Path_1 = __webpack_require__(1);
+var PATH = "m 1,17 16,0 0,-1.7778 -5.333332,-3.5555 0,-1.7778 c 1.244444,0 1.244444,-2.3111 1.244444,-2.3111\n      l 0,-3.0222 C 12.555557,0.8221 9.0000001,1.0001 9.0000001,1.0001 c 0,0 -3.5555556,-0.178 -3.9111111,3.5555 l 0,3.0222 c\n      0,0 0,2.3111 1.2444443,2.3111 l 0,1.7778 L 1,15.2222 1,17 17,17";
+var RaphaelIconUser = (function (_super) {
+    __extends(RaphaelIconUser, _super);
+    function RaphaelIconUser() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RaphaelIconUser.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, fillOpacity = _a.fillOpacity;
+        return (React.createElement(Path_1.default, { d: PATH, transform: "T" + x + "," + y, fillOpacity: fillOpacity, stroke: stroke, fill: fill }));
+    };
+    RaphaelIconUser.defaultProps = {
+        fillOpacity: 1,
+    };
+    return RaphaelIconUser;
+}(React.Component));
+exports.default = RaphaelIconUser;
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -3731,26 +3586,57 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconManual_1 = __webpack_require__(49);
+var Task_1 = __webpack_require__(5);
+var DiagramIconManualTask_1 = __webpack_require__(50);
+var ManualTask = (function (_super) {
+    __extends(ManualTask, _super);
+    function ManualTask() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ManualTask.prototype.render = function () {
+        return (React.createElement(Task_1.default, __assign({}, this.props),
+            React.createElement(DiagramIconManualTask_1.default, __assign({}, this.props))));
+    };
+    return ManualTask;
+}(React.Component));
+exports.default = ManualTask;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var RaphaelIconManual_1 = __webpack_require__(51);
 var DiagramIconManualTask = (function (_super) {
     __extends(DiagramIconManualTask, _super);
     function DiagramIconManualTask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DiagramIconManualTask.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, others = __rest(_a, ["x", "y", "fill", "stroke"]);
-        return (React.createElement(RaphaelIconManual_1.default, __assign({ x: x + 4, y: y + 4, stroke: "none", fill: "#d1b575" }, others)));
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconManual_1.default, { x: x + 4, y: y + 4, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconManualTask.defaultProps = {
+        x: 0,
+        y: 0,
+        stroke: 'none',
+        fill: '#d1b575',
     };
     return DiagramIconManualTask;
 }(React.Component));
@@ -3758,7 +3644,7 @@ exports.default = DiagramIconManualTask;
 
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3792,7 +3678,7 @@ exports.default = RaphaelIconManual;
 
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3817,8 +3703,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Task_1 = __webpack_require__(4);
-var DiagramIconServiceTask_1 = __webpack_require__(51);
+var Task_1 = __webpack_require__(5);
+var DiagramIconServiceTask_1 = __webpack_require__(53);
 var ServiceTask = (function (_super) {
     __extends(ServiceTask, _super);
     function ServiceTask() {
@@ -3834,7 +3720,7 @@ exports.default = ServiceTask;
 
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3849,34 +3735,23 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconService_1 = __webpack_require__(52);
+var RaphaelIconService_1 = __webpack_require__(54);
 var DiagramIconServiceTask = (function (_super) {
     __extends(DiagramIconServiceTask, _super);
     function DiagramIconServiceTask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DiagramIconServiceTask.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, others = __rest(_a, ["x", "y", "fill", "stroke"]);
-        return (React.createElement(RaphaelIconService_1.default, __assign({ x: x + 4, y: y + 4, stroke: "none", fill: "#72a7d0" }, others)));
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconService_1.default, { x: x + 4, y: y + 4, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconServiceTask.defaultProps = {
+        x: 0,
+        y: 0,
+        stroke: 'none',
+        fill: '#72a7d0',
     };
     return DiagramIconServiceTask;
 }(React.Component));
@@ -3884,7 +3759,7 @@ exports.default = DiagramIconServiceTask;
 
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3935,7 +3810,7 @@ exports.default = RaphaelIconService;
 
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3960,8 +3835,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Task_1 = __webpack_require__(4);
-var DiagramIconReceiveTask_1 = __webpack_require__(54);
+var Task_1 = __webpack_require__(5);
+var DiagramIconReceiveTask_1 = __webpack_require__(56);
 var ReceiveTask = (function (_super) {
     __extends(ReceiveTask, _super);
     function ReceiveTask() {
@@ -3977,7 +3852,7 @@ exports.default = ReceiveTask;
 
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3992,34 +3867,23 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconReceive_1 = __webpack_require__(55);
+var RaphaelIconReceive_1 = __webpack_require__(57);
 var DiagramIconReceiveTask = (function (_super) {
     __extends(DiagramIconReceiveTask, _super);
     function DiagramIconReceiveTask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DiagramIconReceiveTask.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, others = __rest(_a, ["x", "y", "fill", "stroke"]);
-        return (React.createElement(RaphaelIconReceive_1.default, __assign({ x: x + 4, y: y + 2, fill: "#16964d", stroke: "none" }, others)));
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconReceive_1.default, { x: x + 4, y: y + 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconReceiveTask.defaultProps = {
+        x: 0,
+        y: 0,
+        stroke: 'none',
+        fill: '#16964d',
     };
     return DiagramIconReceiveTask;
 }(React.Component));
@@ -4027,7 +3891,7 @@ exports.default = DiagramIconReceiveTask;
 
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4061,7 +3925,7 @@ exports.default = RaphaelIconReceive;
 
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4086,8 +3950,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Task_1 = __webpack_require__(4);
-var DiagramIconScriptTask_1 = __webpack_require__(57);
+var Task_1 = __webpack_require__(5);
+var DiagramIconScriptTask_1 = __webpack_require__(59);
 var ScriptTask = (function (_super) {
     __extends(ScriptTask, _super);
     function ScriptTask() {
@@ -4103,7 +3967,7 @@ exports.default = ScriptTask;
 
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4118,34 +3982,23 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconScript_1 = __webpack_require__(58);
+var RaphaelIconScript_1 = __webpack_require__(60);
 var DiagramIconScriptTask = (function (_super) {
     __extends(DiagramIconScriptTask, _super);
     function DiagramIconScriptTask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DiagramIconScriptTask.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, others = __rest(_a, ["x", "y", "fill", "stroke"]);
-        return (React.createElement(RaphaelIconScript_1.default, __assign({ x: x + 4, y: y + 4, fill: "#72a7d0", stroke: "none" }, others)));
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconScript_1.default, { x: x + 4, y: y + 4, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconScriptTask.defaultProps = {
+        x: 0,
+        y: 0,
+        fill: '#72a7d0',
+        stroke: 'none',
     };
     return DiagramIconScriptTask;
 }(React.Component));
@@ -4153,7 +4006,7 @@ exports.default = DiagramIconScriptTask;
 
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4187,7 +4040,7 @@ exports.default = RaphaelIconScript;
 
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4212,8 +4065,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Task_1 = __webpack_require__(4);
-var DiagramIconBusinessRuleTask_1 = __webpack_require__(60);
+var Task_1 = __webpack_require__(5);
+var DiagramIconBusinessRuleTask_1 = __webpack_require__(62);
 var BusinessRuleTask = (function (_super) {
     __extends(BusinessRuleTask, _super);
     function BusinessRuleTask() {
@@ -4229,7 +4082,7 @@ exports.default = BusinessRuleTask;
 
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4244,34 +4097,23 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconBusinessRule_1 = __webpack_require__(61);
+var RaphaelIconBusinessRule_1 = __webpack_require__(63);
 var DiagramIconBusinessRuleTask = (function (_super) {
     __extends(DiagramIconBusinessRuleTask, _super);
     function DiagramIconBusinessRuleTask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DiagramIconBusinessRuleTask.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, fill = _a.fill, stroke = _a.stroke, others = __rest(_a, ["x", "y", "fill", "stroke"]);
-        return (React.createElement(RaphaelIconBusinessRule_1.default, __assign({ x: x + 4, y: y + 4, stroke: "none", fill: "#72a7d0" }, others)));
+        var _a = this.props, x = _a.x, y = _a.y, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity;
+        return (React.createElement(RaphaelIconBusinessRule_1.default, { x: x + 4, y: y + 4, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }));
+    };
+    DiagramIconBusinessRuleTask.defaultProps = {
+        x: 0,
+        y: 0,
+        stroke: 'none',
+        fill: '#72a7d0',
     };
     return DiagramIconBusinessRuleTask;
 }(React.Component));
@@ -4279,7 +4121,7 @@ exports.default = DiagramIconBusinessRuleTask;
 
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4313,144 +4155,6 @@ exports.default = RaphaelIconBusinessRule;
 
 
 /***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(2);
-var RaphaelIconCircle_1 = __webpack_require__(3);
-var DiagramContainerIconEvent_1 = __webpack_require__(7);
-var BoundaryEvent = (function (_super) {
-    __extends(BoundaryEvent, _super);
-    function BoundaryEvent() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    BoundaryEvent.prototype.render = function () {
-        var _a = this.props, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, signalFill = _a.signalFill, fill = _a.fill, data = _a.data, others = __rest(_a, ["circleRadiusInner", "circleRadiusOuter", "signalFill", "fill", "data"]);
-        var type = data && data.eventDefinition && data.eventDefinition.type;
-        return (React.createElement(Tooltip_1.default, null,
-            React.createElement(RaphaelIconCircle_1.default, __assign({ radius: circleRadiusOuter, fill: fill }, others)),
-            React.createElement(RaphaelIconCircle_1.default, __assign({ radius: circleRadiusInner, fill: fill }, others)),
-            React.createElement(DiagramContainerIconEvent_1.default, __assign({ fill: signalFill, type: type }, others))));
-    };
-    BoundaryEvent.defaultProps = {
-        x: 0,
-        y: 0,
-        circleRadiusInner: 12,
-        circleRadiusOuter: 15,
-        width: 30,
-        height: 30,
-        stroke: '#585858',
-        fill: '#FFF',
-        fillOpacity: '',
-        strokeWidth: 1,
-        signalFill: 'none',
-    };
-    return BoundaryEvent;
-}(React.Component));
-exports.default = BoundaryEvent;
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(2);
-var RaphaelIconCircle_1 = __webpack_require__(3);
-var DiagramContainerIconEvent_1 = __webpack_require__(7);
-var ThrowEvent = (function (_super) {
-    __extends(ThrowEvent, _super);
-    function ThrowEvent() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ThrowEvent.prototype.render = function () {
-        var _a = this.props, fill = _a.fill, signalFill = _a.signalFill, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, data = _a.data, others = __rest(_a, ["fill", "signalFill", "circleRadiusInner", "circleRadiusOuter", "data"]);
-        var type = data && data.eventDefinition && data.eventDefinition.type;
-        return (React.createElement(Tooltip_1.default, null,
-            React.createElement(RaphaelIconCircle_1.default, __assign({ fill: fill, radius: circleRadiusOuter }, others)),
-            React.createElement(RaphaelIconCircle_1.default, __assign({ fill: fill, radius: circleRadiusInner }, others)),
-            React.createElement(DiagramContainerIconEvent_1.default, __assign({ fill: signalFill, type: type }, others))));
-    };
-    ThrowEvent.defaultProps = {
-        x: 0,
-        y: 0,
-        width: 30,
-        height: 30,
-        stroke: '#585858',
-        fill: '#FFF',
-        fillOpacity: '',
-        strokeWidth: 1,
-        signalFill: 'black',
-        circleRadiusInner: 12,
-        circleRadiusOuter: 15,
-    };
-    return ThrowEvent;
-}(React.Component));
-exports.default = ThrowEvent;
-
-
-/***/ }),
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4466,55 +4170,38 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(2);
-var RaphaelIconCircle_1 = __webpack_require__(3);
-var DiagramContainerIconEvent_1 = __webpack_require__(7);
-var IntermediateCatchingEvent = (function (_super) {
-    __extends(IntermediateCatchingEvent, _super);
-    function IntermediateCatchingEvent() {
+var Tooltip_1 = __webpack_require__(3);
+var RaphaelIconCircle_1 = __webpack_require__(4);
+var DiagramContainerIconEvent_1 = __webpack_require__(8);
+var DiagramColorService_1 = __webpack_require__(2);
+var BoundaryEvent = (function (_super) {
+    __extends(BoundaryEvent, _super);
+    function BoundaryEvent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    IntermediateCatchingEvent.prototype.render = function () {
-        var _a = this.props, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, type = _a.type, others = __rest(_a, ["circleRadiusInner", "circleRadiusOuter", "type"]);
-        return (React.createElement(Tooltip_1.default, null,
-            React.createElement(RaphaelIconCircle_1.default, __assign({ radius: circleRadiusOuter }, others)),
-            React.createElement(RaphaelIconCircle_1.default, __assign({ radius: circleRadiusInner }, others)),
-            React.createElement(DiagramContainerIconEvent_1.default, __assign({ type: type }, others))));
+    BoundaryEvent.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, strokeWidth = _a.strokeWidth, signalFill = _a.signalFill, data = _a.data;
+        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR);
+        var fill = DiagramColorService_1.getFillColour(data.id);
+        var fillOpacity = DiagramColorService_1.getFillOpacity();
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, radius: circleRadiusOuter }),
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, radius: circleRadiusOuter }),
+            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, width: width, height: height, type: data && data.eventDefinition && data.eventDefinition.type, data: data, fill: signalFill })));
     };
-    IntermediateCatchingEvent.defaultProps = {
+    BoundaryEvent.defaultProps = {
         x: 0,
         y: 0,
-        width: 30,
-        height: 30,
-        stroke: '#585858',
-        fill: '#FFF',
-        fillOpacity: '',
         strokeWidth: 1,
         circleRadiusInner: 12,
         circleRadiusOuter: 15,
+        signalFill: 'none',
     };
-    return IntermediateCatchingEvent;
+    return BoundaryEvent;
 }(React.Component));
-exports.default = IntermediateCatchingEvent;
+exports.default = BoundaryEvent;
 
 
 /***/ }),
@@ -4533,48 +4220,38 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(2);
-var Rect_1 = __webpack_require__(11);
-var SubProcess = (function (_super) {
-    __extends(SubProcess, _super);
-    function SubProcess() {
+var Tooltip_1 = __webpack_require__(3);
+var RaphaelIconCircle_1 = __webpack_require__(4);
+var DiagramContainerIconEvent_1 = __webpack_require__(8);
+var DiagramColorService_1 = __webpack_require__(2);
+var ThrowEvent = (function (_super) {
+    __extends(ThrowEvent, _super);
+    function ThrowEvent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    SubProcess.prototype.render = function () {
-        var _a = this.props, radius = _a.radius, others = __rest(_a, ["radius"]);
-        return (React.createElement(Tooltip_1.default, null,
-            React.createElement(Rect_1.default, __assign({ r: radius }, others))));
+    ThrowEvent.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, strokeWidth = _a.strokeWidth, signalFill = _a.signalFill, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, data = _a.data;
+        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR);
+        var fill = DiagramColorService_1.getFillColour(data.id);
+        var fillOpacity = DiagramColorService_1.getFillOpacity();
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, radius: circleRadiusInner }),
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, radius: circleRadiusOuter }),
+            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, width: width, height: height, type: data && data.eventDefinition && data.eventDefinition.type, data: data, fill: signalFill })));
     };
-    SubProcess.defaultProps = {
+    ThrowEvent.defaultProps = {
         x: 0,
         y: 0,
-        width: 32,
-        height: 32,
-        radius: 4,
         strokeWidth: 1,
+        signalFill: 'black',
+        circleRadiusInner: 12,
+        circleRadiusOuter: 15,
     };
-    return SubProcess;
+    return ThrowEvent;
 }(React.Component));
-exports.default = SubProcess;
+exports.default = ThrowEvent;
 
 
 /***/ }),
@@ -4593,48 +4270,37 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(2);
-var Rect_1 = __webpack_require__(11);
-var EventSubProcess = (function (_super) {
-    __extends(EventSubProcess, _super);
-    function EventSubProcess() {
+var Tooltip_1 = __webpack_require__(3);
+var RaphaelIconCircle_1 = __webpack_require__(4);
+var DiagramContainerIconEvent_1 = __webpack_require__(8);
+var DiagramColorService_1 = __webpack_require__(2);
+var IntermediateCatchingEvent = (function (_super) {
+    __extends(IntermediateCatchingEvent, _super);
+    function IntermediateCatchingEvent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    EventSubProcess.prototype.render = function () {
-        var _a = this.props, radius = _a.radius, others = __rest(_a, ["radius"]);
-        return (React.createElement(Tooltip_1.default, null,
-            React.createElement(Rect_1.default, __assign({ r: radius }, others))));
+    IntermediateCatchingEvent.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, strokeWidth = _a.strokeWidth, circleRadiusInner = _a.circleRadiusInner, circleRadiusOuter = _a.circleRadiusOuter, data = _a.data;
+        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR);
+        var fill = DiagramColorService_1.getFillColour(data.id);
+        var fillOpacity = DiagramColorService_1.getFillOpacity();
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, radius: circleRadiusInner, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, radius: circleRadiusOuter, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
+            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, width: width, height: height, type: data && data.eventDefinition && data.eventDefinition.type, data: data })));
     };
-    EventSubProcess.defaultProps = {
+    IntermediateCatchingEvent.defaultProps = {
         x: 0,
         y: 0,
-        width: 80,
-        height: 40,
-        radius: 4,
         strokeWidth: 1,
+        circleRadiusInner: 12,
+        circleRadiusOuter: 15,
     };
-    return EventSubProcess;
+    return IntermediateCatchingEvent;
 }(React.Component));
-exports.default = EventSubProcess;
+exports.default = IntermediateCatchingEvent;
 
 
 /***/ }),
@@ -4655,20 +4321,30 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(2);
-var FlowArrow_1 = __webpack_require__(68);
-var SequenceFlow = (function (_super) {
-    __extends(SequenceFlow, _super);
-    function SequenceFlow() {
+var Tooltip_1 = __webpack_require__(3);
+var Rect_1 = __webpack_require__(11);
+var DiagramColorService_1 = __webpack_require__(2);
+var SubProcess = (function (_super) {
+    __extends(SubProcess, _super);
+    function SubProcess() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    SequenceFlow.prototype.render = function () {
-        return (React.createElement(Tooltip_1.default, { data: this.props.flow },
-            React.createElement(FlowArrow_1.default, { points: this.props.flow.waypoints })));
+    SubProcess.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, radius = _a.radius, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity, data = _a.data;
+        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR);
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(Rect_1.default, { x: x, y: y, width: width, height: height, r: radius, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity })));
     };
-    return SequenceFlow;
+    SubProcess.defaultProps = {
+        x: 0,
+        y: 0,
+        radius: 4,
+        strokeWidth: 1,
+        fill: 'none',
+    };
+    return SubProcess;
 }(React.Component));
-exports.default = SequenceFlow;
+exports.default = SubProcess;
 
 
 /***/ }),
@@ -4689,31 +4365,110 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Set_1 = __webpack_require__(10);
-var Polyline_1 = __webpack_require__(69);
+var Tooltip_1 = __webpack_require__(3);
+var Rect_1 = __webpack_require__(11);
+var DiagramColorService_1 = __webpack_require__(2);
+var EventSubProcess = (function (_super) {
+    __extends(EventSubProcess, _super);
+    function EventSubProcess() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    EventSubProcess.prototype.render = function () {
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, radius = _a.radius, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity, data = _a.data;
+        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR);
+        return (React.createElement(Tooltip_1.default, { data: data },
+            React.createElement(Rect_1.default, { x: x, y: y, width: width, height: height, r: radius, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity })));
+    };
+    EventSubProcess.defaultProps = {
+        x: 0,
+        y: 0,
+        radius: 4,
+        strokeWidth: 1,
+        fill: 'none',
+    };
+    return EventSubProcess;
+}(React.Component));
+exports.default = EventSubProcess;
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Tooltip_1 = __webpack_require__(3);
+var FlowArrow_1 = __webpack_require__(70);
+var SequenceFlow = (function (_super) {
+    __extends(SequenceFlow, _super);
+    function SequenceFlow() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SequenceFlow.prototype.render = function () {
+        return (React.createElement(Tooltip_1.default, { data: this.props.flow },
+            React.createElement(FlowArrow_1.default, { flow: this.props.flow })));
+    };
+    return SequenceFlow;
+}(React.Component));
+exports.default = SequenceFlow;
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Set_1 = __webpack_require__(14);
+var Polyline_1 = __webpack_require__(71);
 var Path_1 = __webpack_require__(1);
 var Raphael = __webpack_require__(12);
 var ARROW_WIDTH = 4;
+var SEQUENCEFLOW_STROKE = 1.5;
 var FlowArrow = (function (_super) {
     __extends(FlowArrow, _super);
     function FlowArrow() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.line = null;
         _this.renderLine = function () {
-            var _a = _this.props, points = _a.points, stroke = _a.stroke, strokeWidth = _a.strokeWidth;
-            var polyline = new Polyline_1.Polyline(points, strokeWidth);
+            var _a = _this.props, flow = _a.flow, stroke = _a.stroke;
+            var polyline = new Polyline_1.Polyline(flow.id, flow.waypoints, SEQUENCEFLOW_STROKE);
             var lastLineIndex = polyline.getLinesCount() - 1;
             _this.line = polyline.getLine(lastLineIndex);
-            return (React.createElement(Path_1.default, { d: polyline.path, stroke: stroke, strokeWidth: strokeWidth }));
+            return (React.createElement(Path_1.default, { d: polyline.path, stroke: stroke, strokeWidth: SEQUENCEFLOW_STROKE }));
         };
         _this.renderArrow = function () {
             var line = _this.line;
             var doubleArrowWidth = 2 * ARROW_WIDTH;
             var width = ARROW_WIDTH / 2 + .5;
-            var arrowHead = 'M0 0L-' + width + '-' + doubleArrowWidth + 'L' + width + ' -' + doubleArrowWidth + 'z';
+            var arrowHead = "M0 0L-" + width + "-" + doubleArrowWidth + "L" + width + "-" + doubleArrowWidth + "z";
             var angle = Raphael.deg(line.angle - Math.PI / 2);
             var transform = "t" + line.x2 + "," + line.y2 + "r" + angle + " 0 0";
-            return (React.createElement(Path_1.default, { d: arrowHead, stroke: _this.props.stroke, strokeWidth: _this.props.strokeWidth, fill: _this.props.fill, transform: transform }));
+            return (React.createElement(Path_1.default, { d: arrowHead, stroke: _this.props.stroke, strokeWidth: SEQUENCEFLOW_STROKE, fill: _this.props.fill, transform: transform }));
         };
         return _this;
     }
@@ -4728,7 +4483,6 @@ var FlowArrow = (function (_super) {
         width: 30,
         height: 30,
         stroke: '#585858',
-        strokeWidth: 1.5,
         fill: '#585858',
     };
     return FlowArrow;
@@ -4737,16 +4491,17 @@ exports.default = FlowArrow;
 
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Anchor_1 = __webpack_require__(70);
+var Anchor_1 = __webpack_require__(72);
 /* tslint:disable */
 var Polyline = (function () {
-    function Polyline(points, strokeWidth) {
+    function Polyline(uuid, points, strokeWidth) {
+        this.id = null;
         this.points = [];
         this.path = [];
         this.anchors = [];
@@ -4871,7 +4626,7 @@ var Polyline = (function () {
                 }
             }
         }
-        var anchor = new Anchor_1.Anchor(Anchor_1.Anchor.ANCHOR_TYPE.main, x, y);
+        var anchor = new Anchor_1.Anchor(this.id, Anchor_1.Anchor.ANCHOR_TYPE.main, x, y);
         this.anchors.push(anchor);
     };
     Polyline.prototype.getAnchor = function (position) {
@@ -4985,20 +4740,22 @@ exports.Polyline = Polyline;
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Anchor = (function () {
-    function Anchor(type, x, y) {
+    function Anchor(uuid, type, x, y) {
+        this.uuid = null;
         this.x = 0;
         this.y = 0;
         this.isFirst = false;
         this.isLast = false;
         this.typeIndex = 0;
         this.type = Anchor.ANCHOR_TYPE.main;
+        this.uuid = uuid;
         this.x = x;
         this.y = y;
         this.type = (type === Anchor.ANCHOR_TYPE.middle) ? Anchor.ANCHOR_TYPE.middle : Anchor.ANCHOR_TYPE.main;

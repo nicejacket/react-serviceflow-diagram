@@ -18,7 +18,7 @@ export default class Lanes extends React.Component<LanesProps, any> {
     if (!lanes || !lanes.length) return null;
 
     return (<Set>
-      { this.props.lanes.map(lane => <Lane {...lane} />) }
+      { this.props.lanes.map((lane, i) => <Lane key={i} text={lane.name} {...lane} />) }
     </Set>);
   }
 }
