@@ -19,7 +19,8 @@ export default class EventSubProcess extends React.Component<EventSubProcessProp
 
   render() {
     const { radius, ...others } = this.props;
-    return (<Tooltip>
+    const { data } = others;
+    return (<Tooltip data={data}>
       <Rect r={radius} {...others} />
     </Tooltip>);
   }

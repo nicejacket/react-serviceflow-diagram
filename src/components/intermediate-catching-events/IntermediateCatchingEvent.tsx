@@ -25,7 +25,7 @@ export default class IntermediateCatchingEvent extends React.Component<Intermedi
   }
 
   render() {
-    const { circleRadiusInner, circleRadiusOuter, type, ...others } = this.props;
+    const { circleRadiusInner, circleRadiusOuter, type, data, ...others } = this.props;
 
     return (<Tooltip>
       <RaphaelIconCircle radius={circleRadiusOuter} {...others} />

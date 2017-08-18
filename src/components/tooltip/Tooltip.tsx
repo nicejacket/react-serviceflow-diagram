@@ -63,11 +63,11 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   onMouseEnterHandler = (e: any) => {
     this.leave = false;
+    if (e.persist) e.persist();
     setTimeout(this.onShowTooltipHandler.bind(this, e), 10);
   }
 
   onShowTooltipHandler = (e: any) => {
-    if (!e.target || !e.target.getBoundingClientRect) return;
     const tooltip: any = ReactDOM.findDOMNode(this.tooltip);
     const props = e.target.getBoundingClientRect();
     const top = props.top + (props.height / 2);

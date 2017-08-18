@@ -1,10 +1,5 @@
 module.exports = {
-  entry:  {
-    app: [
-      "./src/index.tsx",
-      'webpack-dev-server/client?http://localhost:3000/'
-    ]
-  },
+  entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
     path: __dirname + "/dist",

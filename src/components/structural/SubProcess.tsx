@@ -19,7 +19,8 @@ export default class SubProcess extends React.Component<SubProcessProps, any> {
 
   render() {
     const { radius, ...others } = this.props;
-    return (<Tooltip>
+    const { data } = others;
+    return (<Tooltip data={data}>
       <Rect r={radius} {...others} />
     </Tooltip>);
   }
