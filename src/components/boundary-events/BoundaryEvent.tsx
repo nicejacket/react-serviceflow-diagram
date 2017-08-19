@@ -35,7 +35,7 @@ export default class BoundaryEvent extends React.Component<BoundaryEventProps, a
         strokeWidth={strokeWidth}
         fill={fill}
         fillOpacity={fillOpacity}
-        radius={circleRadiusOuter}
+        radius={circleRadiusInner}
       />
       <RaphaelIconCircle
         id={data.id}
@@ -55,6 +55,7 @@ export default class BoundaryEvent extends React.Component<BoundaryEventProps, a
         type={data && data.eventDefinition && data.eventDefinition.type}
         data={data}
         fill={signalFill}
+        stroke={stroke}
       />
     </Tooltip>);
   }

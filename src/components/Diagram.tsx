@@ -106,9 +106,10 @@ export default class Diagram extends React.Component<DiagramProps, any> {
     return (<Paper
       x={diagramBeginX}
       y={diagramBeginY}
-      width={diagramWidth}
+      width={diagramWidth + 10}
       height={diagramHeight}
       onMouseEnter={this.onMouseEnterHandler}
+      onClick={id => { console.log(id); }}
     >
       {elements.map(this.renderElement)}
       {flows.map((flow: DiagramFlowElementModel) => <SequenceFlow flow={flow} key={flow.id} />)}

@@ -18,6 +18,7 @@ export interface PaperProps {
   className?: string;
   container?: any;
   onMouseEnter?: (e: any) => void;
+  onClick?: (e: any) => void;
 }
 
 export default class Paper extends React.Component<PaperProps, any> {
@@ -61,6 +62,11 @@ export default class Paper extends React.Component<PaperProps, any> {
     this.paper.remove();
   }
 
+  onClickHandler= (e: any) => {
+    const { onClick } = this.props;
+    if (onClick && e.target.id) onClick(e.target.id);
+  }
+
   onMouseEnterHandler = (e: any) => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
@@ -91,6 +97,7 @@ export default class Paper extends React.Component<PaperProps, any> {
         className={`paper-container ${className}`}
         style={style}
         {...others}
+        onClick={this.onClickHandler}
         onMouseOver={this.onMouseEnterHandler}
         onTouchEnd={this.onMouseEnterHandler}
       />

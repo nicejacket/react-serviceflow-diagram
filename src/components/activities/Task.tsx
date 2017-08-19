@@ -3,7 +3,8 @@ import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
 import Rect from '../raphael/Rect';
 import MultilineText from '../raphael/MultilineText';
-import { getBpmnColor, getBpmnStrokeWidth, getFillColour, getFillOpacity, ACTIVITY_STROKE_COLOR } from '../../services/DiagramColorService';
+import { getStrokeAndFill } from '../Utils';
+import { MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
 
 export interface TaskProps extends BaseElementProps {
   radius?: number;
@@ -19,10 +20,13 @@ export default class Task extends React.Component<TaskProps, any> {
 
   render() {
     const { x, y, width, height, radius, text, data, children } = this.props;
-    const stroke = getBpmnColor(data, ACTIVITY_STROKE_COLOR);
-    const strokeWidth = getBpmnStrokeWidth(data);
-    const fill = getFillColour(data.id);
-    const fillOpacity = getFillOpacity();
+    const {stroke, strokeWidth, fill, fillOpacity} = getStrokeAndFill(data);
+    const childProps: any = {};
+
+    if (stroke !== MAIN_STROKE_COLOR) {
+      childProps.stroke = stroke;
+      childProps.fill = stroke;
+    }
 
     return (<Tooltip data={data}>
       <Rect
@@ -40,10 +44,13 @@ export default class Task extends React.Component<TaskProps, any> {
       <MultilineText
         x={x + width / 2}
         y={y + height / 2}
+        color={stroke}
         text={text}
         width={width}
       />
-      {children}
+      {
+        React.Children.map(children, (child: any) => React.cloneElement(child, childProps))
+      }
     </Tooltip>);
   }
 }

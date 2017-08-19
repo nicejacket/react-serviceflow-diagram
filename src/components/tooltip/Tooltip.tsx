@@ -73,7 +73,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     const top = props.top + (props.height / 2);
     const marginLeft = -1 * (tooltip.offsetWidth / 2);
     const marginTop = -1 * (tooltip.offsetHeight / 2);
-    
+
     let left = props.left + (props.width / 2);
 
     if (this.state.visible) return;
@@ -118,7 +118,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   onMouseLevelAndScrollHandler = (e: any) => {
     this.leave = true;
-    setTimeout(this.onHideHandler, 500);
+    setTimeout(this.onHideHandler, 100);
   }
 
   render() {

@@ -88,8 +88,8 @@ export function create(parentId: string, type: string, props: any) {
       break;
     }
     case 'text': {
-      const { x, y, text } = props;
-      element = findedParent.paper.text(x, y, text);
+      const { x, y, text, ...others } = props;
+      element = findedParent.paper.text(x, y, text).attr(convertProps(others));
       break;
     }
     default: break;

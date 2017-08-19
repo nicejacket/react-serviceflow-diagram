@@ -8,12 +8,14 @@ const TEXT_PADDING = 3;
 export interface MultilineTextProps extends BaseElementProps {
   text: string;
   transform?: string;
+  color?: string;
 }
 
 export default class MultilineText extends React.Component<MultilineTextProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
+    color: '#373e48',
   }
 
   textPaper: Text = null;
@@ -58,14 +60,14 @@ export default class MultilineText extends React.Component<MultilineTextProps, a
   }
 
   render() {
-    const { x, y, transform } = this.props;
+    const { x, y, color, transform } = this.props;
 
     return (<Text
       ref={node => { this.textPaper = node; }}
       text={this.state.text}
       x={x + TEXT_PADDING}
       y={y + TEXT_PADDING}
-      fill="#373e48"
+      fill={color}
       fontSize={11}
       fontFamily="Arial"
       textAnchor="middle"

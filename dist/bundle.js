@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./dist";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -126,8 +126,8 @@ exports.default = Path;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CURRENT_COLOR = '#017501';
-exports.COMPLETED_COLOR = '#2632aa';
+exports.CURRENT_COLOR = '#66AA66';
+exports.COMPLETED_COLOR = '#2674AA';
 exports.ACTIVITY_STROKE_COLOR = '#bbbbbb';
 exports.MAIN_STROKE_COLOR = '#585858';
 exports.ACTIVITY_FILL_COLOR = '#f9f9f9';
@@ -201,7 +201,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(7);
 var Set_1 = __webpack_require__(5);
-__webpack_require__(30);
+__webpack_require__(31);
 var CLS_PREFIX = 'sf-tooltip-diagram';
 exports.POSITION = {
     LEFT: 'left',
@@ -289,7 +289,7 @@ var Tooltip = (function (_super) {
         };
         _this.onMouseLevelAndScrollHandler = function (e) {
             _this.leave = true;
-            setTimeout(_this.onHideHandler, 500);
+            setTimeout(_this.onHideHandler, 100);
         };
         return _this;
     }
@@ -367,7 +367,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Circle_1 = __webpack_require__(27);
+var Circle_1 = __webpack_require__(28);
 var RaphaelIconCircle = (function (_super) {
     __extends(RaphaelIconCircle, _super);
     function RaphaelIconCircle() {
@@ -472,7 +472,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Tooltip_1 = __webpack_require__(3);
 var Rect_1 = __webpack_require__(8);
-var MultilineText_1 = __webpack_require__(51);
+var MultilineText_1 = __webpack_require__(52);
+var Utils_1 = __webpack_require__(18);
 var DiagramColorService_1 = __webpack_require__(2);
 var Task = (function (_super) {
     __extends(Task, _super);
@@ -481,14 +482,16 @@ var Task = (function (_super) {
     }
     Task.prototype.render = function () {
         var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, radius = _a.radius, text = _a.text, data = _a.data, children = _a.children;
-        var stroke = DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.ACTIVITY_STROKE_COLOR);
-        var strokeWidth = DiagramColorService_1.getBpmnStrokeWidth(data);
-        var fill = DiagramColorService_1.getFillColour(data.id);
-        var fillOpacity = DiagramColorService_1.getFillOpacity();
+        var _b = Utils_1.getStrokeAndFill(data), stroke = _b.stroke, strokeWidth = _b.strokeWidth, fill = _b.fill, fillOpacity = _b.fillOpacity;
+        var childProps = {};
+        if (stroke !== DiagramColorService_1.MAIN_STROKE_COLOR) {
+            childProps.stroke = stroke;
+            childProps.fill = stroke;
+        }
         return (React.createElement(Tooltip_1.default, { data: data },
             React.createElement(Rect_1.default, { id: data.id, x: x, y: y, width: width, height: height, r: radius, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
-            React.createElement(MultilineText_1.default, { x: x + width / 2, y: y + height / 2, text: text, width: width }),
-            children));
+            React.createElement(MultilineText_1.default, { x: x + width / 2, y: y + height / 2, color: stroke, text: text, width: width }),
+            React.Children.map(children, function (child) { return React.cloneElement(child, childProps); })));
     };
     Task.defaultProps = {
         x: 0,
@@ -654,19 +657,19 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var DiagramIconTimer_1 = __webpack_require__(28);
-var DiagramIconError_1 = __webpack_require__(32);
-var DiagramIconSignal_1 = __webpack_require__(34);
-var DiagramIconMessage_1 = __webpack_require__(36);
-var DiagramIconCompensate_1 = __webpack_require__(38);
+var DiagramIconTimer_1 = __webpack_require__(29);
+var DiagramIconError_1 = __webpack_require__(33);
+var DiagramIconSignal_1 = __webpack_require__(35);
+var DiagramIconMessage_1 = __webpack_require__(37);
+var DiagramIconCompensate_1 = __webpack_require__(39);
 var DiagramContainerIconEvent = (function (_super) {
     __extends(DiagramContainerIconEvent, _super);
     function DiagramContainerIconEvent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DiagramContainerIconEvent.prototype.render = function () {
-        var _a = this.props, type = _a.type, x = _a.x, y = _a.y, width = _a.width, height = _a.height, data = _a.data, fill = _a.fill;
-        var baseProps = { x: x, y: y, width: width, height: height, data: data };
+        var _a = this.props, type = _a.type, x = _a.x, y = _a.y, width = _a.width, height = _a.height, data = _a.data, stroke = _a.stroke, fill = _a.fill;
+        var baseProps = { x: x, y: y, width: width, height: height, stroke: stroke, data: data };
         switch (type) {
             case 'timer': {
                 return React.createElement(DiagramIconTimer_1.default, __assign({}, baseProps));
@@ -711,7 +714,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Tooltip_1 = __webpack_require__(3);
 var DiagramColorService_1 = __webpack_require__(2);
-var Rhombus_1 = __webpack_require__(42);
+var Rhombus_1 = __webpack_require__(43);
 var Gateway = (function (_super) {
     __extends(Gateway, _super);
     function Gateway() {
@@ -825,8 +828,8 @@ function create(parentId, type, props) {
             break;
         }
         case 'text': {
-            var x = props.x, y = props.y, text = props.text;
-            element = findedParent.paper.text(x, y, text);
+            var x = props.x, y = props.y, text = props.text, others = __rest(props, ["x", "y", "text"]);
+            element = findedParent.paper.text(x, y, text).attr(convertProps(others));
             break;
         }
         default: break;
@@ -1302,7 +1305,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(25);
+var	fixUrls = __webpack_require__(26);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1641,10 +1644,10 @@ var Event = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Event.prototype.render = function () {
-        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity, iconFill = _a.iconFill, data = _a.data;
+        var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, radius = _a.radius, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity, iconFill = _a.iconFill, data = _a.data;
         var type = data && data.eventDefinition && data.eventDefinition.type;
         return (React.createElement(Tooltip_1.default, { data: data },
-            React.createElement(RaphaelIconCircle_1.default, { id: data.id, x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
+            React.createElement(RaphaelIconCircle_1.default, { id: data.id, x: x + width / 2, y: y + height / 2, radius: radius, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
             React.createElement(DiagramContainerIconEvent_1.default, { type: type, x: x, y: y, width: width, height: height, fill: iconFill, data: data })));
     };
     Event.defaultProps = {
@@ -1663,17 +1666,36 @@ exports.default = Event;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var DiagramColorService_1 = __webpack_require__(2);
+function getStrokeAndFill(data) {
+    return {
+        stroke: DiagramColorService_1.getBpmnColor(data, DiagramColorService_1.MAIN_STROKE_COLOR),
+        strokeWidth: DiagramColorService_1.getBpmnStrokeWidth(data),
+        fill: DiagramColorService_1.getFillColour(data.id),
+        fillOpacity: DiagramColorService_1.getFillOpacity(),
+    };
+}
+exports.getStrokeAndFill = getStrokeAndFill;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(7);
-var DiagramModel_1 = __webpack_require__(19);
-var demo_model_1 = __webpack_require__(20);
-var Diagram_1 = __webpack_require__(21);
+var DiagramModel_1 = __webpack_require__(20);
+var demo_model_1 = __webpack_require__(21);
+var Diagram_1 = __webpack_require__(22);
 var diagram = new DiagramModel_1.DiagramModel(demo_model_1.DATA);
 ReactDOM.render(React.createElement(Diagram_1.default, { diagram: diagram }), document.getElementById('example'));
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1835,336 +1857,540 @@ exports.DiagramLaneElementModel = DiagramLaneElementModel;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DATA = {
-    elements: [
+    "elements": [
         {
-            id: "theStart",
-            name: "",
-            x: 0.0,
-            y: 96.0,
-            width: 30.0,
-            height: 30.0,
-            type: "StartEvent",
-            eventDefinition: {
-                type: "timer",
-                timeDuration: "PT1H"
-            },
-            properties: []
-        }, {
-            id: "exclusiveGw",
-            name: "Exclusive Timer duration gateway",
-            x: 80.0,
-            y: 91.0,
-            width: 40.0,
-            height: 40.0,
-            type: "ExclusiveGateway"
-        }, {
-            id: "longTimerTask",
-            name: "Task with timer on it",
-            x: 170.0,
-            y: 0.0,
-            width: 100.0,
-            height: 60.0,
-            type: "UserTask",
-            properties: [
+            "completed": true,
+            "current": false,
+            "id": "theStart",
+            "name": null,
+            "incomingFlows": [],
+            "x": 75,
+            "y": 300,
+            "width": 30,
+            "height": 30,
+            "type": "StartEvent"
+        },
+        {
+            "completed": true,
+            "current": false,
+            "id": "provideNewSalesLead",
+            "name": "Provide new sales lead",
+            "incomingFlows": [
+                "flow1"
+            ],
+            "x": 165,
+            "y": 275,
+            "width": 100,
+            "height": 80,
+            "type": "UserTask",
+            "properties": [
                 {
-                    name: "Documentation",
-                    value: "This task has a timer on it"
+                    "name": "Assignee",
+                    "value": "${initiator}"
                 }
             ]
-        }, {
-            id: "longTimer",
-            name: "",
-            x: 235.12666244524905,
-            y: 45.12666244524905,
-            width: 31.0,
-            height: 31.0,
-            type: "BoundaryEvent",
-            eventDefinition: {
-                type: "compensate",
-                timeDuration: "PT1H"
-            }, properties: [
+        },
+        {
+            "completed": true,
+            "current": true,
+            "id": "reviewSalesLeadSubProcess",
+            "name": "Review sales lead",
+            "incomingFlows": [
+                "flow2",
+                "flow12"
+            ],
+            "x": 315,
+            "y": 160,
+            "width": 544,
+            "height": 320,
+            "type": "SubProcess"
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "subProcessStart",
+            "name": null,
+            "incomingFlows": [],
+            "x": 360,
+            "y": 300,
+            "width": 30,
+            "height": 30,
+            "type": "StartEvent"
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "fork",
+            "name": null,
+            "incomingFlows": [
+                "flow3"
+            ],
+            "x": 435,
+            "y": 295,
+            "width": 40,
+            "height": 40,
+            "type": "ParallelGateway"
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "reviewCustomerRating",
+            "name": "Review customer rating",
+            "incomingFlows": [
+                "flow5"
+            ],
+            "x": 517,
+            "y": 210,
+            "width": 100,
+            "height": 80,
+            "type": "UserTask",
+            "properties": [
                 {
-                    name: "Timer duration",
-                    value: "PT1H"
+                    "name": "Candidate groups",
+                    "value": "accountancy"
                 }
             ]
-        }, {
-            id: "longTimerExpire",
-            name: "Execute script",
-            x: 170.0,
-            y: 320.0,
-            width: 100.0,
-            height: 60.0,
-            type: "ScriptTask"
-        }, {
-            id: "shortTimerTask",
-            name: "my task",
-            x: 170.0,
-            y: 160.0,
-            width: 100.0,
-            height: 60.0,
-            type: "UserTask",
-            properties: []
-        }, {
-            id: "shortTimer",
-            name: "",
-            x: 235.12666244524905,
-            y: 205.12666244524905,
-            width: 31.0,
-            height: 31.0,
-            type: "IntermediateCatchEvent",
-            eventDefinition: {
-                type: "error",
-                timeDuration: "PT10S"
-            }, properties: [
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "subProcessEnd1",
+            "name": null,
+            "incomingFlows": [
+                "flow6"
+            ],
+            "x": 670,
+            "y": 236,
+            "width": 28,
+            "height": 28,
+            "type": "EndEvent"
+        },
+        {
+            "completed": true,
+            "current": true,
+            "id": "reviewProfitability",
+            "name": "Review profitability",
+            "incomingFlows": [
+                "flow4"
+            ],
+            "x": 517,
+            "y": 360,
+            "width": 100,
+            "height": 80,
+            "type": "UserTask",
+            "properties": [
                 {
-                    name: "Timer duration",
-                    value: "PT10S"
+                    "name": "Candidate groups",
+                    "value": "management"
                 }
             ]
-        }, {
-            id: "shortTimerExpire",
-            name: "Execute script",
-            x: 170.0,
-            y: 480.0,
-            width: 100.0,
-            height: 60.0,
-            type: "ScriptTask"
-        }, {
-            id: "theEnd",
-            name: "",
-            x: 320.0,
-            y: 255.0,
-            width: 28.0,
-            height: 28.0,
-            type: "EndEvent",
-            properties: []
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "enoughInformationCheck",
+            "name": "Enough information?",
+            "incomingFlows": [
+                "flow7"
+            ],
+            "x": 664,
+            "y": 380,
+            "width": 40,
+            "height": 40,
+            "type": "ExclusiveGateway"
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "subProcessEnd2",
+            "name": null,
+            "incomingFlows": [
+                "flow9"
+            ],
+            "x": 765,
+            "y": 386,
+            "width": 28,
+            "height": 28,
+            "type": "EndEvent"
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "notEnoughInformationEnd",
+            "name": null,
+            "incomingFlows": [
+                "flow8"
+            ],
+            "x": 765,
+            "y": 345,
+            "width": 28,
+            "height": 28,
+            "type": "EndEvent",
+            "eventDefinition": {
+                "type": "error",
+                "errorCode": "notEnoughInfoError"
+            }
+        },
+        {
+            "completed": false,
+            "current": true,
+            "id": "catchNotEnoughInformationError",
+            "name": null,
+            "incomingFlows": [],
+            "x": 783.8620689660311,
+            "y": 465,
+            "width": 30,
+            "height": 30,
+            "type": "BoundaryEvent",
+            "eventDefinition": {
+                "type": "error",
+                "errorCode": "notEnoughInfoError"
+            }
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "provideAdditionalDetails",
+            "name": "Provide additional details",
+            "incomingFlows": [
+                "flow11"
+            ],
+            "x": 660,
+            "y": 525,
+            "width": 100,
+            "height": 80,
+            "type": "UserTask",
+            "properties": [
+                {
+                    "name": "Assignee",
+                    "value": "${initiator}"
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "storeLeadInCrmSystem",
+            "name": "Store lead in CRM system",
+            "incomingFlows": [
+                "flow10"
+            ],
+            "x": 910,
+            "y": 275,
+            "width": 100,
+            "height": 80,
+            "type": "ManualTask"
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "processEnd",
+            "name": null,
+            "incomingFlows": [
+                "flow13"
+            ],
+            "x": 1050,
+            "y": 301,
+            "width": 28,
+            "height": 28,
+            "type": "EndEvent"
         }
     ],
-    flows: [
+    "flows": [
         {
-            id: "flow1",
-            type: "sequenceFlow",
-            sourceRef: "theStart",
-            targetRef: "exclusiveGw",
-            waypoints: [
+            "completed": true,
+            "current": false,
+            "id": "flow1",
+            "type": "sequenceFlow",
+            "sourceRef": "theStart",
+            "targetRef": "provideNewSalesLead",
+            "waypoints": [
                 {
-                    x: 30.0,
-                    y: 111.0
-                }, {
-                    x: 80.0,
-                    y: 111.0
-                }
-            ],
-            properties: []
-        }, {
-            id: "flow2",
-            type: "sequenceFlow",
-            sourceRef: "exclusiveGw",
-            targetRef: "longTimerTask",
-            waypoints: [
+                    "x": 105,
+                    "y": 315
+                },
                 {
-                    x: 120.0,
-                    y: 111.0
-                }, {
-                    x: 132.0,
-                    y: 111.0
-                }, {
-                    x: 132.0,
-                    y: 30.000000000000007
-                }, {
-                    x: 170.0,
-                    y: 30.0
-                }
-            ],
-            properties: [
-                {
-                    name: "Condition expression",
-                    value: "${duration == 'long'}"
+                    "x": 165,
+                    "y": 315
                 }
             ]
-        }, {
-            id: "flow3",
-            type: "sequenceFlow",
-            sourceRef: "exclusiveGw",
-            targetRef: "shortTimerTask",
-            waypoints: [
+        },
+        {
+            "completed": true,
+            "current": false,
+            "id": "flow2",
+            "type": "sequenceFlow",
+            "sourceRef": "provideNewSalesLead",
+            "targetRef": "reviewSalesLeadSubProcess",
+            "waypoints": [
                 {
-                    x: 120.0,
-                    y: 111.0
-                }, {
-                    x: 132.0,
-                    y: 111.0
-                }, {
-                    x: 132.0,
-                    y: 190.0
-                }, {
-                    x: 170.0,
-                    y: 190.0
-                }
-            ],
-            properties: [
+                    "x": 265,
+                    "y": 315
+                },
                 {
-                    name: "Condition expression",
-                    value: "${duration == 'short'}"
+                    "x": 290,
+                    "y": 315
+                },
+                {
+                    "x": 315,
+                    "y": 316
                 }
             ]
-        }, {
-            id: "flow4",
-            type: "sequenceFlow",
-            sourceRef: "longTimerTask",
-            targetRef: "theEnd",
-            waypoints: [
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow3",
+            "type": "sequenceFlow",
+            "sourceRef": "subProcessStart",
+            "targetRef": "fork",
+            "waypoints": [
                 {
-                    x: 270.0,
-                    y: 30.0
-                }, {
-                    x: 282.0,
-                    y: 30.0
-                }, {
-                    x: 282.0,
-                    y: 270.0
-                }, {
-                    x: 320.0025880395821,
-                    y: 269.2691809992388
-                }
-            ],
-            properties: []
-        }, {
-            id: "flow5",
-            type: "sequenceFlow",
-            sourceRef: "longTimer",
-            targetRef: "longTimerExpire",
-            waypoints: [
+                    "x": 390,
+                    "y": 315
+                },
                 {
-                    x: 250.5556978127468,
-                    y: 76.12649999346013
-                }, {
-                    x: 250.0,
-                    y: 197.5
-                }, {
-                    x: 280.0,
-                    y: 197.5
-                }, {
-                    x: 280.0,
-                    y: 390.0
-                }, {
-                    x: 220.0,
-                    y: 390.0
-                }, {
-                    x: 220.0,
-                    y: 380.0
+                    "x": 435,
+                    "y": 315
                 }
-            ],
-            properties: []
-        }, {
-            id: "flow6",
-            type: "sequenceFlow",
-            sourceRef: "longTimerExpire",
-            targetRef: "theEnd",
-            waypoints: [
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow4",
+            "type": "sequenceFlow",
+            "sourceRef": "fork",
+            "targetRef": "reviewProfitability",
+            "waypoints": [
                 {
-                    x: 270.0,
-                    y: 350.0
-                }, {
-                    x: 282.0,
-                    y: 350.0
-                }, {
-                    x: 282.0,
-                    y: 270.0
-                }, {
-                    x: 320.0025880395821,
-                    y: 269.2691809992388
-                }
-            ],
-            properties: []
-        }, {
-            id: "flow7",
-            type: "sequenceFlow",
-            sourceRef: "shortTimerTask",
-            targetRef: "theEnd",
-            waypoints: [
+                    "x": 455,
+                    "y": 335
+                },
                 {
-                    x: 270.0,
-                    y: 190.0
-                }, {
-                    x: 282.0,
-                    y: 190.0
-                }, {
-                    x: 282.0,
-                    y: 270.0
-                }, {
-                    x: 320.0025880395821,
-                    y: 269.2691809992388
-                }
-            ],
-            properties: []
-        }, {
-            id: "flow8",
-            type: "sequenceFlow",
-            sourceRef: "shortTimer",
-            targetRef: "shortTimerExpire",
-            waypoints: [
+                    "x": 455,
+                    "y": 400
+                },
                 {
-                    x: 250.5556978127468,
-                    y: 236.12649999346013
-                }, {
-                    x: 250.0,
-                    y: 357.5
-                }, {
-                    x: 280.0,
-                    y: 357.5
-                }, {
-                    x: 280.0,
-                    y: 550.0
-                }, {
-                    x: 220.0,
-                    y: 550.0
-                }, {
-                    x: 220.0,
-                    y: 540.0
+                    "x": 517,
+                    "y": 400
                 }
-            ],
-            properties: []
-        }, {
-            id: "flow9",
-            type: "sequenceFlow",
-            sourceRef: "shortTimerExpire",
-            targetRef: "theEnd",
-            waypoints: [
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow5",
+            "type": "sequenceFlow",
+            "sourceRef": "fork",
+            "targetRef": "reviewCustomerRating",
+            "waypoints": [
                 {
-                    x: 270.0,
-                    y: 510.0
-                }, {
-                    x: 282.0,
-                    y: 510.0
-                }, {
-                    x: 282.0,
-                    y: 270.0
-                }, {
-                    x: 320.0025880395821,
-                    y: 269.2691809992388
+                    "x": 455,
+                    "y": 295
+                },
+                {
+                    "x": 455,
+                    "y": 250
+                },
+                {
+                    "x": 517,
+                    "y": 250
                 }
-            ],
-            properties: []
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow6",
+            "type": "sequenceFlow",
+            "sourceRef": "reviewCustomerRating",
+            "targetRef": "subProcessEnd1",
+            "waypoints": [
+                {
+                    "x": 617,
+                    "y": 250
+                },
+                {
+                    "x": 670,
+                    "y": 250
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow7",
+            "type": "sequenceFlow",
+            "sourceRef": "reviewProfitability",
+            "targetRef": "enoughInformationCheck",
+            "waypoints": [
+                {
+                    "x": 617,
+                    "y": 400
+                },
+                {
+                    "x": 664,
+                    "y": 400
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow8",
+            "type": "sequenceFlow",
+            "sourceRef": "enoughInformationCheck",
+            "targetRef": "notEnoughInformationEnd",
+            "waypoints": [
+                {
+                    "x": 684,
+                    "y": 380
+                },
+                {
+                    "x": 684,
+                    "y": 359
+                },
+                {
+                    "x": 765,
+                    "y": 359
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow9",
+            "type": "sequenceFlow",
+            "sourceRef": "enoughInformationCheck",
+            "targetRef": "subProcessEnd2",
+            "waypoints": [
+                {
+                    "x": 704,
+                    "y": 400
+                },
+                {
+                    "x": 765,
+                    "y": 400
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow10",
+            "type": "sequenceFlow",
+            "sourceRef": "reviewSalesLeadSubProcess",
+            "targetRef": "storeLeadInCrmSystem",
+            "waypoints": [
+                {
+                    "x": 859,
+                    "y": 317
+                },
+                {
+                    "x": 910,
+                    "y": 315
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow11",
+            "type": "sequenceFlow",
+            "sourceRef": "catchNotEnoughInformationError",
+            "targetRef": "provideAdditionalDetails",
+            "waypoints": [
+                {
+                    "x": 798,
+                    "y": 495
+                },
+                {
+                    "x": 798,
+                    "y": 565
+                },
+                {
+                    "x": 760,
+                    "y": 565
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow12",
+            "type": "sequenceFlow",
+            "sourceRef": "provideAdditionalDetails",
+            "targetRef": "reviewSalesLeadSubProcess",
+            "waypoints": [
+                {
+                    "x": 660,
+                    "y": 565
+                },
+                {
+                    "x": 587,
+                    "y": 565
+                },
+                {
+                    "x": 587,
+                    "y": 480
+                }
+            ]
+        },
+        {
+            "completed": false,
+            "current": false,
+            "id": "flow13",
+            "type": "sequenceFlow",
+            "sourceRef": "storeLeadInCrmSystem",
+            "targetRef": "processEnd",
+            "waypoints": [
+                {
+                    "x": 1010,
+                    "y": 315
+                },
+                {
+                    "x": 1050,
+                    "y": 315
+                }
+            ]
         }
     ],
-    diagramBeginX: 15.0,
-    diagramBeginY: 0.0,
-    diagramWidth: 350.0,
-    diagramHeight: 550.0
+    "diagramBeginX": 90,
+    "diagramBeginY": 160,
+    "diagramWidth": 1078,
+    "diagramHeight": 605,
+    "completedActivities": [
+        "theStart",
+        "provideNewSalesLead",
+        "reviewSalesLeadSubProcess",
+        "fork",
+        "subProcessStart",
+        "reviewProfitability",
+        "reviewCustomerRating",
+        "subProcessEnd1"
+    ],
+    "currentActivities": [
+        "reviewSalesLeadSubProcess",
+        "catchNotEnoughInformationError",
+        "reviewProfitability"
+    ],
+    "completedSequenceFlows": [
+        "flow1",
+        "flow2"
+    ]
 };
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2198,26 +2424,26 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Paper_1 = __webpack_require__(22);
-var StartEvent_1 = __webpack_require__(26);
-var ExclusiveGateway_1 = __webpack_require__(41);
-var InclusiveGateway_1 = __webpack_require__(44);
-var EventGateway_1 = __webpack_require__(45);
-var ParallelGateway_1 = __webpack_require__(47);
-var EndEvent_1 = __webpack_require__(49);
-var UserTask_1 = __webpack_require__(50);
-var ManualTask_1 = __webpack_require__(54);
-var ServiceTask_1 = __webpack_require__(57);
-var ReceiveTask_1 = __webpack_require__(60);
-var ScriptTask_1 = __webpack_require__(63);
-var BusinessRuleTask_1 = __webpack_require__(66);
-var BoundaryEvent_1 = __webpack_require__(69);
-var ThrowEvent_1 = __webpack_require__(70);
-var IntermediateCatchingEvent_1 = __webpack_require__(71);
-var SubProcess_1 = __webpack_require__(72);
-var EventSubProcess_1 = __webpack_require__(73);
-var SequenceFlow_1 = __webpack_require__(74);
-var Pools_1 = __webpack_require__(78);
+var Paper_1 = __webpack_require__(23);
+var StartEvent_1 = __webpack_require__(27);
+var ExclusiveGateway_1 = __webpack_require__(42);
+var InclusiveGateway_1 = __webpack_require__(45);
+var EventGateway_1 = __webpack_require__(46);
+var ParallelGateway_1 = __webpack_require__(48);
+var EndEvent_1 = __webpack_require__(50);
+var UserTask_1 = __webpack_require__(51);
+var ManualTask_1 = __webpack_require__(55);
+var ServiceTask_1 = __webpack_require__(58);
+var ReceiveTask_1 = __webpack_require__(61);
+var ScriptTask_1 = __webpack_require__(64);
+var BusinessRuleTask_1 = __webpack_require__(67);
+var BoundaryEvent_1 = __webpack_require__(70);
+var ThrowEvent_1 = __webpack_require__(71);
+var IntermediateCatchingEvent_1 = __webpack_require__(72);
+var SubProcess_1 = __webpack_require__(73);
+var EventSubProcess_1 = __webpack_require__(74);
+var SequenceFlow_1 = __webpack_require__(75);
+var Pools_1 = __webpack_require__(79);
 var PADDING_WIDTH = 60;
 var PADDING_HEIGHT = 60;
 var Diagram = (function (_super) {
@@ -2289,7 +2515,7 @@ var Diagram = (function (_super) {
     };
     Diagram.prototype.render = function () {
         var _a = this.props.diagram, diagramBeginX = _a.diagramBeginX, diagramBeginY = _a.diagramBeginY, diagramWidth = _a.diagramWidth, diagramHeight = _a.diagramHeight, elements = _a.elements, flows = _a.flows, pools = _a.pools;
-        return (React.createElement(Paper_1.default, { x: diagramBeginX, y: diagramBeginY, width: diagramWidth, height: diagramHeight, onMouseEnter: this.onMouseEnterHandler },
+        return (React.createElement(Paper_1.default, { x: diagramBeginX, y: diagramBeginY, width: diagramWidth + 10, height: diagramHeight, onMouseEnter: this.onMouseEnterHandler, onClick: function (id) { console.log(id); } },
             elements.map(this.renderElement),
             flows.map(function (flow) { return React.createElement(SequenceFlow_1.default, { flow: flow, key: flow.id }); }),
             pools ? React.createElement(Pools_1.default, { pools: pools }) : null));
@@ -2300,7 +2526,7 @@ exports.default = Diagram;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2336,13 +2562,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(7);
 var Utils_1 = __webpack_require__(12);
-__webpack_require__(23);
+__webpack_require__(24);
 var Paper = (function (_super) {
     __extends(Paper, _super);
     function Paper(props) {
         var _this = _super.call(this, props) || this;
         _this.paper = null;
         _this.container = null;
+        _this.onClickHandler = function (e) {
+            var onClick = _this.props.onClick;
+            if (onClick && e.target.id)
+                onClick(e.target.id);
+        };
         _this.onMouseEnterHandler = function (e) {
             if (_this.props.onMouseEnter) {
                 _this.props.onMouseEnter(e);
@@ -2385,7 +2616,7 @@ var Paper = (function (_super) {
         var _a = this.props.container, style = _a.style, className = _a.className, others = __rest(_a, ["style", "className"]);
         return (React.createElement("div", { className: 'react-raphael' },
             eleContainer,
-            React.createElement("div", __assign({ ref: function (node) { _this.container = node; }, className: "paper-container " + className, style: style }, others, { onMouseOver: this.onMouseEnterHandler, onTouchEnd: this.onMouseEnterHandler }))));
+            React.createElement("div", __assign({ ref: function (node) { _this.container = node; }, className: "paper-container " + className, style: style }, others, { onClick: this.onClickHandler, onMouseOver: this.onMouseEnterHandler, onTouchEnd: this.onMouseEnterHandler }))));
     };
     Paper.defaultProps = {
         x: 0,
@@ -2404,13 +2635,13 @@ exports.default = Paper;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(24);
+var content = __webpack_require__(25);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2435,7 +2666,7 @@ if(false) {
 }
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(15)(undefined);
@@ -2449,7 +2680,7 @@ exports.push([module.i, ".paper-container svg * {\n  cursor: pointer;\n}\n", ""]
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 
@@ -2544,7 +2775,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2600,7 +2831,7 @@ exports.default = StartEvent;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2651,7 +2882,7 @@ exports.default = Circle;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2669,7 +2900,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var RaphaelIconCircle_1 = __webpack_require__(4);
-var RaphaelIconTImer_1 = __webpack_require__(29);
+var RaphaelIconTImer_1 = __webpack_require__(30);
 var Tooltip_1 = __webpack_require__(3);
 var DiagramIconTimer = (function (_super) {
     __extends(DiagramIconTimer, _super);
@@ -2702,7 +2933,7 @@ exports.default = DiagramIconTimer;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2736,13 +2967,13 @@ exports.default = RaphaelIconTimer;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(31);
+var content = __webpack_require__(32);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2767,7 +2998,7 @@ if(false) {
 }
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(15)(undefined);
@@ -2781,7 +3012,7 @@ exports.push([module.i, ".sf-tooltip-diagram-tooltip {\n  transform: scale(0);\n
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2798,7 +3029,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconError_1 = __webpack_require__(33);
+var RaphaelIconError_1 = __webpack_require__(34);
 var DiagramIconError = (function (_super) {
     __extends(DiagramIconError, _super);
     function DiagramIconError() {
@@ -2820,7 +3051,7 @@ exports.default = DiagramIconError;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2855,7 +3086,7 @@ exports.default = RaphaelIconError;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2872,7 +3103,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconSignal_1 = __webpack_require__(35);
+var RaphaelIconSignal_1 = __webpack_require__(36);
 var DiagramIconSignal = (function (_super) {
     __extends(DiagramIconSignal, _super);
     function DiagramIconSignal() {
@@ -2896,7 +3127,7 @@ exports.default = DiagramIconSignal;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2947,7 +3178,7 @@ exports.default = RaphaelIconSignal;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2964,7 +3195,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconMessage_1 = __webpack_require__(37);
+var RaphaelIconMessage_1 = __webpack_require__(38);
 var DiagramIconMessage = (function (_super) {
     __extends(DiagramIconMessage, _super);
     function DiagramIconMessage() {
@@ -2989,7 +3220,7 @@ exports.default = DiagramIconMessage;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3023,7 +3254,7 @@ exports.default = RaphaelIconMessage;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3041,7 +3272,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Tooltip_1 = __webpack_require__(3);
-var RaphaelIconCompensate_1 = __webpack_require__(39);
+var RaphaelIconCompensate_1 = __webpack_require__(40);
 var DiagramIconCompensate = (function (_super) {
     __extends(DiagramIconCompensate, _super);
     function DiagramIconCompensate() {
@@ -3050,7 +3281,7 @@ var DiagramIconCompensate = (function (_super) {
     DiagramIconCompensate.prototype.render = function () {
         var _a = this.props, x = _a.x, y = _a.y, width = _a.width, height = _a.height, stroke = _a.stroke, strokeWidth = _a.strokeWidth, fill = _a.fill, fillOpacity = _a.fillOpacity, data = _a.data;
         return (React.createElement(Tooltip_1.default, { data: data },
-            React.createElement(RaphaelIconCompensate_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: '#000', fillOpacity: fillOpacity })));
+            React.createElement(RaphaelIconCompensate_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity })));
     };
     DiagramIconCompensate.defaultProps = {
         x: 0,
@@ -3065,7 +3296,7 @@ exports.default = DiagramIconCompensate;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3100,7 +3331,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Set_1 = __webpack_require__(5);
-var ArrowLeft_1 = __webpack_require__(40);
+var ArrowLeft_1 = __webpack_require__(41);
 var RaphaelIconCompensate = (function (_super) {
     __extends(RaphaelIconCompensate, _super);
     function RaphaelIconCompensate() {
@@ -3118,7 +3349,7 @@ exports.default = RaphaelIconCompensate;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3159,7 +3390,7 @@ exports.default = ArrowLeft;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3177,7 +3408,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Gateway_1 = __webpack_require__(11);
-var RaphaelIconCross_1 = __webpack_require__(43);
+var RaphaelIconCross_1 = __webpack_require__(44);
 var DiagramColorService_1 = __webpack_require__(2);
 var ExclusiveGateway = (function (_super) {
     __extends(ExclusiveGateway, _super);
@@ -3200,7 +3431,7 @@ exports.default = ExclusiveGateway;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3241,7 +3472,7 @@ exports.default = Rhombus;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3304,7 +3535,7 @@ exports.default = RaphaelIconCross;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3346,7 +3577,7 @@ exports.default = InclusiveGateway;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3365,7 +3596,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Gateway_1 = __webpack_require__(11);
 var RaphaelIconCircle_1 = __webpack_require__(4);
-var Pentagon_1 = __webpack_require__(46);
+var Pentagon_1 = __webpack_require__(47);
 var DiagramColorService_1 = __webpack_require__(2);
 var EventGateway = (function (_super) {
     __extends(EventGateway, _super);
@@ -3396,7 +3627,7 @@ exports.default = EventGateway;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3436,7 +3667,7 @@ exports.default = Pentagon;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3454,7 +3685,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Gateway_1 = __webpack_require__(11);
-var RaphaelIconPlus_1 = __webpack_require__(48);
+var RaphaelIconPlus_1 = __webpack_require__(49);
 var DiagramColorService_1 = __webpack_require__(2);
 var ParallelGatway = (function (_super) {
     __extends(ParallelGatway, _super);
@@ -3477,7 +3708,7 @@ exports.default = ParallelGatway;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3529,7 +3760,7 @@ exports.default = RaphaelIconPlus;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3585,7 +3816,7 @@ exports.default = EndEvent;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3611,7 +3842,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Task_1 = __webpack_require__(6);
-var DiagramIconUserTask_1 = __webpack_require__(52);
+var DiagramIconUserTask_1 = __webpack_require__(53);
 var UserTask = (function (_super) {
     __extends(UserTask, _super);
     function UserTask() {
@@ -3627,7 +3858,7 @@ exports.default = UserTask;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3688,12 +3919,13 @@ var MultilineText = (function (_super) {
     };
     MultilineText.prototype.render = function () {
         var _this = this;
-        var _a = this.props, x = _a.x, y = _a.y, transform = _a.transform;
-        return (React.createElement(Text_1.default, { ref: function (node) { _this.textPaper = node; }, text: this.state.text, x: x + TEXT_PADDING, y: y + TEXT_PADDING, fill: "#373e48", fontSize: 11, fontFamily: "Arial", textAnchor: "middle", transform: transform }));
+        var _a = this.props, x = _a.x, y = _a.y, color = _a.color, transform = _a.transform;
+        return (React.createElement(Text_1.default, { ref: function (node) { _this.textPaper = node; }, text: this.state.text, x: x + TEXT_PADDING, y: y + TEXT_PADDING, fill: color, fontSize: 11, fontFamily: "Arial", textAnchor: "middle", transform: transform }));
     };
     MultilineText.defaultProps = {
         x: 0,
         y: 0,
+        color: '#373e48',
     };
     return MultilineText;
 }(React.Component));
@@ -3701,7 +3933,7 @@ exports.default = MultilineText;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3718,7 +3950,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconUser_1 = __webpack_require__(53);
+var RaphaelIconUser_1 = __webpack_require__(54);
 var DiagramIconUserTask = (function (_super) {
     __extends(DiagramIconUserTask, _super);
     function DiagramIconUserTask() {
@@ -3740,7 +3972,7 @@ exports.default = DiagramIconUserTask;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3777,7 +4009,7 @@ exports.default = RaphaelIconUser;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3803,7 +4035,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Task_1 = __webpack_require__(6);
-var DiagramIconManualTask_1 = __webpack_require__(55);
+var DiagramIconManualTask_1 = __webpack_require__(56);
 var ManualTask = (function (_super) {
     __extends(ManualTask, _super);
     function ManualTask() {
@@ -3819,7 +4051,7 @@ exports.default = ManualTask;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3836,7 +4068,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconManual_1 = __webpack_require__(56);
+var RaphaelIconManual_1 = __webpack_require__(57);
 var DiagramIconManualTask = (function (_super) {
     __extends(DiagramIconManualTask, _super);
     function DiagramIconManualTask() {
@@ -3858,7 +4090,7 @@ exports.default = DiagramIconManualTask;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3892,7 +4124,7 @@ exports.default = RaphaelIconManual;
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3918,7 +4150,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Task_1 = __webpack_require__(6);
-var DiagramIconServiceTask_1 = __webpack_require__(58);
+var DiagramIconServiceTask_1 = __webpack_require__(59);
 var ServiceTask = (function (_super) {
     __extends(ServiceTask, _super);
     function ServiceTask() {
@@ -3934,7 +4166,7 @@ exports.default = ServiceTask;
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3951,7 +4183,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconService_1 = __webpack_require__(59);
+var RaphaelIconService_1 = __webpack_require__(60);
 var DiagramIconServiceTask = (function (_super) {
     __extends(DiagramIconServiceTask, _super);
     function DiagramIconServiceTask() {
@@ -3973,7 +4205,7 @@ exports.default = DiagramIconServiceTask;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4024,7 +4256,7 @@ exports.default = RaphaelIconService;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4050,7 +4282,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Task_1 = __webpack_require__(6);
-var DiagramIconReceiveTask_1 = __webpack_require__(61);
+var DiagramIconReceiveTask_1 = __webpack_require__(62);
 var ReceiveTask = (function (_super) {
     __extends(ReceiveTask, _super);
     function ReceiveTask() {
@@ -4066,7 +4298,7 @@ exports.default = ReceiveTask;
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4083,7 +4315,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconReceive_1 = __webpack_require__(62);
+var RaphaelIconReceive_1 = __webpack_require__(63);
 var DiagramIconReceiveTask = (function (_super) {
     __extends(DiagramIconReceiveTask, _super);
     function DiagramIconReceiveTask() {
@@ -4105,7 +4337,7 @@ exports.default = DiagramIconReceiveTask;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4139,7 +4371,7 @@ exports.default = RaphaelIconReceive;
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4165,7 +4397,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Task_1 = __webpack_require__(6);
-var DiagramIconScriptTask_1 = __webpack_require__(64);
+var DiagramIconScriptTask_1 = __webpack_require__(65);
 var ScriptTask = (function (_super) {
     __extends(ScriptTask, _super);
     function ScriptTask() {
@@ -4181,7 +4413,7 @@ exports.default = ScriptTask;
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4198,7 +4430,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconScript_1 = __webpack_require__(65);
+var RaphaelIconScript_1 = __webpack_require__(66);
 var DiagramIconScriptTask = (function (_super) {
     __extends(DiagramIconScriptTask, _super);
     function DiagramIconScriptTask() {
@@ -4220,7 +4452,7 @@ exports.default = DiagramIconScriptTask;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4254,7 +4486,7 @@ exports.default = RaphaelIconScript;
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4280,7 +4512,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Task_1 = __webpack_require__(6);
-var DiagramIconBusinessRuleTask_1 = __webpack_require__(67);
+var DiagramIconBusinessRuleTask_1 = __webpack_require__(68);
 var BusinessRuleTask = (function (_super) {
     __extends(BusinessRuleTask, _super);
     function BusinessRuleTask() {
@@ -4296,7 +4528,7 @@ exports.default = BusinessRuleTask;
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4313,7 +4545,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var RaphaelIconBusinessRule_1 = __webpack_require__(68);
+var RaphaelIconBusinessRule_1 = __webpack_require__(69);
 var DiagramIconBusinessRuleTask = (function (_super) {
     __extends(DiagramIconBusinessRuleTask, _super);
     function DiagramIconBusinessRuleTask() {
@@ -4335,7 +4567,7 @@ exports.default = DiagramIconBusinessRuleTask;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4369,7 +4601,7 @@ exports.default = RaphaelIconBusinessRule;
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4401,9 +4633,9 @@ var BoundaryEvent = (function (_super) {
         var fill = DiagramColorService_1.getFillColour(data.id);
         var fillOpacity = DiagramColorService_1.getFillOpacity();
         return (React.createElement(Tooltip_1.default, { data: data },
-            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, radius: circleRadiusOuter }),
+            React.createElement(RaphaelIconCircle_1.default, { x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, radius: circleRadiusInner }),
             React.createElement(RaphaelIconCircle_1.default, { id: data.id, x: x + width / 2, y: y + height / 2, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity, radius: circleRadiusOuter }),
-            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, width: width, height: height, type: data && data.eventDefinition && data.eventDefinition.type, data: data, fill: signalFill })));
+            React.createElement(DiagramContainerIconEvent_1.default, { x: x, y: y, width: width, height: height, type: data && data.eventDefinition && data.eventDefinition.type, data: data, fill: signalFill, stroke: stroke })));
     };
     BoundaryEvent.defaultProps = {
         x: 0,
@@ -4419,7 +4651,7 @@ exports.default = BoundaryEvent;
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4469,7 +4701,7 @@ exports.default = ThrowEvent;
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4518,7 +4750,7 @@ exports.default = IntermediateCatchingEvent;
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4562,7 +4794,7 @@ exports.default = SubProcess;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4606,40 +4838,6 @@ exports.default = EventSubProcess;
 
 
 /***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Tooltip_1 = __webpack_require__(3);
-var FlowArrow_1 = __webpack_require__(75);
-var SequenceFlow = (function (_super) {
-    __extends(SequenceFlow, _super);
-    function SequenceFlow() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    SequenceFlow.prototype.render = function () {
-        return (React.createElement(Tooltip_1.default, { data: this.props.flow },
-            React.createElement(FlowArrow_1.default, { flow: this.props.flow })));
-    };
-    return SequenceFlow;
-}(React.Component));
-exports.default = SequenceFlow;
-
-
-/***/ }),
 /* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4657,10 +4855,45 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
+var Tooltip_1 = __webpack_require__(3);
+var FlowArrow_1 = __webpack_require__(76);
+var SequenceFlow = (function (_super) {
+    __extends(SequenceFlow, _super);
+    function SequenceFlow() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SequenceFlow.prototype.render = function () {
+        return (React.createElement(Tooltip_1.default, { data: this.props.flow },
+            React.createElement(FlowArrow_1.default, { flow: this.props.flow })));
+    };
+    return SequenceFlow;
+}(React.Component));
+exports.default = SequenceFlow;
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
 var Set_1 = __webpack_require__(5);
-var Polyline_1 = __webpack_require__(76);
+var Polyline_1 = __webpack_require__(77);
 var Path_1 = __webpack_require__(1);
 var Raphael = __webpack_require__(14);
+var Utils_1 = __webpack_require__(18);
 var ARROW_WIDTH = 4;
 var SEQUENCEFLOW_STROKE = 2;
 var FlowArrow = (function (_super) {
@@ -4669,20 +4902,22 @@ var FlowArrow = (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.line = null;
         _this.renderLine = function () {
-            var _a = _this.props, flow = _a.flow, stroke = _a.stroke;
+            var flow = _this.props.flow;
+            var stroke = Utils_1.getStrokeAndFill(flow).stroke;
             var polyline = new Polyline_1.Polyline(flow.id, flow.waypoints, SEQUENCEFLOW_STROKE);
             var lastLineIndex = polyline.getLinesCount() - 1;
             _this.line = polyline.getLine(lastLineIndex);
             return (React.createElement(Path_1.default, { id: flow.id, d: polyline.path, stroke: stroke, strokeWidth: SEQUENCEFLOW_STROKE }));
         };
         _this.renderArrow = function () {
+            var stroke = Utils_1.getStrokeAndFill(_this.props.flow).stroke;
             var line = _this.line;
             var doubleArrowWidth = 2 * ARROW_WIDTH;
             var width = ARROW_WIDTH / 2 + .5;
             var arrowHead = "M0 0L-" + width + "-" + doubleArrowWidth + "L" + width + "-" + doubleArrowWidth + "z";
             var angle = Raphael.deg(line.angle - Math.PI / 2);
             var transform = "t" + line.x2 + "," + line.y2 + "r" + angle + " 0 0";
-            return (React.createElement(Path_1.default, { id: _this.props.flow.id, d: arrowHead, stroke: _this.props.stroke, strokeWidth: SEQUENCEFLOW_STROKE, fill: _this.props.fill, transform: transform }));
+            return (React.createElement(Path_1.default, { id: _this.props.flow.id, d: arrowHead, stroke: stroke, strokeWidth: SEQUENCEFLOW_STROKE, fill: stroke, transform: transform }));
         };
         return _this;
     }
@@ -4694,10 +4929,6 @@ var FlowArrow = (function (_super) {
     FlowArrow.defaultProps = {
         x: 0,
         y: 0,
-        width: 30,
-        height: 30,
-        stroke: '#585858',
-        fill: '#585858',
     };
     return FlowArrow;
 }(React.Component));
@@ -4705,13 +4936,13 @@ exports.default = FlowArrow;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Anchor_1 = __webpack_require__(77);
+var Anchor_1 = __webpack_require__(78);
 /* tslint:disable */
 var Polyline = (function () {
     function Polyline(uuid, points, strokeWidth) {
@@ -4954,7 +5185,7 @@ exports.Polyline = Polyline;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4986,7 +5217,7 @@ exports.Anchor = Anchor;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5021,8 +5252,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Set_1 = __webpack_require__(5);
-var Pool_1 = __webpack_require__(79);
-var Lanes_1 = __webpack_require__(80);
+var Pool_1 = __webpack_require__(80);
+var Lanes_1 = __webpack_require__(81);
 var defaultPools = [];
 var Pools = (function (_super) {
     __extends(Pools, _super);
@@ -5049,7 +5280,7 @@ exports.default = Pools;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5095,7 +5326,7 @@ exports.default = Pool;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5120,7 +5351,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Lane_1 = __webpack_require__(81);
+var Lane_1 = __webpack_require__(82);
 var Set_1 = __webpack_require__(5);
 var defaultLanes = [];
 var Lanes = (function (_super) {
@@ -5143,7 +5374,7 @@ exports.default = Lanes;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

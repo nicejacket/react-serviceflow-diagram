@@ -1,5 +1,5 @@
-export const CURRENT_COLOR = '#017501';
-export const COMPLETED_COLOR = '#2632aa';
+export const CURRENT_COLOR = '#66AA66';
+export const COMPLETED_COLOR = '#2674AA';
 export const ACTIVITY_STROKE_COLOR = '#bbbbbb';
 export const MAIN_STROKE_COLOR = '#585858';
 
