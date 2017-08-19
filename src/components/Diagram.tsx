@@ -20,6 +20,8 @@ import IntermediateCatchingEvent from './intermediate-catching-events/Intermedia
 import SubProcess from './structural/SubProcess';
 import EventSubProcess from './structural/EventSubProcess';
 import SequenceFlow from './SequenceFlow';
+import Pools from './swimlanes/Pools';
+import { setTotalColors } from '../services/DiagramColorService';
 
 const PADDING_WIDTH: number = 60;
 const PADDING_HEIGHT: number = 60;
@@ -29,6 +31,34 @@ export interface DiagramProps {
 }
 
 export default class Diagram extends React.Component<DiagramProps, any> {
+  constructor(props: DiagramProps) {
+    super(props);
+    const { diagram } = props;
+    this.state = { diagram };
+  }
+
+  componentWillReceiveProps({ diagram }: DiagramProps) {
+    this.setState({ diagram });
+  }
+
+  onMouseEnterHandler = (e: any) => {
+    // const id = e.target.id;
+    // const newTotalColors: any = {};
+    // const newDiagram: DiagramModel = (Object as any).assign({}, this.state.diagram);
+
+    // newTotalColors[id] = true;
+    // setTotalColors(newTotalColors);
+
+    // newDiagram.elements.forEach(ele => {
+    //   ele.current = ele.id === id;
+    // });
+    // newDiagram.flows.forEach(flow => {
+    //   flow.current = flow.id === id;
+    // });
+
+    // this.setState({ diagram: newDiagram });
+  }
+
   renderElement = (ele: DiagramElementModel) => {
     const { x, y, width, height, ...data } = ele;
     const { id, name } = data;
@@ -73,9 +103,16 @@ export default class Diagram extends React.Component<DiagramProps, any> {
 
   render() {
     const { diagram: { diagramBeginX, diagramBeginY, diagramWidth, diagramHeight, elements, flows, pools } } = this.props;
-    return (<Paper x={diagramBeginX} y={diagramBeginY} width={diagramWidth} height={diagramHeight}>
+    return (<Paper
+      x={diagramBeginX}
+      y={diagramBeginY}
+      width={diagramWidth}
+      height={diagramHeight}
+      onMouseEnter={this.onMouseEnterHandler}
+    >
       {elements.map(this.renderElement)}
       {flows.map((flow: DiagramFlowElementModel) => <SequenceFlow flow={flow} key={flow.id} />)}
+      {pools ? <Pools pools={pools} /> : null}
     </Paper>);
   }
 }

@@ -44,7 +44,7 @@ export const DATA = {
          height:31.0,
          type:"BoundaryEvent",
          eventDefinition:{
-            type:"timer",
+            type:"compensate",
             timeDuration:"PT1H"
          }, properties:[
             {

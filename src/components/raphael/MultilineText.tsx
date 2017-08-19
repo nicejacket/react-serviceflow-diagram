@@ -38,7 +38,7 @@ export default class MultilineText extends React.Component<MultilineTextProps, a
     });
     let letterWidth = textPaper.getBBox().width / text.length;
     let removedLineBreaks = text.split('\n');
-    let actualRowLength = 0
+    let actualRowLength = 0;
     let formattedText: Array<any> = [];
     removedLineBreaks.forEach(senteces => {
       let words = senteces.split(' ');

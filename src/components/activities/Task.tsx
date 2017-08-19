@@ -26,6 +26,7 @@ export default class Task extends React.Component<TaskProps, any> {
 
     return (<Tooltip data={data}>
       <Rect
+        id={data.id}
         x={x}
         y={y}
         width={width}

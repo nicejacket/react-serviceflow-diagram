@@ -23,6 +23,7 @@ export default class SubProcess extends React.Component<SubProcessProps, any> {
 
     return (<Tooltip data={data}>
       <Rect
+        id={data.id}
         x={x}
         y={y}
         width={width}

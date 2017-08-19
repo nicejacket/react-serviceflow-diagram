@@ -21,6 +21,7 @@ export default class Event extends React.Component<EventProps, any> {
     const type = data && data.eventDefinition && data.eventDefinition.type;
     return (<Tooltip data={data}>
       <RaphaelIconCircle
+        id={data.id}
         x={x + width / 2}
         y={y + height / 2}
         stroke={stroke}

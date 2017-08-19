@@ -4,6 +4,7 @@ import DiagramIconError from './DiagramIconError';
 import DiagramIconSignal from './DiagramIconSignal';
 import DiagramIconMessage from './DiagramIconMessage';
 import BaseElementProps from '../BaseElementProps';
+import DiagramIconCompensate from './DiagramIconCompensate';
 
 export interface DiagramContainerIconEventProps extends BaseElementProps {
   type?: string;
@@ -25,6 +26,9 @@ export default class DiagramContainerIconEvent extends React.Component<DiagramCo
       }
       case 'message': {
         return <DiagramIconMessage {...baseProps} />;
+      }
+      case 'compensate': {
+        return <DiagramIconCompensate {...baseProps} fill={fill} />;
       }
     }
     return null;

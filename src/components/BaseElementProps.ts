@@ -8,4 +8,5 @@ export default interface BaseElementProps {
   fill?: string;
   fillOpacity?: number;
   data?: any;
+  id?: string;
 }

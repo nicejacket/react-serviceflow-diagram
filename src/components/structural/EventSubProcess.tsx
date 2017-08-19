@@ -23,6 +23,7 @@ export default class EventSubProcess extends React.Component<EventSubProcessProp
 
     return (<Tooltip data={data}>
       <Rect
+        id={data.id}
         x={x}
         y={y}
         width={width}

@@ -10,6 +10,7 @@ export interface PathProps {
   transform?: string;
   attr?: any;
   animate?: any;
+  id?: string;
 }
 
 export default class Path extends React.Component<PathProps, any> {
@@ -26,6 +27,7 @@ export default class Path extends React.Component<PathProps, any> {
 
   render() {
     return (<Element
+      id={this.props.id}
       ref={(node: any) => { this.element = node; }}
       type="path"
       {...this.props}

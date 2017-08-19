@@ -38,6 +38,7 @@ export default class BoundaryEvent extends React.Component<BoundaryEventProps, a
         radius={circleRadiusOuter}
       />
       <RaphaelIconCircle
+        id={data.id}
         x={x + width / 2}
         y={y + height / 2}
         stroke={stroke}

@@ -18,6 +18,7 @@ export default class Gateway extends React.Component<GatewayProps, any> {
     const { x, y, width, height, strokeWidth, data } = this.props;
     return (<Tooltip data={data}>
       <Rhombus
+        id={data.id}
         x={x}
         y={y}
         width={width}

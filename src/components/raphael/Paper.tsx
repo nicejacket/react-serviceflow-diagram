@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Raphael from 'raphael';
 import { createPaper, updatePaper } from './Utils';
+import './Paper.less';
 
 /**
  * 该包实现参照react-raphael实现
@@ -16,6 +17,7 @@ export interface PaperProps {
   style?: object;
   className?: string;
   container?: any;
+  onMouseEnter?: (e: any) => void;
 }
 
 export default class Paper extends React.Component<PaperProps, any> {
@@ -59,6 +61,12 @@ export default class Paper extends React.Component<PaperProps, any> {
     this.paper.remove();
   }
 
+  onMouseEnterHandler = (e: any) => {
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
+    }
+  }
+
   getPaper() {
     return this.paper;
   }
@@ -78,7 +86,14 @@ export default class Paper extends React.Component<PaperProps, any> {
     const { style, className, ...others } = this.props.container;
     return (<div className='react-raphael'>
       {eleContainer}
-      <div ref={node => { this.container = node; }} className={`paper-container ${className}`} style={style} {...others} />
+      <div
+        ref={node => { this.container = node; }}
+        className={`paper-container ${className}`}
+        style={style}
+        {...others}
+        onMouseOver={this.onMouseEnterHandler}
+        onTouchEnd={this.onMouseEnterHandler}
+      />
     </div>);
   }
 }

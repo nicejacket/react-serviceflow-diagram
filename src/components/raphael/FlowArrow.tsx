@@ -6,7 +6,7 @@ import Path from './Path';
 import * as Raphael from 'raphael';
 
 const ARROW_WIDTH = 4;
-const SEQUENCEFLOW_STROKE = 1.5;
+const SEQUENCEFLOW_STROKE = 2;
 
 export interface FlowArrowProps extends BaseElementProps {
   flow:any;
@@ -31,6 +31,7 @@ export default class FlowArrow extends React.Component<FlowArrowProps, any> {
     this.line = polyline.getLine(lastLineIndex);
 
     return (<Path
+      id={flow.id}
       d={polyline.path}
       stroke={stroke}
       strokeWidth={SEQUENCEFLOW_STROKE}
@@ -45,6 +46,7 @@ export default class FlowArrow extends React.Component<FlowArrowProps, any> {
     const angle = Raphael.deg(line.angle - Math.PI / 2);
     const transform = `t${line.x2},${line.y2}r${angle} 0 0`;
     return (<Path
+      id={this.props.flow.id}
       d={arrowHead}
       stroke={this.props.stroke}
       strokeWidth={SEQUENCEFLOW_STROKE}

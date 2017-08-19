@@ -3,26 +3,26 @@ import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import DiagramContainerIconEvent from '../icons/DiagramContainerIconEvent';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import { getBpmnColor, MAIN_STROKE_COLOR, getFillColour, getFillOpacity } from '../../services/DiagramColorService';
 
-export interface ThrowEventProps extends BaseElementProps {
+export interface CompensateEventProps extends BaseElementProps {
   circleRadiusInner?: number;
   circleRadiusOuter?: number;
   signalFill?: string;
 }
 
-export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
+export default class CompensateEvent extends React.Component<CompensateEventProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
     strokeWidth: 1,
-    signalFill: 'black',
     circleRadiusInner: 12,
     circleRadiusOuter: 15,
+    signalFill: 'none',
   }
 
   render() {
-    const { x, y, width, height, strokeWidth, signalFill, circleRadiusInner, circleRadiusOuter, data } = this.props;
+    const { x, y, width, height, circleRadiusInner, circleRadiusOuter, strokeWidth, signalFill, data } = this.props;
     const stroke = getBpmnColor(data, MAIN_STROKE_COLOR);
     const fill = getFillColour(data.id);
     const fillOpacity = getFillOpacity();
@@ -35,7 +35,7 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
         strokeWidth={strokeWidth}
         fill={fill}
         fillOpacity={fillOpacity}
-        radius={circleRadiusInner}
+        radius={circleRadiusOuter}
       />
       <RaphaelIconCircle
         id={data.id}

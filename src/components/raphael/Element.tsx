@@ -13,13 +13,13 @@ export default class Element extends React.Component<any, any> {
   element: RaphaelElement = null;
 
   componentDidMount() {
+    const { id } = this.props;
     const root = ReactDOM.findDOMNode(this.refs.root);
     const parentId = root.parentElement.getAttribute('data-id');
     const element = createElement(parentId, this.props.type, this.props, this.handleLoad.bind(this));
     this.element = element;
-    this.setState({
-      loaded: true
-    });
+    if (id) this.element.node.id = id;
+    this.setState({ loaded: true });
   }
 
   componentDidUpdate() {
