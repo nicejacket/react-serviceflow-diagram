@@ -1648,7 +1648,7 @@ var Event = (function (_super) {
         var type = data && data.eventDefinition && data.eventDefinition.type;
         return (React.createElement(Tooltip_1.default, { data: data },
             React.createElement(RaphaelIconCircle_1.default, { id: data.id, x: x + width / 2, y: y + height / 2, radius: radius, stroke: stroke, strokeWidth: strokeWidth, fill: fill, fillOpacity: fillOpacity }),
-            React.createElement(DiagramContainerIconEvent_1.default, { type: type, x: x, y: y, width: width, height: height, fill: iconFill, data: data })));
+            React.createElement(DiagramContainerIconEvent_1.default, { type: type, x: x, y: y, width: width, height: height, fill: stroke, stroke: stroke, data: data })));
     };
     Event.defaultProps = {
         x: 0,
@@ -1926,7 +1926,7 @@ exports.DATA = {
         },
         {
             "completed": false,
-            "current": false,
+            "current": true,
             "id": "fork",
             "name": null,
             "incomingFlows": [
@@ -1993,7 +1993,7 @@ exports.DATA = {
             ]
         },
         {
-            "completed": false,
+            "completed": true,
             "current": false,
             "id": "enoughInformationCheck",
             "name": "Enough information?",
@@ -2007,7 +2007,7 @@ exports.DATA = {
             "type": "ExclusiveGateway"
         },
         {
-            "completed": false,
+            "completed": true,
             "current": false,
             "id": "subProcessEnd2",
             "name": null,
@@ -2022,7 +2022,7 @@ exports.DATA = {
         },
         {
             "completed": false,
-            "current": false,
+            "current": true,
             "id": "notEnoughInformationEnd",
             "name": null,
             "incomingFlows": [
@@ -3889,7 +3889,7 @@ var MultilineText = (function (_super) {
             textPaper.attr({
                 'text': pText
             });
-            var letterWidth = textPaper.getBBox().width / text.length;
+            var letterWidth = textPaper.getBBox().width / pText.length;
             var removedLineBreaks = text.split('\n');
             var actualRowLength = 0;
             var formattedText = [];
