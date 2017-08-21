@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DiagramModel } from './models/DiagramModel';
 import { DATA } from './demo-model';
-import Diagram from './components/Diagram';
+import { Diagram, DiagramModel } from './index';
 
 const diagram = new DiagramModel(DATA);
 

@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "sourceMap": true,
+    "sourceMap": false,
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
     "baseUrl": "./",
+    "declaration": true,
     "paths": {
       "*" : ["../TSProjectA/node_modules/@types/*", "./node_modules/@types/*", "*"]
     },
