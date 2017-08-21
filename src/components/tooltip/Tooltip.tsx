@@ -6,7 +6,7 @@ import './Tooltip.less';
 
 const CLS_PREFIX = 'sf-tooltip-diagram';
 
-interface TooltipState {
+export interface TooltipState {
   visible?: boolean;
 }
 

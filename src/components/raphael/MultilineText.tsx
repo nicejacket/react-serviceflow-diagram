@@ -38,7 +38,7 @@ export default class MultilineText extends React.Component<MultilineTextProps, a
     textPaper.attr({
       'text': pText
     });
-    let letterWidth = textPaper.getBBox().width / text.length;
+    let letterWidth = textPaper.getBBox().width / pText.length;
     let removedLineBreaks = text.split('\n');
     let actualRowLength = 0;
     let formattedText: Array<any> = [];

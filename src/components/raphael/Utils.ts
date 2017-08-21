@@ -1,7 +1,7 @@
 import * as Raphael from 'raphael';
 import { PaperProps } from './Paper';
 
-interface RcRaphaelPaper extends RaphaelPaper {
+export interface RcRaphaelPaper extends RaphaelPaper {
   id?: string;
 }
 
@@ -27,7 +27,7 @@ export function createPaper(container: any, props: any) {
   return paper;
 }
 
-export function findParentById(id: string) {
+export function findParentById(id: string): any {
   const papers = PAPERS.filter(ele => ele.id == id);
 
   if (papers.length > 0) {

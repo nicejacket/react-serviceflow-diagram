@@ -61,7 +61,7 @@ export const DATA = {
     },
     {
       "completed": false,
-      "current": false,
+      "current": true,
       "id": "fork",
       "name": null,
       "incomingFlows": [
@@ -128,7 +128,7 @@ export const DATA = {
       ]
     },
     {
-      "completed": false,
+      "completed": true,
       "current": false,
       "id": "enoughInformationCheck",
       "name": "Enough information?",
@@ -142,7 +142,7 @@ export const DATA = {
       "type": "ExclusiveGateway"
     },
     {
-      "completed": false,
+      "completed": true,
       "current": false,
       "id": "subProcessEnd2",
       "name": null,
@@ -157,7 +157,7 @@ export const DATA = {
     },
     {
       "completed": false,
-      "current": false,
+      "current": true,
       "id": "notEnoughInformationEnd",
       "name": null as any,
       "incomingFlows": [

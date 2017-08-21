@@ -1,11 +1,12 @@
 {
   "name": "react-serviceflow-diagram",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "react版本的serviceflow diagram",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "webpack --progress --colors",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --progress --profile --bail",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "tsc"
   },
   "author": "zhou84034339@sina.com",
   "license": "Apache-2.0",
