@@ -10,6 +10,16 @@
   },
   "author": "zhou84034339@sina.com",
   "license": "Apache-2.0",
+  "keywords": [
+    "activiti",
+    "diagram",
+    "serviceflow",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicejacket/react-serviceflow-diagram"
+  },
   "devDependencies": {
     "adf-tslint-rules": "0.0.3",
     "awesome-typescript-loader": "^3.2.2",
