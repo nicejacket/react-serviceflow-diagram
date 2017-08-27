@@ -3,7 +3,7 @@ module.exports = {
     'react-serviceflow-diagram': './src/index.ts',
   },
   output: {
-    filename: "./dist/[name].js",
+    filename: "./dist/index.js",
     library: '[name]',
     libraryTarget: 'umd',
     chunkFilename: '[id].chunk.js'
