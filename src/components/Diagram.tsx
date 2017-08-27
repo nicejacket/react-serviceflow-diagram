@@ -28,9 +28,15 @@ const PADDING_HEIGHT: number = 60;
 
 export interface DiagramProps {
   diagram: DiagramModel;
+  customerActivities?: (ele: DiagramElementModel) => any;
+  onClick?: (e: any) => void;
 }
 
 export default class Diagram extends React.Component<DiagramProps, any> {
+  static defaultProps = {
+    onClick: () => {},
+  }
+
   constructor(props: DiagramProps) {
     super(props);
     const { diagram } = props;
@@ -60,6 +66,10 @@ export default class Diagram extends React.Component<DiagramProps, any> {
   }
 
   renderElement = (ele: DiagramElementModel) => {
+    if (this.props.customerActivities) {
+      const element = this.props.customerActivities(ele);
+      if (element) return element;
+    }
     const { x, y, width, height, ...data } = ele;
     const { id, name } = data;
     const props = { x: +x, y: +y, width: +width, height: +height, data };
@@ -109,7 +119,7 @@ export default class Diagram extends React.Component<DiagramProps, any> {
       width={diagramWidth + 10}
       height={diagramHeight}
       onMouseEnter={this.onMouseEnterHandler}
-      onClick={id => { console.log(id); }}
+      onClick={this.props.onClick}
     >
       {elements.map(this.renderElement)}
       {flows.map((flow: DiagramFlowElementModel) => <SequenceFlow flow={flow} key={flow.id} />)}
