@@ -1,16 +1,35 @@
+const { CheckerPlugin } = require('awesome-typescript-loader')
+const path = require('path');
+
+function DtsBundlePlugin(){}
+DtsBundlePlugin.prototype.apply = function (compiler) {
+  compiler.plugin('done', function(){
+    var dts = require('dts-bundle');
+
+    dts.bundle({
+      name: 'react-serviceflow-diagram',
+      main: './dist/index.d.ts',
+      out: 'index.d.ts',
+      removeSource: true,
+      outputAsModuleFolder: true // to use npm in-package typings
+    });
+  });
+};
+
 module.exports = {
   entry: {
-    'react-serviceflow-diagram': './src/index.ts',
+    'react-serviceflow-diagram': './src/index.ts'
   },
   output: {
-    filename: "./dist/index.js",
-    library: '[name]',
+    path: path.join(__dirname, 'dist'),
+    filename: "index.js",
+    library: 'react-serviceflow-diagram',
     libraryTarget: 'umd',
-    chunkFilename: '[id].chunk.js'
+    umdNamedDefine: true
   },
 
   // Enable sourcemaps for debugging webpack's output.
-  devtool: "cheap-module-source-map",
+  devtool: "source-map",
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
@@ -36,5 +55,9 @@ module.exports = {
     'react',
     'react-dom',
     'raphael',
+  ],
+  plugins: [
+    new CheckerPlugin(),
+    new DtsBundlePlugin()
   ]
 };

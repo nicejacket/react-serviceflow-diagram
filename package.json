@@ -1,20 +1,31 @@
 {
   "name": "react-serviceflow-diagram",
-  "version": "0.1.1",
+  "version": "0.1.7",
   "description": "react版本的serviceflow diagram",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --progress --profile --bail",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "tsc"
+    "prepublish": "npm run build"
   },
   "author": "zhou84034339@sina.com",
   "license": "Apache-2.0",
+  "keywords": [
+    "activiti",
+    "diagram",
+    "serviceflow",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicejacket/react-serviceflow-diagram"
+  },
   "devDependencies": {
     "adf-tslint-rules": "0.0.3",
     "awesome-typescript-loader": "^3.2.2",
     "codelyzer": "^3.1.2",
     "css-loader": "^0.28.4",
+    "dts-bundle": "^0.7.3",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "source-map-loader": "^0.2.1",
