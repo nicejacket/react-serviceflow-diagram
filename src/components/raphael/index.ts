@@ -1,25 +1,20 @@
-import Circle from './Circle';
-import Element from './Element';
-import Ellipse from './Ellipse';
-import Image from './Image';
-import Line from './Line';
-import Paper from './Paper';
-import Path from './Path';
-import Print from './Print';
-import Rect from './Rect';
-import Set from './Set';
-import Text from './Text';
+import { default as RaphaelCircle } from './Circle';
+import { default as RaphaelElement } from './Element';
+import RaphaelEllipse from './Ellipse';
+import RaphaelFlowArrow from './FlowArrow';
+import RaphaelImage from './Image';
+import RaphaelLine from './Line';
+import RaphaelMultilineText from './MultilineText';
+import RaphaelPaper from './Paper';
+import RaphaelPath from './Path';
+import RaphaelPentagon from './Pentagon';
+import RaphaelPrint from './Print';
+import RaphaelRect from './Rect';
+import RaphaelRhombus from './Rhombus';
+import RaphaelSet from './Set';
+import RaphaelText from './Text';
 
-export const RAPHAEL = {
-  Circle,
-  Element,
-  Ellipse,
-  Image,
-  Line,
-  Paper,
-  Path,
-  Print,
-  Rect,
-  Set,
-  Text,
+export {
+  RaphaelCircle,
+  RaphaelElement,
 };

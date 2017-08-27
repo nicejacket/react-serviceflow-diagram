@@ -7,7 +7,7 @@
 		exports["react-serviceflow-diagram"] = factory(require("react"), require("react-dom"), require("raphael"));
 	else
 		root["react-serviceflow-diagram"] = factory(root["react"], root["react-dom"], root["raphael"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -105,7 +105,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(9);
+var Element_1 = __webpack_require__(7);
 var Path = (function (_super) {
     __extends(Path, _super);
     function Path() {
@@ -209,7 +209,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(8);
+var ReactDOM = __webpack_require__(9);
 var Set_1 = __webpack_require__(5);
 __webpack_require__(29);
 var CLS_PREFIX = 'sf-tooltip-diagram';
@@ -377,7 +377,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Circle_1 = __webpack_require__(26);
+var Circle_1 = __webpack_require__(18);
 var RaphaelIconCircle = (function (_super) {
     __extends(RaphaelIconCircle, _super);
     function RaphaelIconCircle() {
@@ -416,7 +416,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(8);
+var ReactDOM = __webpack_require__(9);
 var Utils_1 = __webpack_require__(12);
 var Set = (function (_super) {
     __extends(Set, _super);
@@ -481,9 +481,9 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Tooltip_1 = __webpack_require__(3);
-var Rect_1 = __webpack_require__(7);
+var Rect_1 = __webpack_require__(8);
 var MultilineText_1 = __webpack_require__(50);
-var Utils_1 = __webpack_require__(18);
+var Utils_1 = __webpack_require__(19);
 var DiagramColorService_1 = __webpack_require__(2);
 var Task = (function (_super) {
     __extends(Task, _super);
@@ -529,68 +529,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(9);
-var Rect = (function (_super) {
-    __extends(Rect, _super);
-    function Rect() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.element = null;
-        return _this;
-    }
-    Rect.prototype.getElement = function () {
-        return this.element.getElement();
-    };
-    Rect.prototype.render = function () {
-        var _this = this;
-        return (React.createElement(Element_1.default, __assign({ ref: function (node) { _this.element = node; }, type: "rect" }, this.props)));
-    };
-    Rect.defaultProps = {
-        x: 0,
-        y: 0,
-        width: 80,
-        height: 32,
-        r: 0,
-    };
-    return Rect;
-}(React.Component));
-exports.default = Rect;
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(8);
+var ReactDOM = __webpack_require__(9);
 var Utils_1 = __webpack_require__(12);
 var Element = (function (_super) {
     __extends(Element, _super);
@@ -640,6 +581,65 @@ var Element = (function (_super) {
 }(React.Component));
 exports.default = Element;
 
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Element_1 = __webpack_require__(7);
+var Rect = (function (_super) {
+    __extends(Rect, _super);
+    function Rect() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.element = null;
+        return _this;
+    }
+    Rect.prototype.getElement = function () {
+        return this.element.getElement();
+    };
+    Rect.prototype.render = function () {
+        var _this = this;
+        return (React.createElement(Element_1.default, __assign({ ref: function (node) { _this.element = node; }, type: "rect" }, this.props)));
+    };
+    Rect.defaultProps = {
+        x: 0,
+        y: 0,
+        width: 80,
+        height: 32,
+        r: 0,
+    };
+    return Rect;
+}(React.Component));
+exports.default = Rect;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
 
 /***/ }),
 /* 10 */
@@ -1153,7 +1153,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(9);
+var Element_1 = __webpack_require__(7);
 var Text = (function (_super) {
     __extends(Text, _super);
     function Text() {
@@ -1313,7 +1313,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(24);
+var	fixUrls = __webpack_require__(25);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1673,6 +1673,57 @@ exports.default = Event;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var Element_1 = __webpack_require__(7);
+var Circle = (function (_super) {
+    __extends(Circle, _super);
+    function Circle() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.element = null;
+        return _this;
+    }
+    Circle.prototype.getElement = function () {
+        return this.element.getElement();
+    };
+    Circle.prototype.render = function () {
+        var _this = this;
+        return (React.createElement(Element_1.default, __assign({ id: this.props.id, ref: function (node) { _this.element = node; }, type: "circle" }, this.props)));
+    };
+    Circle.defaultProps = {
+        x: 0,
+        y: 0,
+        r: 10,
+    };
+    return Circle;
+}(React.Component));
+exports.default = Circle;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 var DiagramColorService_1 = __webpack_require__(2);
 function getStrokeAndFill(data) {
@@ -1687,27 +1738,23 @@ exports.getStrokeAndFill = getStrokeAndFill;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-var Diagram_1 = __webpack_require__(20);
+var Diagram_1 = __webpack_require__(21);
 exports.Diagram = Diagram_1.default;
-var DiagramModel_1 = __webpack_require__(81);
-exports.DiagramModel = DiagramModel_1.DiagramModel;
-exports.DiagramElementModel = DiagramModel_1.DiagramElementModel;
-exports.DiagramElementPropertyModel = DiagramModel_1.DiagramElementPropertyModel;
-exports.DiagramFlowElementModel = DiagramModel_1.DiagramFlowElementModel;
-exports.DiagramWayPointModel = DiagramModel_1.DiagramWayPointModel;
-exports.DiagramEventDefinitionModel = DiagramModel_1.DiagramEventDefinitionModel;
-exports.DiagramPoolElementModel = DiagramModel_1.DiagramPoolElementModel;
-exports.DiagramLaneElementModel = DiagramModel_1.DiagramLaneElementModel;
+__export(__webpack_require__(81));
+__export(__webpack_require__(82));
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1741,8 +1788,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var Paper_1 = __webpack_require__(21);
-var StartEvent_1 = __webpack_require__(25);
+var Paper_1 = __webpack_require__(22);
+var StartEvent_1 = __webpack_require__(26);
 var ExclusiveGateway_1 = __webpack_require__(40);
 var InclusiveGateway_1 = __webpack_require__(43);
 var EventGateway_1 = __webpack_require__(44);
@@ -1782,6 +1829,11 @@ var Diagram = (function (_super) {
             // this.setState({ diagram: newDiagram });
         };
         _this.renderElement = function (ele) {
+            if (_this.props.customerActivities) {
+                var element = _this.props.customerActivities(ele);
+                if (element)
+                    return element;
+            }
             var x = ele.x, y = ele.y, width = ele.width, height = ele.height, data = __rest(ele, ["x", "y", "width", "height"]);
             var id = data.id, name = data.name;
             var props = { x: +x, y: +y, width: +width, height: +height, data: data };
@@ -1832,10 +1884,13 @@ var Diagram = (function (_super) {
     };
     Diagram.prototype.render = function () {
         var _a = this.props.diagram, diagramBeginX = _a.diagramBeginX, diagramBeginY = _a.diagramBeginY, diagramWidth = _a.diagramWidth, diagramHeight = _a.diagramHeight, elements = _a.elements, flows = _a.flows, pools = _a.pools;
-        return (React.createElement(Paper_1.default, { x: diagramBeginX, y: diagramBeginY, width: diagramWidth + 10, height: diagramHeight, onMouseEnter: this.onMouseEnterHandler, onClick: function (id) { console.log(id); } },
+        return (React.createElement(Paper_1.default, { x: diagramBeginX, y: diagramBeginY, width: diagramWidth + 10, height: diagramHeight, onMouseEnter: this.onMouseEnterHandler, onClick: this.props.onClick },
             elements.map(this.renderElement),
             flows.map(function (flow) { return React.createElement(SequenceFlow_1.default, { flow: flow, key: flow.id }); }),
             pools ? React.createElement(Pools_1.default, { pools: pools }) : null));
+    };
+    Diagram.defaultProps = {
+        onClick: function () { },
     };
     return Diagram;
 }(React.Component));
@@ -1843,7 +1898,7 @@ exports.default = Diagram;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1877,9 +1932,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(8);
+var ReactDOM = __webpack_require__(9);
 var Utils_1 = __webpack_require__(12);
-__webpack_require__(22);
+__webpack_require__(23);
 var Paper = (function (_super) {
     __extends(Paper, _super);
     function Paper(props) {
@@ -1952,13 +2007,13 @@ exports.default = Paper;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(23);
+var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1983,7 +2038,7 @@ if(false) {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(15)(undefined);
@@ -1997,7 +2052,7 @@ exports.push([module.i, ".paper-container svg * {\n  cursor: pointer;\n}\n", ""]
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 
@@ -2092,7 +2147,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2145,57 +2200,6 @@ var StartEvent = (function (_super) {
     return StartEvent;
 }(React.Component));
 exports.default = StartEvent;
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-var Element_1 = __webpack_require__(9);
-var Circle = (function (_super) {
-    __extends(Circle, _super);
-    function Circle() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.element = null;
-        return _this;
-    }
-    Circle.prototype.getElement = function () {
-        return this.element.getElement();
-    };
-    Circle.prototype.render = function () {
-        var _this = this;
-        return (React.createElement(Element_1.default, __assign({ id: this.props.id, ref: function (node) { _this.element = node; }, type: "circle" }, this.props)));
-    };
-    Circle.defaultProps = {
-        x: 0,
-        y: 0,
-        r: 10,
-    };
-    return Circle;
-}(React.Component));
-exports.default = Circle;
 
 
 /***/ }),
@@ -4085,7 +4089,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Tooltip_1 = __webpack_require__(3);
-var Rect_1 = __webpack_require__(7);
+var Rect_1 = __webpack_require__(8);
 var DiagramColorService_1 = __webpack_require__(2);
 var SubProcess = (function (_super) {
     __extends(SubProcess, _super);
@@ -4129,7 +4133,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Tooltip_1 = __webpack_require__(3);
-var Rect_1 = __webpack_require__(7);
+var Rect_1 = __webpack_require__(8);
 var DiagramColorService_1 = __webpack_require__(2);
 var EventSubProcess = (function (_super) {
     __extends(EventSubProcess, _super);
@@ -4210,7 +4214,7 @@ var Set_1 = __webpack_require__(5);
 var Polyline_1 = __webpack_require__(75);
 var Path_1 = __webpack_require__(1);
 var Raphael = __webpack_require__(14);
-var Utils_1 = __webpack_require__(18);
+var Utils_1 = __webpack_require__(19);
 var ARROW_WIDTH = 4;
 var SEQUENCEFLOW_STROKE = 2;
 var FlowArrow = (function (_super) {
@@ -4615,7 +4619,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Set_1 = __webpack_require__(5);
-var Rect_1 = __webpack_require__(7);
+var Rect_1 = __webpack_require__(8);
 var Text_1 = __webpack_require__(13);
 var Pool = (function (_super) {
     __extends(Pool, _super);
@@ -4709,7 +4713,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var Set_1 = __webpack_require__(5);
-var Rect_1 = __webpack_require__(7);
+var Rect_1 = __webpack_require__(8);
 var Text_1 = __webpack_require__(13);
 var Lane = (function (_super) {
     __extends(Lane, _super);
@@ -4895,6 +4899,19 @@ var DiagramLaneElementModel = (function () {
     return DiagramLaneElementModel;
 }());
 exports.DiagramLaneElementModel = DiagramLaneElementModel;
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Circle_1 = __webpack_require__(18);
+exports.RaphaelCircle = Circle_1.default;
+var Element_1 = __webpack_require__(7);
+exports.RaphaelElement = Element_1.default;
 
 
 /***/ })

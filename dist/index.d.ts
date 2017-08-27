@@ -4,16 +4,19 @@
 
 import * as React from 'react';
 
-export { Diagram, DiagramModel, DiagramElementModel, DiagramElementPropertyModel, DiagramFlowElementModel, DiagramWayPointModel, DiagramEventDefinitionModel, DiagramPoolElementModel, DiagramLaneElementModel };
-
 export interface DiagramProps {
     diagram: DiagramModel;
+    customerActivities?: (ele: DiagramElementModel) => any;
+    onClick?: (e: any) => void;
 }
 export default class Diagram extends React.Component<DiagramProps, any> {
+    static defaultProps: {
+        onClick: () => void;
+    };
     constructor(props: DiagramProps);
     componentWillReceiveProps({diagram}: DiagramProps): void;
     onMouseEnterHandler: (e: any) => void;
-    renderElement: (ele: DiagramElementModel) => JSX.Element;
+    renderElement: (ele: DiagramElementModel) => any;
     render(): JSX.Element;
 }
 
@@ -90,5 +93,36 @@ export class DiagramLaneElementModel {
     x: number;
     y: number;
     constructor(obj?: any);
+}
+
+export { RaphaelCircle, RaphaelElement };
+
+export interface CircleProps {
+    id?: string;
+    x?: number;
+    y?: number;
+    r?: number;
+}
+export default class Circle extends React.Component<CircleProps, any> {
+    static defaultProps: {
+        x: number;
+        y: number;
+        r: number;
+    };
+    element: Element;
+    getElement(): RaphaelElement;
+    render(): JSX.Element;
+}
+
+export default class Element extends React.Component<any, any> {
+    constructor(props: any);
+    element: RaphaelElement;
+    componentDidMount(): void;
+    componentDidUpdate(): void;
+    componentWillUnmount(): void;
+    getElement(): RaphaelElement;
+    handleLoad(element: RaphaelElement): void;
+    handleUpdate(element: Element): void;
+    render(): JSX.Element;
 }
 

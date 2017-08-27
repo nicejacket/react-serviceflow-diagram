@@ -1,16 +1,3 @@
-import Diagram from './components/Diagram';
-import { DiagramModel, DiagramElementModel, DiagramElementPropertyModel,
-  DiagramFlowElementModel, DiagramWayPointModel, DiagramEventDefinitionModel,
-  DiagramPoolElementModel, DiagramLaneElementModel } from './models/DiagramModel';
-
-export {
-  Diagram,
-  DiagramModel,
-  DiagramElementModel,
-  DiagramElementPropertyModel,
-  DiagramFlowElementModel,
-  DiagramWayPointModel,
-  DiagramEventDefinitionModel,
-  DiagramPoolElementModel,
-  DiagramLaneElementModel,
-};
+export { default as Diagram } from './components/Diagram';
+export * from './models/DiagramModel';
+export * from './components/raphael/index';
