@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Set from '../raphael/Set';
 import Gateway from './Gateway';
 import IconPlus from '../raphael/icons/RaphaelIconPlus';
 import BaseElementProps from '../BaseElementProps';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../../BaseElementProps';
-import Path from '../Path';
+import { RaphaelBasePath } from '../RaphaelBasePath';
 
 const PATH = `m 1,17 16,0 0,-1.7778 -5.333332,-3.5555 0,-1.7778 c 1.244444,0 1.244444,-2.3111 1.244444,-2.3111
       l 0,-3.0222 C 12.555557,0.8221 9.0000001,1.0001 9.0000001,1.0001 c 0,0 -3.5555556,-0.178 -3.9111111,3.5555 l 0,3.0222 c
@@ -15,7 +15,7 @@ export default class RaphaelIconUser extends React.Component<RaphaelIconUserProp
 
   render() {
     const { x, y, fill, stroke, fillOpacity } = this.props;
-    return (<Path
+    return (<RaphaelBasePath
       d={PATH}
       transform={`T${x},${y}`}
       fillOpacity={fillOpacity}

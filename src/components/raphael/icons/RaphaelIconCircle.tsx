@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Circle from '../Circle';
+import { RaphaelBaseCircle } from '../RaphaelBaseCircle';
 import BaseElementProps from '../../BaseElementProps';
 
 export interface RaphaelIconCircleProps extends BaseElementProps {
@@ -16,7 +16,7 @@ export default class RaphaelIconCircle extends React.Component<RaphaelIconCircle
 
   render() {
     const { id, x, y, radius, ...others } = this.props;
-    return (<Circle
+    return (<RaphaelBaseCircle
       id={id}
       x={x}
       y={y}

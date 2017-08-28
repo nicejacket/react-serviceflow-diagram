@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../../BaseElementProps';
-import Image from '../Image';
+import { RaphaelBaseImage } from '../RaphaelBaseImage';
 
 const DATA = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAjCAYAAADxG9hnAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI WXMAAA7DAAAO
       wwHHb6hkAAAAB3RJTUUH3wQXDxwCFNe28AAACsdJREFUWMOVmGmMXtV5x3/POfe+ y2yeGc/mwbMZG9tDMGBTKC5GCU4pbYmSRlmowlIFJWnUprSiy4dI/UA/9EsVifZDmy
@@ -45,7 +45,7 @@ export default class RaphaelIconBoxPublish extends React.Component<RaphaelIconBo
 
   render() {
     const { x, y, width, height } = this.props;
-    return (<Image
+    return (<RaphaelBaseImage
       src={DATA}
       x={x}
       y={y}

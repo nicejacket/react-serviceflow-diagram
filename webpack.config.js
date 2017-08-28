@@ -10,7 +10,7 @@ DtsBundlePlugin.prototype.apply = function (compiler) {
       name: 'react-serviceflow-diagram',
       main: './dist/index.d.ts',
       out: 'index.d.ts',
-      removeSource: true,
+      removeSource: false,
       outputAsModuleFolder: true // to use npm in-package typings
     });
   });

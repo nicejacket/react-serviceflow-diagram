@@ -7,6 +7,7 @@ export class DiagramModel {
   elements: DiagramElementModel[] = [];
   flows: DiagramFlowElementModel[] = [];
   pools: DiagramPoolElementModel[] = [];
+  associations: DiagramAssociationElementModel[] = [];
 
   constructor(obj?: any) {
     if (obj) {
@@ -27,6 +28,11 @@ export class DiagramModel {
       if (obj.pools) {
         obj.pools.forEach((pool: DiagramPoolElementModel) => {
           this.pools.push(new DiagramPoolElementModel(pool));
+        });
+      }
+      if (obj.associations) {
+        obj.associations.forEach((association: DiagramAssociationElementModel) => {
+          this.associations.push(new DiagramAssociationElementModel(association));
         });
       }
     }
@@ -90,6 +96,34 @@ export class DiagramElementPropertyModel {
 }
 
 export class DiagramFlowElementModel {
+  completed: boolean;
+  current: boolean;
+  id: string;
+  properties: any[] = [];
+  sourceRef: string;
+  targetRef: string;
+  type: string;
+  waypoints: DiagramWayPointModel[] = [];
+
+  constructor(obj?: any) {
+    if (obj) {
+      this.completed = obj.completed || false;
+      this.current = obj.current || false;
+      this.id = obj.id;
+      this.properties = obj.properties;
+      this.sourceRef = obj.sourceRef;
+      this.targetRef = obj.targetRef;
+      this.type = obj.type;
+      if (obj.waypoints) {
+        obj.waypoints.forEach((waypoint: DiagramWayPointModel) => {
+          this.waypoints.push(new DiagramWayPointModel(waypoint));
+        });
+      }
+    }
+  }
+}
+
+export class DiagramAssociationElementModel {
   completed: boolean;
   current: boolean;
   id: string;

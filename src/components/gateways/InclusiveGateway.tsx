@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Gateway from './Gateway';
-import Set from '../raphael/Set';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import BaseElementProps from '../BaseElementProps';
 import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';

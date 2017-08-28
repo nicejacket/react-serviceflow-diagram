@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Set from '../raphael/Set';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import RaphaelIconTimer from '../raphael/icons/RaphaelIconTImer';
 import BaseElementProps from '../BaseElementProps';

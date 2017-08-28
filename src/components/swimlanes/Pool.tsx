@@ -1,8 +1,8 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Set from '../raphael/Set';
-import Rect from '../raphael/Rect';
-import Text from '../raphael/Text';
+import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
+import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
+import { RaphaelBaseText } from '../raphael/RaphaelBaseText';
 
 export interface PoolProps extends BaseElementProps {
   text?: string;
@@ -25,8 +25,8 @@ export default class Pool extends React.Component<PoolProps, any> {
     const { x, y, width, height, radius, stroke, strokeWidth, fill, fillOpacity,
       text, textTransform } = this.props;
 
-    return (<Set>
-      <Rect
+    return (<RaphaelBaseSet>
+      <RaphaelBaseRect
         x={x}
         y={y}
         width={width}
@@ -37,12 +37,12 @@ export default class Pool extends React.Component<PoolProps, any> {
         fill={fill}
         fillOpacity={fillOpacity}
       />
-      <Text
+      <RaphaelBaseText
         x={x + 14}
         y={y + height / 2}
         text={text}
         transform={textTransform}
       />
-    </Set>);
+    </RaphaelBaseSet>);
   }
 }

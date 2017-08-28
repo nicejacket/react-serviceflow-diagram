@@ -1,20 +1,36 @@
-import { default as RaphaelCircle } from './Circle';
-import { default as RaphaelElement } from './Element';
-import RaphaelEllipse from './Ellipse';
-import RaphaelFlowArrow from './FlowArrow';
-import RaphaelImage from './Image';
-import RaphaelLine from './Line';
-import RaphaelMultilineText from './MultilineText';
-import RaphaelPaper from './Paper';
-import RaphaelPath from './Path';
-import RaphaelPentagon from './Pentagon';
-import RaphaelPrint from './Print';
-import RaphaelRect from './Rect';
-import RaphaelRhombus from './Rhombus';
-import RaphaelSet from './Set';
-import RaphaelText from './Text';
+import { RaphaelBaseAssociation } from './RaphaelBaseAssociation';
+export { RaphaelBaseArrowLeft, RaphaelBaseArrowLeftProps } from './RaphaelBaseArrowLeft';
+export { RaphaelBaseAssociation, RaphaelBaseAssociationProps } from './RaphaelBaseAssociation';
+export { RaphaelBaseCircle, RaphaelBaseCircleProps } from './RaphaelBaseCircle';
+export { RaphaelBaseElement } from './RaphaelBaseElement';
+export { RaphaelBaseEllipse, RaphaelBaseEllipseProps } from './RaphaelBaseEllipse';
+export { RaphaelBaseFlowArrow, RaphaelBaseFlowArrowProps } from './RaphaelBaseFlowArrow';
+export { RaphaelBaseImage, RaphaelBaseImageProps } from './RaphaelBaseImage';
+export { RaphaelBaseLine, RaphaelBaseLineProps } from './RaphaelBaseLine';
+export { RaphaelBaseMultilineText, RaphaelBaseMultilineTextProps } from './RaphaelBaseMultilineText';
+export { RaphaelBasePaper, RaphaelBasePaperProps } from './RaphaelBasePaper';
+export { RaphaelBasePath, RaphaelBasePathProps } from './RaphaelBasePath';
+export { RaphaelBasePentagon, RaphaelBasePentagonProps } from './RaphaelBasePentagon';
+export { RaphaelBasePrint, RaphaelBasePrintProps } from './RaphaelBasePrint';
+export { RaphaelBaseRect, RaphaelBaseRectProps } from './RaphaelBaseRect';
+export { RaphaelBaseRhombus, RaphaelBaseRhombusProps } from './RaphaelBaseRhombus';
+export { RaphaelBaseSet, RaphaelBaseSetProps, RaphaelBaseSetState } from './RaphaelBaseSet';
+export { RaphaelBaseText, RaphaelBaseTextProps } from './RaphaelBaseText';
 
-export {
-  RaphaelCircle,
-  RaphaelElement,
-};
+export * from './RaphaelBaseArrowLeft';
+export * from './RaphaelBaseAssociation';
+export * from './RaphaelBaseCircle';
+export * from './RaphaelBaseElement';
+export * from './RaphaelBaseEllipse';
+export * from './RaphaelBaseFlowArrow';
+export * from './RaphaelBaseImage';
+export * from './RaphaelBaseLine';
+export * from './RaphaelBaseMultilineText';
+export * from './RaphaelBasePaper';
+export * from './RaphaelBasePath';
+export * from './RaphaelBasePentagon';
+export * from './RaphaelBasePrint';
+export * from './RaphaelBaseRect';
+export * from './RaphaelBaseRhombus';
+export * from './RaphaelBaseSet';
+export * from './RaphaelBaseText';

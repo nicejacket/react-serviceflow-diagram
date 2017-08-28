@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Path from '../Path';
 import BaseElementProps from '../../BaseElementProps';
+import { RaphaelBasePath } from '../RaphaelBasePath';
 
 export interface RaphaelIconCrossProps extends BaseElementProps {}
 
@@ -22,6 +22,6 @@ export default class RaphaelIconCross extends React.Component<RaphaelIconCrossPr
       'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + 3 * quarterHeight - 3) +
       'M' + (x + quarterWidth + 3) + ' ' + (y + 3 * quarterHeight - 3) +
       'L' + (x + 3 * quarterWidth - 3) + ' ' + (y + quarterHeight + 3);
-    return <Path d={PATH} {...others} />;
+    return <RaphaelBasePath d={PATH} {...others} />;
   }
 }

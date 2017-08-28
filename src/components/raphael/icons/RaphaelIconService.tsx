@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../../BaseElementProps';
-import Path from '../Path';
+import { RaphaelBasePath } from '../RaphaelBasePath';
 
 const PATH = 'M 8,1 7.5,2.875 c 0,0 -0.02438,0.250763 -0.40625,0.4375 C 7.05724,3.330353 7.04387,3.358818 7,3.375' +
       ' 6.6676654,3.4929791 6.3336971,3.6092802 6.03125,3.78125 6.02349,3.78566 6.007733,3.77681 6,3.78125 5.8811373,3.761018' +
@@ -26,7 +26,7 @@ export interface RaphaelIconServiceProps extends BaseElementProps {}
 export default class RaphaelIconService extends React.Component<RaphaelIconServiceProps, any> {
   render() {
     const { x, y, stroke, fill } = this.props;
-    return (<Path
+    return (<RaphaelBasePath
       d={PATH}
       stroke={stroke}
       fill={fill}

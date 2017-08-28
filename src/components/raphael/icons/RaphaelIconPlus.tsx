@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Path from '../Path';
 import BaseElementProps from '../../BaseElementProps';
+import { RaphaelBasePath } from '../RaphaelBasePath';
 
 export interface RaphaelIconPlusProps extends BaseElementProps {}
 
@@ -20,6 +20,6 @@ export default class RaphaelIconPlus extends React.Component<RaphaelIconPlusProp
     const PATH = 'M 6.75,16 L 25.75,16 M 16,6.75 L 16,25.75';
     const transform = `T${px},${py}`;
 
-    return <Path d={PATH} {...this.props} transform={transform} />;
+    return <RaphaelBasePath d={PATH} {...this.props} transform={transform} />;
   }
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Lane from './Lane';
-import Set from '../raphael/Set';
+import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 
 export interface LanesProps {
   lanes?: Array<any>;
@@ -17,8 +17,8 @@ export default class Lanes extends React.Component<LanesProps, any> {
     const { lanes } = this.props;
     if (!lanes || !lanes.length) return null;
 
-    return (<Set>
+    return (<RaphaelBaseSet>
       { this.props.lanes.map((lane, i) => <Lane key={i} text={lane.name} {...lane} />) }
-    </Set>);
+    </RaphaelBaseSet>);
   }
 }

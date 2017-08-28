@@ -1,5 +1,5 @@
 import * as Raphael from 'raphael';
-import { PaperProps } from './Paper';
+import { RaphaelBasePaperProps } from './RaphaelBasePaper';
 
 export interface RcRaphaelPaper extends RaphaelPaper {
   id?: string;
@@ -127,7 +127,7 @@ export function createSet(parentId: string, props: any, callback: (set: RaphaelS
   return set;
 }
 
-export function updatePaper(paper: RcRaphaelPaper, props: PaperProps) {
+export function updatePaper(paper: RcRaphaelPaper, props: RaphaelBasePaperProps) {
   const { width, height } = props;
   paper.setSize(width, height);
 }

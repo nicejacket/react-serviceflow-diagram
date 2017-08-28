@@ -1,8 +1,8 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
-import Rect from '../raphael/Rect';
-import MultilineText from '../raphael/MultilineText';
+import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
+import { RaphaelBaseMultilineText } from '../raphael/RaphaelBaseMultilineText';
 import { getStrokeAndFill } from '../Utils';
 import { MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
 
@@ -29,7 +29,7 @@ export default class Task extends React.Component<TaskProps, any> {
     }
 
     return (<Tooltip data={data}>
-      <Rect
+      <RaphaelBaseRect
         id={data.id}
         x={x}
         y={y}
@@ -41,7 +41,7 @@ export default class Task extends React.Component<TaskProps, any> {
         fill={fill}
         fillOpacity={fillOpacity}
       />
-      <MultilineText
+      <RaphaelBaseMultilineText
         x={x + width / 2}
         y={y + height / 2}
         color={stroke}

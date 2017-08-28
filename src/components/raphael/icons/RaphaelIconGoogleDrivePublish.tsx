@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../../BaseElementProps';
-import Image from '../Image';
+import { RaphaelBaseImage } from '../RaphaelBaseImage';
 
 const DATA = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBA
       JqcGAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIHSURBVDiNpVI7a1RREP7mzLl3d+9mScxaiBLFwohxQcXCwjwao/gqFAQhRGOphQgmgs9oGxaV
@@ -14,7 +14,7 @@ export interface RaphaelIconGoogleDrivePublishProps extends BaseElementProps {}
 
 export default class RaphaelIconGoogleDrivePublish extends React.Component<RaphaelIconGoogleDrivePublishProps, any> {
   render() {
-    return (<Image
+    return (<RaphaelBaseImage
       src={DATA}
       width={16}
       height={17}

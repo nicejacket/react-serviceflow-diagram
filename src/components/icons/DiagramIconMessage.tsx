@@ -2,9 +2,7 @@ import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import RaphaelIconMessage from '../raphael/icons/RaphaelIconMessage';
 
-export interface DiagramIconMessageProps extends BaseElementProps {
-
-}
+export interface DiagramIconMessageProps extends BaseElementProps {}
 
 export default class DiagramIconMessage extends React.Component<DiagramIconMessageProps, any> {
   static defaultProps = {

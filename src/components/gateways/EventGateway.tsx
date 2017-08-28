@@ -1,9 +1,8 @@
 import * as React from 'react';
-import Set from '../raphael/Set';
 import Gateway from './Gateway';
 import BaseElementProps from '../BaseElementProps';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
-import Pentagon from '../raphael/Pentagon';
+import { RaphaelBasePentagon } from '../raphael/RaphaelBasePentagon';
 import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
 
 export interface EventGatewayProps extends BaseElementProps {
@@ -53,7 +52,7 @@ export default class EventGateway extends React.Component<EventGatewayProps, any
         fill={fill}
         fillOpacity={fillOpacity}
       />
-      <Pentagon
+      <RaphaelBasePentagon
         x={x}
         y={y}
         stroke={stroke}

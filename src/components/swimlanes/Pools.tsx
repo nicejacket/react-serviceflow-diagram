@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Set from '../raphael/Set';
+import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import Pool from './Pool';
 import Lanes from './Lanes';
 
@@ -20,15 +20,15 @@ export default class Pools extends React.Component<PoolsProps, any> {
 
     if (!pools || !pools.length) return null;
 
-    return (<Set>
+    return (<RaphaelBaseSet>
       {pools.map((pool, i) => {
           const { lanes, ...others } = pool;
-          return (<Set key={i}>
+          return (<RaphaelBaseSet key={i}>
             <Pool {...others} />
             <Lanes lanes={pool.lanes} />
-          </Set>);
+          </RaphaelBaseSet>);
         })
       }
-    </Set>);
+    </RaphaelBaseSet>);
   }
 }

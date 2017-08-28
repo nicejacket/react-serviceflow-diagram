@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Paper from './raphael/Paper';
-import { DiagramModel, DiagramFlowElementModel } from '../models/DiagramModel';
+import { RaphaelBasePaper } from './raphael/RaphaelBasePaper';
+import { DiagramModel, DiagramFlowElementModel, DiagramAssociationElementModel } from '../models/DiagramModel';
 import StartEvent from './events/StartEvent';
 import { DiagramElementModel } from '../models/DiagramModel';
 import ExclusiveGateway from './gateways/ExclusiveGateway';
@@ -22,6 +22,7 @@ import EventSubProcess from './structural/EventSubProcess';
 import SequenceFlow from './SequenceFlow';
 import Pools from './swimlanes/Pools';
 import { setTotalColors } from '../services/DiagramColorService';
+import Association from './Association';
 
 const PADDING_WIDTH: number = 60;
 const PADDING_HEIGHT: number = 60;
@@ -112,8 +113,8 @@ export default class Diagram extends React.Component<DiagramProps, any> {
   }
 
   render() {
-    const { diagram: { diagramBeginX, diagramBeginY, diagramWidth, diagramHeight, elements, flows, pools } } = this.props;
-    return (<Paper
+    const { diagram: { diagramBeginX, diagramBeginY, diagramWidth, diagramHeight, elements, flows, pools, associations } } = this.props;
+    return (<RaphaelBasePaper
       x={diagramBeginX}
       y={diagramBeginY}
       width={diagramWidth + 10}
@@ -123,7 +124,8 @@ export default class Diagram extends React.Component<DiagramProps, any> {
     >
       {elements.map(this.renderElement)}
       {flows.map((flow: DiagramFlowElementModel) => <SequenceFlow flow={flow} key={flow.id} />)}
+      {associations.map((association: DiagramAssociationElementModel) => <Association association={association} key={association.id} />)}
       {pools ? <Pools pools={pools} /> : null}
-    </Paper>);
+    </RaphaelBasePaper>);
   }
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Set from '../raphael/Set';
-import Element from '../raphael/Element';
+import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import './Tooltip.less';
 
 const CLS_PREFIX = 'sf-tooltip-diagram';
@@ -37,7 +36,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   componentDidMount() {
     setTimeout(() => {
-      this.loopSet((this.root as Set).getSet());
+      this.loopSet((this.root as RaphaelBaseSet).getSet());
       window.addEventListener('scroll', this.onMouseLevelAndScrollHandler, true);
       window.addEventListener('touchstart', this.onMouseLevelAndScrollHandler);
     }, 0);
@@ -125,7 +124,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     const cls = this.state.visible ? `${CLS_PREFIX}-tooltip is-active` : `${CLS_PREFIX}-tooltip`;
     const { data = {} } = this.props;
 
-    return (<Set ref={node => { this.root = node; }}>
+    return (<RaphaelBaseSet ref={node => { this.root = node; }}>
       <div ref={node => { this.tooltip = node;}} className={cls} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLevelAndScrollHandler}>
         <div className={`${CLS_PREFIX}-tooltip-header`}>{data.type} {data.name || data.id}</div>
         <div className={`${CLS_PREFIX}-tooltip-body`}>
@@ -144,6 +143,6 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
         </div>
       </div>
       {this.props.children}
-    </Set>);
+    </RaphaelBaseSet>);
   }
 }
