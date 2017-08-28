@@ -23,6 +23,7 @@ import SequenceFlow from './SequenceFlow';
 import Pools from './swimlanes/Pools';
 import { setTotalColors } from '../services/DiagramColorService';
 import Association from './Association';
+import Task from './activities/Task';
 
 const PADDING_WIDTH: number = 60;
 const PADDING_HEIGHT: number = 60;
@@ -87,6 +88,9 @@ export default class Diagram extends React.Component<DiagramProps, any> {
         return <ParallelGatway {...props} key={id} />;
       case 'EndEvent':
         return <EndEvent {...props} key={id} />;
+      case 'CallActivity':
+      case 'Task':
+        return <Task {...props} text={name} key={id} />;
       case 'UserTask':
         return <UserTask {...props} text={name} key={id} />;
       case 'ManualTask':

@@ -21,12 +21,6 @@ export default class Task extends React.Component<TaskProps, any> {
   render() {
     const { x, y, width, height, radius, text, data, children } = this.props;
     const {stroke, strokeWidth, fill, fillOpacity} = getStrokeAndFill(data);
-    const childProps: any = {};
-
-    if (stroke !== MAIN_STROKE_COLOR) {
-      childProps.stroke = stroke;
-      childProps.fill = stroke;
-    }
 
     return (<Tooltip data={data}>
       <RaphaelBaseRect
@@ -48,9 +42,7 @@ export default class Task extends React.Component<TaskProps, any> {
         text={text}
         width={width}
       />
-      {
-        React.Children.map(children, (child: any) => React.cloneElement(child, childProps))
-      }
+      {children}
     </Tooltip>);
   }
 }
