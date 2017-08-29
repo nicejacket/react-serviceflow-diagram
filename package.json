@@ -1,6 +1,6 @@
 {
   "name": "react-serviceflow-diagram",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "react版本的serviceflow diagram",
   "main": "dist/index.js",
   "scripts": {
@@ -36,9 +36,11 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "@types/prop-types": "^15.5.1",
     "@types/raphael": "^2.1.30",
     "@types/react": "^16.0.2",
     "@types/react-dom": "^15.5.2",
+    "prop-types": "^15.5.10",
     "raphael": "^2.2.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

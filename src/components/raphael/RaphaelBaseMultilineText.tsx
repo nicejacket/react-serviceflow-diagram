@@ -39,7 +39,7 @@ export class RaphaelBaseMultilineText extends React.Component<RaphaelBaseMultili
       'text': pText
     });
     let letterWidth = textPaper.getBBox().width / pText.length;
-    let removedLineBreaks = text.split('\n');
+    let removedLineBreaks = text.replace('(', ' (').split('\n');
     let actualRowLength = 0;
     let formattedText: Array<any> = [];
     removedLineBreaks.forEach(senteces => {

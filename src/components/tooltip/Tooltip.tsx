@@ -33,8 +33,10 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
   root: React.ReactInstance = null;
   tooltip: React.ReactInstance = null;
   leave: boolean = true;
+  unmounted: boolean = false;
 
   componentDidMount() {
+    this.unmounted = false;
     setTimeout(() => {
       this.loopSet((this.root as RaphaelBaseSet).getSet());
       window.addEventListener('scroll', this.onMouseLevelAndScrollHandler, true);
@@ -43,6 +45,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
   }
 
   componentWillUnmount() {
+    this.unmounted = true;
     window.removeEventListener('scroll', this.onMouseLevelAndScrollHandler);
     window.removeEventListener('touchstart', this.onMouseLevelAndScrollHandler);
   }
@@ -111,7 +114,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   onHideHandler = () => {
     if (this.leave) {
-      this.setState({ visible: false });
+      !this.unmounted && this.setState({ visible: false });
     }
   }
 

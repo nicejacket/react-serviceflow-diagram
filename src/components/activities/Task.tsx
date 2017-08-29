@@ -38,7 +38,6 @@ export default class Task extends React.Component<TaskProps, any> {
       <RaphaelBaseMultilineText
         x={x + width / 2}
         y={y + height / 2}
-        color={stroke}
         text={text}
         width={width}
       />

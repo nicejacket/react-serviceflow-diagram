@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { RaphaelBasePaper } from './raphael/RaphaelBasePaper';
 import { DiagramModel, DiagramFlowElementModel, DiagramAssociationElementModel } from '../models/DiagramModel';
 import StartEvent from './events/StartEvent';
@@ -37,6 +38,14 @@ export interface DiagramProps {
 export default class Diagram extends React.Component<DiagramProps, any> {
   static defaultProps = {
     onClick: () => {},
+  }
+
+  static childContextTypes = {
+    onClick: PropTypes.func,
+  }
+
+  getChildContext() {
+    return { onClick: this.props.onClick };
   }
 
   constructor(props: DiagramProps) {
@@ -124,7 +133,6 @@ export default class Diagram extends React.Component<DiagramProps, any> {
       width={diagramWidth + 10}
       height={diagramHeight}
       onMouseEnter={this.onMouseEnterHandler}
-      onClick={this.props.onClick}
     >
       {elements.map(this.renderElement)}
       {flows.map((flow: DiagramFlowElementModel) => <SequenceFlow flow={flow} key={flow.id} />)}

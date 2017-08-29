@@ -8,7 +8,7 @@ export class Polyline {
     path: any = [];
     anchors: any = [];
     strokeWidth: any = 1;
-    radius: any = 1;
+    radius: any = 15;
     showDetails: any = false;
     element: any = null;
     isDefaultConditionAvailable: any = false;
@@ -252,7 +252,6 @@ export class Polyline {
                     by = cy - dy1,
 
                     zx = nextSrcX, zy = nextSrcY;
-
             } else if (i === 1 && this.getAnchorsCount() === 2) {
                 var AO = this.getLineLength(i - 1);
                 if (AO < this.radius) {
