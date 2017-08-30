@@ -1,6 +1,6 @@
 {
   "name": "react-serviceflow-diagram",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "react版本的serviceflow diagram",
   "main": "dist/index.js",
   "scripts": {
