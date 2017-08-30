@@ -65,7 +65,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     setTimeout(this.onShowTooltipHandler.bind(this, e), 10);
   }
 
-  onShowTooltipHandler = (e: any) => {
+  onShowTooltipHandler = (e: any): any => {
     const tooltip: any = ReactDOM.findDOMNode(this.tooltip);
     const props = e.target.getBoundingClientRect();
     const top = props.top + (props.height / 2);

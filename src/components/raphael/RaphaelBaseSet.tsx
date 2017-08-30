@@ -21,7 +21,7 @@ export class RaphaelBaseSet extends React.Component<RaphaelBaseSetProps, Raphael
   }
 
   componentDidMount() {
-    const root = ReactDOM.findDOMNode(this.refs.root);
+    const root = ReactDOM.findDOMNode(this.root);
     const parentId = root.parentElement.getAttribute('data-id');
     const set = createSet(parentId, this.props, this.handleLoad.bind(this));
     this.set = set;

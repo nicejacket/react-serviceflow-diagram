@@ -19,20 +19,32 @@ export class RaphaelBaseFlowArrow extends React.Component<RaphaelBaseFlowArrowPr
 
   state = { stroke: null as any, strokeWidth: null as any };
   line: Polyline = null;
-  pathLine: RaphaelBasePath = null;
-  pathArrow: RaphaelBasePath = null;
+  pathLine: RaphaelBasePath;
+  pathArrow: RaphaelBasePath;
 
   onMouseOverHandler = () => {
-    this.setState({ stroke: ACTIVITY_STROKE_COLOR, strokeWidth: SEQUENCEFLOW_STROKE + 1 });
+    const style = { 'stroke-width': SEQUENCEFLOW_STROKE + 2, };
+    this.pathLine.getElement().attr(style);
+    this.pathArrow.getElement().attr(style);
   }
 
   onMouseOutHandler = () => {
-    this.setState({ stroke: null, strokeWidth: null });
+    const style = { 'stroke-width': SEQUENCEFLOW_STROKE, };
+    this.pathLine.getElement().attr(style);
+    this.pathArrow.getElement().attr(style);
+  }
+
+  bindEvent = () => {
+    if (!this.pathLine || !this.pathArrow) {
+      setTimeout(this.bindEvent, 50);
+    } else {
+      this.pathLine.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
+      this.pathArrow.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
+    }
   }
 
   componentDidMount() {
-    this.pathLine.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
-    this.pathArrow.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
+    this.bindEvent();
   }
 
   componentWillUnmount() {
@@ -50,8 +62,8 @@ export class RaphaelBaseFlowArrow extends React.Component<RaphaelBaseFlowArrowPr
     return (<RaphaelBasePath
       id={flow.id}
       d={polyline.path}
-      stroke={this.state.stroke || stroke}
-      strokeWidth={this.state.strokeWidth || SEQUENCEFLOW_STROKE}
+      stroke={stroke}
+      strokeWidth={SEQUENCEFLOW_STROKE}
       ref={node => { this.pathLine = node; }}
     />);
   }
@@ -68,8 +80,8 @@ export class RaphaelBaseFlowArrow extends React.Component<RaphaelBaseFlowArrowPr
     return (<RaphaelBasePath
       id={this.props.flow.id}
       d={arrowHead}
-      stroke={this.state.stroke || stroke}
-      strokeWidth={this.state.strokeWidth || SEQUENCEFLOW_STROKE}
+      stroke={stroke}
+      strokeWidth={SEQUENCEFLOW_STROKE}
       fill={stroke}
       transform={transform}
       ref={node => { this.pathArrow = node; }}
