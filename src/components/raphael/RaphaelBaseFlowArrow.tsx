@@ -5,7 +5,7 @@ import { Polyline } from './Polyline';
 import { RaphaelBasePath } from './RaphaelBasePath';
 import * as Raphael from 'raphael';
 import { getStrokeAndFill } from '../Utils';
-import { ACTIVITY_STROKE_COLOR } from '../../services/DiagramColorService';
+import { ACTIVITY_STROKE_COLOR, ACTIVE_STROKE_COLOR } from '../../services/DiagramColorService';
 
 const ARROW_WIDTH = 4;
 const SEQUENCEFLOW_STROKE = 2;
@@ -23,13 +23,15 @@ export class RaphaelBaseFlowArrow extends React.Component<RaphaelBaseFlowArrowPr
   pathArrow: RaphaelBasePath;
 
   onMouseOverHandler = () => {
-    const style = { 'stroke-width': SEQUENCEFLOW_STROKE + 2, };
+    const style = { 'stroke-width': SEQUENCEFLOW_STROKE + 2, stroke: ACTIVE_STROKE_COLOR };
     this.pathLine.getElement().attr(style);
     this.pathArrow.getElement().attr(style);
   }
 
   onMouseOutHandler = () => {
-    const style = { 'stroke-width': SEQUENCEFLOW_STROKE, };
+    const { flow } = this.props;
+    const { stroke } = getStrokeAndFill(flow);
+    const style = { 'stroke-width': SEQUENCEFLOW_STROKE, stroke };
     this.pathLine.getElement().attr(style);
     this.pathArrow.getElement().attr(style);
   }

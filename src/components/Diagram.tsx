@@ -57,24 +57,6 @@ export default class Diagram extends React.Component<DiagramProps, any> {
     this.setState({ diagram });
   }
 
-  onMouseEnterHandler = (e: any) => {
-    // const id = e.target.id;
-    // const newTotalColors: any = {};
-    // const newDiagram: DiagramModel = (Object as any).assign({}, this.state.diagram);
-
-    // newTotalColors[id] = true;
-    // setTotalColors(newTotalColors);
-
-    // newDiagram.elements.forEach(ele => {
-    //   ele.current = ele.id === id;
-    // });
-    // newDiagram.flows.forEach(flow => {
-    //   flow.current = flow.id === id;
-    // });
-
-    // this.setState({ diagram: newDiagram });
-  }
-
   renderElement = (ele: DiagramElementModel) => {
     if (this.props.customerActivities) {
       const element = this.props.customerActivities(ele);
@@ -131,7 +113,6 @@ export default class Diagram extends React.Component<DiagramProps, any> {
       y={diagramBeginY}
       width={diagramWidth + 10}
       height={diagramHeight}
-      onMouseEnter={this.onMouseEnterHandler}
     >
       {elements.map(this.renderElement)}
       {flows.map((flow: DiagramFlowElementModel) => <SequenceFlow flow={flow} key={flow.id} />)}

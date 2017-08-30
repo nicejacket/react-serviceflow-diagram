@@ -53,6 +53,10 @@ export class RaphaelBaseMultilineText extends React.Component<RaphaelBaseMultili
     this.setState({ text: formattedText });
   }
 
+  getElement = () => {
+    return this.textPaper.getElement();
+  }
+
   render() {
     const { x, y, color, transform } = this.props;
 

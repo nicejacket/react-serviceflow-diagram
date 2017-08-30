@@ -1,4 +1,5 @@
 const { CheckerPlugin } = require('awesome-typescript-loader')
+const WebpackCleanPlugin = require('webpack-clean');
 const path = require('path');
 
 function DtsBundlePlugin(){}
@@ -10,7 +11,7 @@ DtsBundlePlugin.prototype.apply = function (compiler) {
       name: 'react-serviceflow-diagram',
       main: './dist/index.d.ts',
       out: 'index.d.ts',
-      removeSource: false,
+      removeSource: true,
       outputAsModuleFolder: true // to use npm in-package typings
     });
   });
@@ -58,6 +59,11 @@ module.exports = {
   ],
   plugins: [
     new CheckerPlugin(),
-    new DtsBundlePlugin()
+    new DtsBundlePlugin(),
+    new WebpackCleanPlugin([
+      'dist/components',
+      'dist/services',
+      'dist/models'
+    ], path.join(__dirname, './'))
   ]
 };

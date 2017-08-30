@@ -1,6 +1,7 @@
 export const CURRENT_COLOR = '#66AA66';
 export const COMPLETED_COLOR = '#2674AA';
 export const ACTIVITY_STROKE_COLOR = '#bbbbbb';
+export const ACTIVE_STROKE_COLOR = '#cec8f3';
 export const MAIN_STROKE_COLOR = '#585858';
 
 export const ACTIVITY_FILL_COLOR = '#f9f9f9';
