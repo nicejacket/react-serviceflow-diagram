@@ -29,10 +29,10 @@ export class RaphaelBasePaper extends React.Component<RaphaelBasePaperProps, any
     height: 100,
     container: {
       style: {},
-      className: '',
+      className: ''
     },
-    viewbox: '',
-  }
+    viewbox: ''
+  };
 
   paper: any = null;
   container: React.ReactInstance = null;
@@ -48,10 +48,7 @@ export class RaphaelBasePaper extends React.Component<RaphaelBasePaperProps, any
     const container = ReactDOM.findDOMNode(this.container);
     const paper = createPaper(container, this.props);
     this.paper = paper;
-    this.setState({
-      loaded: true,
-      id: paper.id,
-    });
+    this.setState({ loaded: true, id: paper.id });
   }
 
   componentDidUpdate() {
@@ -64,7 +61,7 @@ export class RaphaelBasePaper extends React.Component<RaphaelBasePaperProps, any
 
   onClickHandler= (e: any) => {
     const { onClick } = this.props;
-    if (onClick && e.target.id) onClick(e.target.id);
+    if (onClick && e.target.id) { onClick(e.target.id); }
   }
 
   onMouseEnterHandler = (e: any) => {
@@ -79,18 +76,18 @@ export class RaphaelBasePaper extends React.Component<RaphaelBasePaperProps, any
 
   genElementsContainer() {
     if (this.state.loaded) {
-      return (<div className='raphael-paper' data-id={this.state.id}>
+      return (<div className="raphael-paper" data-id={this.state.id}>
         {this.props.children}
       </div>);
     } else {
-      return (<div className='raphael-paper' />);
+      return (<div className="raphael-paper" />);
     }
   }
 
   render() {
     const eleContainer = this.genElementsContainer();
     const { style, className, ...others } = this.props.container;
-    return (<div className='react-raphael'>
+    return (<div className="react-raphael">
       {eleContainer}
       <div
         ref={node => { this.container = node; }}

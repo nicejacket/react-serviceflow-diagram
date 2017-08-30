@@ -16,8 +16,8 @@ export interface RaphaelBaseAssociationProps extends BaseElementProps {
 export class RaphaelBaseAssociation extends React.Component<RaphaelBaseAssociationProps, any> {
   static defaultProps = {
     x: 0,
-    y: 0,
-  }
+    y: 0
+  };
 
   line: Polyline = null;
 

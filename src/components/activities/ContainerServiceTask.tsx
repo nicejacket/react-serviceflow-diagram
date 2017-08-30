@@ -17,20 +17,20 @@ export default class ContainerServiceTask extends React.Component<ContainerServi
   render() {
     const { type, ...others } = this.props;
     switch (type) {
-      case 'mail':
-        return <SendTask {...others} />;
-      case 'camel':
-        return <CamelTask {...others} />;
-      case 'mule':
-        return <MuleTask {...others} />;
-      case 'rest_call':
-        return <RestCallTask {...others} />;
-      case 'google_drive_publish':
-        return <GoogleDrivePublishTask {...others} />;
-      case 'box_publish':
-        return <BoxPublishTask {...others} />;
-      default:
-        return <ServiceTask {...others} />;
+    case 'mail':
+      return <SendTask {...others} />;
+    case 'camel':
+      return <CamelTask {...others} />;
+    case 'mule':
+      return <MuleTask {...others} />;
+    case 'rest_call':
+      return <RestCallTask {...others} />;
+    case 'google_drive_publish':
+      return <GoogleDrivePublishTask {...others} />;
+    case 'box_publish':
+      return <BoxPublishTask {...others} />;
+    default:
+      return <ServiceTask {...others} />;
     }
   }
 }

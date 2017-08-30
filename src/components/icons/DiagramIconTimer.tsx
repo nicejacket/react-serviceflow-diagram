@@ -37,13 +37,13 @@ export default class DiagramIconTimer extends React.Component<DiagramIconTimerPr
     height: 20,
     circle: {
       stroke: 'black',
-      fill: 'none',
+      fill: 'none'
     },
     timer: {
       stroke: 'none',
       fill: '#585858'
     }
-  }
+  };
 
   render() {
     const { x, y, width, height, circle, timer, data } = this.props;

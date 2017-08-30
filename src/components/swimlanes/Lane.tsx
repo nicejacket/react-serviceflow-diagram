@@ -17,8 +17,8 @@ export default class Lane extends React.Component<LaneProps, any> {
     stroke: '#000',
     fill: 'none',
     strokeWidth: 1,
-    radius: 0,
-  }
+    radius: 0
+  };
 
   render() {
     const { x, y, width, height, radius, stroke, strokeWidth, fill, fillOpacity, text, textTransform } = this.props;

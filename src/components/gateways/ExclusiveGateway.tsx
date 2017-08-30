@@ -10,8 +10,8 @@ export default class ExclusiveGateway extends React.Component<ExclusiveGatewayPr
   static defaultProps = {
     x: 0,
     y: 0,
-    strokeWidth: 3,
-  }
+    strokeWidth: 3
+  };
 
   render() {
     const { x, y, width, height, strokeWidth, data } = this.props;

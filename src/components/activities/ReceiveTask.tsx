@@ -11,6 +11,6 @@ export default class ReceiveTask extends React.Component<ReceiveTaskProps, any> 
   render() {
     return (<Task {...this.props}>
       <DiagramIconReceiveTask {...this.props} />
-    </Task>)
+    </Task>);
   }
 }

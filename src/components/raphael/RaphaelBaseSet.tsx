@@ -12,18 +12,17 @@ export interface RaphaelBaseSetState {
 }
 
 export class RaphaelBaseSet extends React.Component<RaphaelBaseSetProps, RaphaelBaseSetState> {
+  set: RaphaelSet = null;
+  root: React.ReactInstance;
+
   constructor(props: RaphaelBaseSetProps) {
     super(props);
-    this.state = {
-      loaded: false
-    };
+    this.state = { loaded: false };
   }
-
-  set: RaphaelSet = null;
 
   componentDidMount() {
     const root = ReactDOM.findDOMNode(this.refs.root);
-    const parentId = root.parentElement.getAttribute("data-id");
+    const parentId = root.parentElement.getAttribute('data-id');
     const set = createSet(parentId, this.props, this.handleLoad.bind(this));
     this.set = set;
     this.setState({
@@ -48,9 +47,9 @@ export class RaphaelBaseSet extends React.Component<RaphaelBaseSetProps, Raphael
 
   render() {
     if (this.state.loaded) {
-      return (<div ref="root" className="raphael-set" data-id={this.state.id}>{this.props.children}</div>);
+      return (<div ref={node => { this.root = node; }} className="raphael-set" data-id={this.state.id}>{this.props.children}</div>);
     } else {
-      return (<div ref="root" className="raphael-set" data-id={this.state.id} />);
+      return (<div ref={node => { this.root = node; }} className="raphael-set" data-id={this.state.id} />);
     }
   }
 }

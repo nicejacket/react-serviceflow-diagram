@@ -9,8 +9,8 @@ export default class DiagramIconUserTask extends React.Component<DiagramIconUser
     x: 0,
     y: 0,
     stroke: 'none',
-    fill: '#d1b575',
-  }
+    fill: '#d1b575'
+  };
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;

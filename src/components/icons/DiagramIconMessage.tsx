@@ -12,8 +12,8 @@ export default class DiagramIconMessage extends React.Component<DiagramIconMessa
     height: 40,
     fill: '#585858',
     strokeWidth: 1,
-    stroke: 'none',
-  }
+    stroke: 'none'
+  };
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;

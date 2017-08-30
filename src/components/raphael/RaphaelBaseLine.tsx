@@ -13,12 +13,7 @@ export interface RaphaelBaseLineProps {
 }
 
 export class RaphaelBaseLine extends React.Component<RaphaelBaseLineProps, any> {
-  static defaultProps = {
-    x1: 0,
-    y1: 0,
-    x2: 0,
-    y2: 0,
-  }
+  static defaultProps = { x1: 0, y1: 0, x2: 0, y2: 0 };
 
   path: RaphaelBasePath = null;
 
@@ -32,11 +27,13 @@ export class RaphaelBaseLine extends React.Component<RaphaelBaseLineProps, any> 
     if (animate) {
       if (animate.anim) {
         for (const key in animate.anim) {
-          animate.anim[key].x1 = animate.anim[key].x1 || x1;
-          animate.anim[key].x2 = animate.anim[key].x2 || x2;
-          animate.anim[key].y1 = animate.anim[key].y1 || y1;
-          animate.anim[key].y2 = animate.anim[key].y2 || y2;
-          animate.anim[key].path = ['M', animate.anim[key].x1, animate.anim[key].y1, 'L', animate.anim[key].x2, animate.anim[key].y2];
+          if (animate.anim.hasOwnProperty(key)) {
+            animate.anim[key].x1 = animate.anim[key].x1 || x1;
+            animate.anim[key].x2 = animate.anim[key].x2 || x2;
+            animate.anim[key].y1 = animate.anim[key].y1 || y1;
+            animate.anim[key].y2 = animate.anim[key].y2 || y2;
+            animate.anim[key].path = ['M', animate.anim[key].x1, animate.anim[key].y1, 'L', animate.anim[key].x2, animate.anim[key].y2];
+          }
         }
       } else {
         animate.x1 = animate.x1 || x1;

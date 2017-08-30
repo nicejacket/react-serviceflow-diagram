@@ -11,6 +11,6 @@ export default class BoxPublishTask extends React.Component<BoxPublishTaskProps,
   render() {
     return (<Task {...this.props}>
       <DiagramIconBoxPublishTask {...this.props} />
-    </Task>)
+    </Task>);
   }
 }

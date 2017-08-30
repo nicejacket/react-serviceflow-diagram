@@ -11,8 +11,8 @@ export default class DiagramIconSignal extends React.Component<DiagramIconSignal
     width: 40,
     height: 40,
     stroke: 'black',
-    strokeWidth: 1,
-  }
+    strokeWidth: 1
+  };
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;

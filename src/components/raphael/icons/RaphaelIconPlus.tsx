@@ -10,8 +10,8 @@ export default class RaphaelIconPlus extends React.Component<RaphaelIconPlusProp
     y: 0,
     width: 40,
     height: 40,
-    strokeWidth: 3,
-  }
+    strokeWidth: 3
+  };
 
   render() {
     const { x, y, width, height } = this.props;

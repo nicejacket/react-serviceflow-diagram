@@ -12,8 +12,8 @@ export default class EndEvent extends React.Component<EndEventProps, any> {
   static defaultProps = {
     radius: 14,
     strokeWidth: 4,
-    iconFill: 'black',
-  }
+    iconFill: 'black'
+  };
 
   render() {
     const { stroke, fill, fillOpacity, data, ...others } = this.props;

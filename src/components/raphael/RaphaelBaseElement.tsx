@@ -3,22 +3,21 @@ import * as ReactDOM from 'react-dom';
 import { createElement, updateElement, removeElement } from './Utils';
 
 export class RaphaelBaseElement extends React.Component<any, any> {
+  element: RaphaelElement;
+  root: React.ReactInstance;
+
   constructor(props: any) {
     super(props);
-    this.state = {
-      loaded: false
-    };
+    this.state = { loaded: false };
   }
-
-  element: RaphaelElement = null;
 
   componentDidMount() {
     const { id } = this.props;
-    const root = ReactDOM.findDOMNode(this.refs.root);
+    const root = ReactDOM.findDOMNode(this.root);
     const parentId = root.parentElement.getAttribute('data-id');
     const element = createElement(parentId, this.props.type, this.props, this.handleLoad.bind(this));
     this.element = element;
-    if (id) this.element.node.id = id;
+    if (id) { this.element.node.id = id; }
     this.setState({ loaded: true });
   }
 
@@ -47,7 +46,7 @@ export class RaphaelBaseElement extends React.Component<any, any> {
   }
 
   render() {
-    if (this.state.loaded) return null;
-    return (<div ref='root' className={`raphael-${this.props.type}`} />);
+    if (this.state.loaded) { return null; }
+    return (<div ref={node => { this.root = node; }} className={`raphael-${this.props.type}`} />);
   }
 }

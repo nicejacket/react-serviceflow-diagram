@@ -12,6 +12,6 @@ export default class Association extends React.Component<AssociationProps, any> 
   render() {
     return (<Tooltip data={this.props.association}>
       <RaphaelBaseAssociation association={this.props.association}/>
-    </Tooltip>)
+    </Tooltip>);
   }
 }

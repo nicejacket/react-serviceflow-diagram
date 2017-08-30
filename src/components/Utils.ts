@@ -12,6 +12,6 @@ export function getStrokeAndFill(data: any): StrokeAndFillType {
     stroke: getBpmnColor(data, MAIN_STROKE_COLOR),
     strokeWidth: getBpmnStrokeWidth(data),
     fill: getFillColour(data.id),
-    fillOpacity: getFillOpacity(),
-  }
+    fillOpacity: getFillOpacity()
+  };
 }

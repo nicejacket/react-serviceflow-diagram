@@ -10,14 +10,10 @@ export interface RaphaelBasePentagonProps extends BaseElementProps {
 }
 
 export class RaphaelBasePentagon extends React.Component<RaphaelBasePentagonProps, any> {
-  static defaultProps = {
-    x: 0,
-    y: 0,
-    strokeLinejoin: 'bevel',
-  }
+  static defaultProps = { x: 0, y: 0, strokeLinejoin: 'bevel' };
 
   render() {
     const { x, y } = this.props;
-    return <RaphaelBasePath d={PATH} transform={`T${x + 4}, ${y + 4}`} />
+    return <RaphaelBasePath d={PATH} transform={`T${x + 4}, ${y + 4}`} />;
   }
 }

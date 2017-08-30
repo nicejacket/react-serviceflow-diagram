@@ -18,17 +18,13 @@ export const POSITION = {
   LEFT: 'left',
   RIGHT: 'right',
   TOP: 'top',
-  BOTTOM: 'bottom',
-}
+  BOTTOM: 'bottom'
+};
 
 export default class Tooltip extends React.Component<TooltipProps, TooltipState> {
-  static defaultProps = {
-    position: POSITION.BOTTOM,
-  }
+  static defaultProps = { position: POSITION.BOTTOM };
 
-  state = {
-    visible: false,
-  }
+  state = { visible: false };
 
   root: React.ReactInstance = null;
   tooltip: React.ReactInstance = null;
@@ -60,12 +56,12 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
         item.touchend(this.onMouseEnterHandler);
         item.mouseout(this.onMouseLevelAndScrollHandler);
       }
-    })
+    });
   }
 
   onMouseEnterHandler = (e: any) => {
     this.leave = false;
-    if (e.persist) e.persist();
+    if (e.persist) { e.persist(); }
     setTimeout(this.onShowTooltipHandler.bind(this, e), 10);
   }
 
@@ -78,7 +74,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
     let left = props.left + (props.width / 2);
 
-    if (this.state.visible) return;
+    if (this.state.visible) { return null; }
 
     if (this.props.position === POSITION.LEFT || this.props.position === POSITION.RIGHT) {
       left = (props.width / 2);
@@ -100,13 +96,13 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     }
 
     if (this.props.position === POSITION.TOP) {
-      tooltip.style.top = props.top - tooltip.offsetHeight - 10 + 'px';
+      tooltip.style.top = `${props.top - tooltip.offsetHeight - 10}px`;
     } else if (this.props.position === POSITION.RIGHT) {
-      tooltip.style.left = props.left + props.width + 10 + 'px';
+      tooltip.style.left = `${props.left + props.width + 10}px`;
     } else if (this.props.position === POSITION.LEFT) {
-      tooltip.style.left = props.left - tooltip.offsetWidth - 10 + 'px';
+      tooltip.style.left = `${props.left - tooltip.offsetWidth - 10}px`;
     } else {
-      tooltip.style.top = props.top + props.height + 10 + 'px';
+      tooltip.style.top = `${props.top + props.height + 10}px`;
     }
 
     this.setState({ visible: true });
@@ -128,21 +124,24 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     const { data = {} } = this.props;
 
     return (<RaphaelBaseSet ref={node => { this.root = node; }}>
-      <div ref={node => { this.tooltip = node;}} className={cls} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLevelAndScrollHandler}>
+      <div
+        ref={node => { this.tooltip = node; }}
+        className={cls}
+        onMouseEnter={this.onMouseEnterHandler}
+        onMouseLeave={this.onMouseLevelAndScrollHandler}
+      >
         <div className={`${CLS_PREFIX}-tooltip-header`}>{data.type} {data.name || data.id}</div>
         <div className={`${CLS_PREFIX}-tooltip-body`}>
           {
             data.name ? <div className={`${CLS_PREFIX}-tooltip-name-property`}>
               <span className={`${CLS_PREFIX}-propertyName`}>Name:</span>
               <span className={`${CLS_PREFIX}-propertyValue`}>{data.name}</span>
-            </div> : null
-          }
+            </div> : null}
           {
             data.properties ? data.properties.map((prop: any) => <div className={`${CLS_PREFIX}-tooltip-general-property`} key={`${prop.name}-${prop.value}`}>
                 <span className={`${CLS_PREFIX}-propertyName`}>{prop.name}</span>
                 <span className={`${CLS_PREFIX}-propertyValue`}>{prop.value}</span>
-              </div>) : null
-          }
+              </div>) : null}
         </div>
       </div>
       {this.props.children}

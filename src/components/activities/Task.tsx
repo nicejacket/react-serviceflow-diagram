@@ -15,8 +15,8 @@ export default class Task extends React.Component<TaskProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
-    radius: 4,
-  }
+    radius: 4
+  };
 
   render() {
     const { x, y, width, height, radius, text, data, children } = this.props;

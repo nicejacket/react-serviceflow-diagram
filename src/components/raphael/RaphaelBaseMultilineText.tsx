@@ -12,11 +12,7 @@ export interface RaphaelBaseMultilineTextProps extends BaseElementProps {
 }
 
 export class RaphaelBaseMultilineText extends React.Component<RaphaelBaseMultilineTextProps, any> {
-  static defaultProps = {
-    x: 0,
-    y: 0,
-    color: '#373e48',
-  }
+  static defaultProps = { x: 0, y: 0, color: '#373e48' };
 
   textPaper: RaphaelBaseText = null;
 
@@ -26,26 +22,19 @@ export class RaphaelBaseMultilineText extends React.Component<RaphaelBaseMultili
     this.state = { text };
   }
 
-  componentDidMount() {
-    const formattedText = this.formatText();
-    this.setState({ text: formattedText });
-  }
-
   private formatText = () => {
     const { width, text } = this.props;
     const textPaper = this.textPaper.getElement();
-    let pText = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    textPaper.attr({
-      'text': pText
-    });
-    let letterWidth = textPaper.getBBox().width / pText.length;
-    let removedLineBreaks = text.replace('(', ' (').split('\n');
+    const pText = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    textPaper.attr({ text: pText });
+    const letterWidth = textPaper.getBBox().width / pText.length;
+    const removedLineBreaks = text.replace('(', ' (').split('\n');
+    const formattedText: any[] = [];
     let actualRowLength = 0;
-    let formattedText: Array<any> = [];
     removedLineBreaks.forEach(senteces => {
-      let words = senteces.split(' ');
+      const words = senteces.split(' ');
       words.forEach(word => {
-        let length = word.length;
+        const length = word.length;
         if (actualRowLength + (length * letterWidth) > width) {
           formattedText.push('\n');
           actualRowLength = 0;
@@ -57,6 +46,11 @@ export class RaphaelBaseMultilineText extends React.Component<RaphaelBaseMultili
       actualRowLength = 0;
     });
     return formattedText.join('');
+  }
+
+  componentDidMount() {
+    const formattedText = this.formatText();
+    this.setState({ text: formattedText });
   }
 
   render() {

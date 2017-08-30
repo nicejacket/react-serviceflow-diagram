@@ -7,13 +7,7 @@ export interface RaphaelBaseRectProps extends BaseElementProps {
 }
 
 export class RaphaelBaseRect extends React.Component<RaphaelBaseRectProps, any> {
-  static defaultProps = {
-    x: 0,
-    y: 0,
-    width: 80,
-    height: 32,
-    r: 0,
-  }
+  static defaultProps = { x: 0, y: 0, width: 80, height: 32, r: 0 };
 
   element: RaphaelBaseElement = null;
 

@@ -7,5 +7,5 @@ export const DIAGRAM_SWIMLANES = {
   Lane,
   Lanes,
   Pool,
-  Pools,
+  Pools
 };

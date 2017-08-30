@@ -18,8 +18,8 @@ export default class EventGateway extends React.Component<EventGatewayProps, any
     strokeWidth: 0.5,
     circleRadiusInner: 10.4,
     circleRadiusOuter: 11.7,
-    pentaStrokeWidth: 1.39999998,
-  }
+    pentaStrokeWidth: 1.39999998
+  };
 
   render() {
     const { x, y, width, height, circleRadiusInner, circleRadiusOuter, pentaStrokeWidth, strokeWidth, data } = this.props;

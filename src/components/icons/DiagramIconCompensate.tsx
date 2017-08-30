@@ -13,8 +13,8 @@ export default class DiagramIconCompensate extends React.Component<DiagramIconCo
     y: 0,
     width: 20,
     height: 20,
-    stroke: '#585858',
-  }
+    stroke: '#585858'
+  };
 
   render() {
     const { x, y, width, height, stroke, strokeWidth, fill, fillOpacity, data } = this.props;

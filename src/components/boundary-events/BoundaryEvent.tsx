@@ -18,8 +18,8 @@ export default class BoundaryEvent extends React.Component<BoundaryEventProps, a
     strokeWidth: 1,
     circleRadiusInner: 12,
     circleRadiusOuter: 15,
-    signalFill: 'none',
-  }
+    signalFill: 'none'
+  };
 
   render() {
     const { x, y, width, height, circleRadiusInner, circleRadiusOuter, strokeWidth, signalFill, data } = this.props;

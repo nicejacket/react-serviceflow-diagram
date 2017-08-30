@@ -9,8 +9,8 @@ export default class DiagramIconReceiveTask extends React.Component<DiagramIconR
     x: 0,
     y: 0,
     stroke: 'none',
-    fill: '#16964d',
-  }
+    fill: '#16964d'
+  };
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;

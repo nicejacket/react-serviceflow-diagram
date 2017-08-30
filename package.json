@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack --progress --profile --bail",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "lint": "tslint -c tslint.json src/**/*.ts{,x} -t verbose",
+    "lint:fix": "npm run lint -- --fix"
   },
   "author": "zhou84034339@sina.com",
   "license": "Apache-2.0",
@@ -31,6 +33,9 @@
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "tslint": "^5.6.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "tslint-react": "^3.2.0",
+    "tslint-react-recommended": "^1.0.15",
     "typescript": "^2.4.2",
     "webpack": "^3.5.2",
     "webpack-dev-server": "^2.7.1"

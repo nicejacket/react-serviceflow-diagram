@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RaphaelBaseElement } from './RaphaelBaseElement';
 
 export interface RaphaelBasePathProps {
-  d: string | Array<String>;
+  d: string | string[];
   stroke?: string;
   strokeWidth?: number;
   strokeDasharray?: string;
@@ -15,10 +15,7 @@ export interface RaphaelBasePathProps {
 }
 
 export class RaphaelBasePath extends React.Component<RaphaelBasePathProps, any> {
-  static defaultProps = {
-    stroke: '#000',
-    strokeWidth: 1,
-  }
+  static defaultProps = { stroke: '#000', strokeWidth: 1 };
 
   element: RaphaelBaseElement = null;
 

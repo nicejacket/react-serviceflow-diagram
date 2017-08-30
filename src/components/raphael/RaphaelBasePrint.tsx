@@ -9,12 +9,7 @@ export interface RaphaelBasePrintProps {
 }
 
 export class RaphaelBasePrint extends React.Component {
-  static defaultProps = {
-    x: 0,
-    y: 0,
-    text: '',
-    fontFamily: 'Arial',
-  }
+  static defaultProps = { x: 0, y: 0, text: '', fontFamily: 'Arial' };
 
   element: RaphaelBaseElement = null;
 

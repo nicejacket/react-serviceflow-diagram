@@ -13,8 +13,8 @@ export interface EventProps extends BaseElementProps {
 export default class Event extends React.Component<EventProps, any> {
   static defaultProps = {
     x: 0,
-    y: 0,
-  }
+    y: 0
+  };
 
   render() {
     const { x, y, width, height, radius, stroke, strokeWidth, fill, fillOpacity, iconFill, data } = this.props;

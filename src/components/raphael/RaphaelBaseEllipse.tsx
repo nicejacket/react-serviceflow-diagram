@@ -13,8 +13,8 @@ export class RaphaelBaseEllipse extends React.Component<RaphaelBaseEllipseProps,
     x: 0,
     y: 0,
     rx: 10,
-    ry: 20,
-  }
+    ry: 20
+  };
 
   element: RaphaelBaseElement = null;
 

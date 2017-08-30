@@ -40,8 +40,8 @@ export default class RaphaelIconBoxPublish extends React.Component<RaphaelIconBo
     x: 0,
     y: 0,
     width: 20,
-    height: 20,
-  }
+    height: 20
+  };
 
   render() {
     const { x, y, width, height } = this.props;

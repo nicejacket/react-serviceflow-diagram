@@ -13,8 +13,8 @@ export default class InclusiveGateway extends React.Component<InclusiveGatewayPr
     x: 0,
     y: 0,
     strokeWidth: 2.5,
-    radius: 9.75,
-  }
+    radius: 9.75
+  };
 
   render() {
     const { x, y, width, height, radius, strokeWidth, data } = this.props;

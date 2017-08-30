@@ -9,10 +9,10 @@ export const TASK_STROKE = 1;
 export const TASK_HIGHLIGHT_STROKE = 2;
 export const CALL_ACTIVITY_STROKE = 2;
 
-let totalColors: any;
+let totalColors: any = null;
 
-export function setTotalColors(totalColors: any) {
-  this.totalColors = totalColors;
+export function setTotalColors(newTotalColors: any) {
+  totalColors = newTotalColors;
 }
 
 export function getFillOpacity(): number {
@@ -20,9 +20,9 @@ export function getFillOpacity(): number {
 }
 
 export function getFillColour(key: string) {
-  if (this.totalColors && this.totalColors.hasOwnProperty(key)) {
-    let colorPercentage = this.totalColors[key];
-    return this.convertColorToHsb(colorPercentage);
+  if (totalColors && totalColors.hasOwnProperty(key)) {
+    const colorPercentage = totalColors[key];
+    return convertColorToHsb(colorPercentage);
   } else {
     return ACTIVITY_FILL_COLOR;
   }
@@ -47,6 +47,6 @@ export function getBpmnStrokeWidth(data: any) {
 }
 
 export function convertColorToHsb(colorPercentage: number): string {
-  let hue = (120.0 - (colorPercentage * 1.2)) / 360.0;
-  return 'hsb(' + hue + ', 1, 1)';
+  const hue = (120.0 - (colorPercentage * 1.2)) / 360.0;
+  return `hsb(${hue}, 1, 1)`;
 }

@@ -9,8 +9,8 @@ export default class DiagramIconScriptTask extends React.Component<DiagramIconSc
     x: 0,
     y: 0,
     fill: '#72a7d0',
-    stroke: 'none',
-  }
+    stroke: 'none'
+  };
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;

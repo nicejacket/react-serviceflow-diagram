@@ -12,6 +12,6 @@ export default class SequenceFlow extends React.Component<SequenceFlowProps, any
   render() {
     return (<Tooltip data={this.props.flow}>
       <RaphaelBaseFlowArrow flow={this.props.flow}/>
-    </Tooltip>)
+    </Tooltip>);
   }
 }

@@ -12,8 +12,8 @@ export class RaphaelBaseCircle extends React.Component<RaphaelBaseCircleProps, a
   static defaultProps = {
     x: 0,
     y: 0,
-    r: 10,
-  }
+    r: 10
+  };
 
   element: RaphaelBaseElement = null;
 

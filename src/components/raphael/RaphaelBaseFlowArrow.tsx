@@ -5,21 +5,40 @@ import { Polyline } from './Polyline';
 import { RaphaelBasePath } from './RaphaelBasePath';
 import * as Raphael from 'raphael';
 import { getStrokeAndFill } from '../Utils';
+import { ACTIVITY_STROKE_COLOR } from '../../services/DiagramColorService';
 
 const ARROW_WIDTH = 4;
 const SEQUENCEFLOW_STROKE = 2;
 
 export interface RaphaelBaseFlowArrowProps extends BaseElementProps {
-  flow:any;
+  flow: any;
 }
 
 export class RaphaelBaseFlowArrow extends React.Component<RaphaelBaseFlowArrowProps, any> {
-  static defaultProps = {
-    x: 0,
-    y: 0,
+  static defaultProps = { x: 0, y: 0 };
+
+  state = { stroke: null as any, strokeWidth: null as any };
+  line: Polyline = null;
+  pathLine: RaphaelBasePath = null;
+  pathArrow: RaphaelBasePath = null;
+
+  onMouseOverHandler = () => {
+    this.setState({ stroke: ACTIVITY_STROKE_COLOR, strokeWidth: SEQUENCEFLOW_STROKE + 1 });
   }
 
-  line: Polyline = null;
+  onMouseOutHandler = () => {
+    this.setState({ stroke: null, strokeWidth: null });
+  }
+
+  componentDidMount() {
+    this.pathLine.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
+    this.pathArrow.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
+  }
+
+  componentWillUnmount() {
+    this.pathLine.getElement().unhover(this.onMouseOverHandler, this.onMouseOutHandler);
+    this.pathArrow.getElement().unhover(this.onMouseOverHandler, this.onMouseOutHandler);
+  }
 
   renderLine = () => {
     const { flow } = this.props;
@@ -31,8 +50,9 @@ export class RaphaelBaseFlowArrow extends React.Component<RaphaelBaseFlowArrowPr
     return (<RaphaelBasePath
       id={flow.id}
       d={polyline.path}
-      stroke={stroke}
-      strokeWidth={SEQUENCEFLOW_STROKE}
+      stroke={this.state.stroke || stroke}
+      strokeWidth={this.state.strokeWidth || SEQUENCEFLOW_STROKE}
+      ref={node => { this.pathLine = node; }}
     />);
   }
 
@@ -48,10 +68,11 @@ export class RaphaelBaseFlowArrow extends React.Component<RaphaelBaseFlowArrowPr
     return (<RaphaelBasePath
       id={this.props.flow.id}
       d={arrowHead}
-      stroke={stroke}
-      strokeWidth={SEQUENCEFLOW_STROKE}
+      stroke={this.state.stroke || stroke}
+      strokeWidth={this.state.strokeWidth || SEQUENCEFLOW_STROKE}
       fill={stroke}
       transform={transform}
+      ref={node => { this.pathArrow = node; }}
     />);
   }
 

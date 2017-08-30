@@ -9,8 +9,8 @@ export default class DiagramIconError extends React.Component<DiagramIconErrorPr
     x: 0,
     y: 0,
     stroke: 'black',
-    strokeWidth: 1,
-  }
+    strokeWidth: 1
+  };
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;

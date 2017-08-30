@@ -15,8 +15,8 @@ export class RaphaelBaseImage extends React.Component<RaphaelBaseImageProps, any
     x: 0,
     y: 0,
     width: 64,
-    height: 64,
-  }
+    height: 64
+  };
 
   element: RaphaelBaseElement = null;
 
@@ -24,10 +24,10 @@ export class RaphaelBaseImage extends React.Component<RaphaelBaseImageProps, any
     return this.element.getElement();
   }
 
-  render(){
+  render() {
     return (<RaphaelBaseElement
       ref={(node: RaphaelBaseElement) => { this.element = node; }}
-      type='image'
+      type="image"
       {...this.props}
     />);
   }

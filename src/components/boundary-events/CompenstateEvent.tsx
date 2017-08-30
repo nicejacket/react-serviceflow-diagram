@@ -18,8 +18,8 @@ export default class CompensateEvent extends React.Component<CompensateEventProp
     strokeWidth: 1,
     circleRadiusInner: 12,
     circleRadiusOuter: 15,
-    signalFill: 'none',
-  }
+    signalFill: 'none'
+  };
 
   render() {
     const { x, y, width, height, circleRadiusInner, circleRadiusOuter, strokeWidth, signalFill, data } = this.props;

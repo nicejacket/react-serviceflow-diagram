@@ -11,6 +11,6 @@ export default class BusinessRuleTask extends React.Component<BusinessRuleTaskPr
   render() {
     return (<Task {...this.props}>
       <DiagramIconBusinessRuleTask {...this.props} />
-    </Task>)
+    </Task>);
   }
 }

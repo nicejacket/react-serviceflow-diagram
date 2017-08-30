@@ -12,17 +12,17 @@ export default class StartEvent extends React.Component<StartEventProps, any> {
   static defaultProps = {
     radius: 15,
     strokeWidth: 1,
-    iconFill: 'none',
-  }
+    iconFill: 'none'
+  };
 
   render() {
-    let {  stroke, fill, fillOpacity, data, ...others } = this.props;
+    const { stroke, fill, fillOpacity, data, ...others } = this.props;
     return (<Event
       stroke={getBpmnColor(data, MAIN_STROKE_COLOR)}
       fill={getFillColour(data.id)}
       fillOpacity={getFillOpacity()}
       data={data}
       {...others}
-    />)
+    />);
   }
 }

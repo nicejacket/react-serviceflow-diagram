@@ -10,8 +10,8 @@ export default class Gateway extends React.Component<GatewayProps, any> {
   static defaultProps = {
     x: 0,
     y: 0,
-    strokeWidth: 2,
-  }
+    strokeWidth: 2
+  };
 
   render() {
     const { x, y, width, height, strokeWidth, data } = this.props;

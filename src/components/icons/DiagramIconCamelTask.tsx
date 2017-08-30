@@ -9,8 +9,8 @@ export default class DiagramIconCamelTask extends React.Component<DiagramIconCam
     x: 0,
     y: 0,
     stroke: 'none',
-    fill: '#bd4848',
-  }
+    fill: '#bd4848'
+  };
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;

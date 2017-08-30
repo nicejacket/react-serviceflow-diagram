@@ -18,8 +18,8 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
     strokeWidth: 1,
     signalFill: 'black',
     circleRadiusInner: 12,
-    circleRadiusOuter: 15,
-  }
+    circleRadiusOuter: 15
+  };
 
   render() {
     const { x, y, width, height, strokeWidth, signalFill, circleRadiusInner, circleRadiusOuter, data } = this.props;

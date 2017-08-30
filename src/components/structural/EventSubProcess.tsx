@@ -14,8 +14,8 @@ export default class EventSubProcess extends React.Component<EventSubProcessProp
     y: 0,
     radius: 4,
     strokeWidth: 1,
-    fill: 'none',
-  }
+    fill: 'none'
+  };
 
   render() {
     const { x, y, width, height, radius, strokeWidth, fill, fillOpacity, data } = this.props;

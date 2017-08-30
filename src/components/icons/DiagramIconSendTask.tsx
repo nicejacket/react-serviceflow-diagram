@@ -10,8 +10,8 @@ export default class DiagramIconSendTask extends React.Component<DiagramIconSend
     x: 0,
     y: 0,
     stroke: 'none',
-    fill: '#16964d',
-  }
+    fill: '#16964d'
+  };
 
   render() {
     const { x, y, fill, stroke, strokeWidth, fillOpacity, data } = this.props;

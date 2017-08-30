@@ -16,8 +16,8 @@ export default class IntermediateCatchingEvent extends React.Component<Intermedi
     y: 0,
     strokeWidth: 1,
     circleRadiusInner: 12,
-    circleRadiusOuter: 15,
-  }
+    circleRadiusOuter: 15
+  };
 
   render() {
     const { x, y, width, height, strokeWidth, circleRadiusInner, circleRadiusOuter, data } = this.props;

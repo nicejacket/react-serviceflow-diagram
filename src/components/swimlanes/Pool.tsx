@@ -18,8 +18,8 @@ export default class Pool extends React.Component<PoolProps, any> {
     fill: 'none',
     strokeWidth: 1,
     radius: 0,
-    textTransform: 'r270',
-  }
+    textTransform: 'r270'
+  };
 
   render() {
     const { x, y, width, height, radius, stroke, strokeWidth, fill, fillOpacity,

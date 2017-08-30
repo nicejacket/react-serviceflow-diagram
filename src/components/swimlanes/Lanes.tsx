@@ -3,22 +3,20 @@ import Lane from './Lane';
 import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 
 export interface LanesProps {
-  lanes?: Array<any>;
+  lanes?: any[];
 }
 
-const defaultLanes: Array<any> = [];
+const defaultLanes: any[] = [];
 
 export default class Lanes extends React.Component<LanesProps, any> {
-  static defaultProps = {
-    lanes: defaultLanes,
-  }
+  static defaultProps = { lanes: defaultLanes };
 
   render() {
     const { lanes } = this.props;
-    if (!lanes || !lanes.length) return null;
+    if (!lanes || !lanes.length) { return null; }
 
     return (<RaphaelBaseSet>
-      { this.props.lanes.map((lane, i) => <Lane key={i} text={lane.name} {...lane} />) }
+      {this.props.lanes.map((lane, i) => <Lane key={i} text={lane.name} {...lane} />)}
     </RaphaelBaseSet>);
   }
 }

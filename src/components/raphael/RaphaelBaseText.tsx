@@ -11,11 +11,7 @@ export interface RaphaelBaseTextProps extends BaseElementProps {
 }
 
 export class RaphaelBaseText extends React.Component<RaphaelBaseTextProps, any> {
-  static defaultProps = {
-    x: 0,
-    y: 0,
-    text: '',
-  }
+  static defaultProps = { x: 0, y: 0, text: '' };
 
   element: RaphaelBaseElement = null;
 

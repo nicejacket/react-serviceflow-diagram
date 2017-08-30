@@ -5,23 +5,22 @@ import Pool from './Pool';
 import Lanes from './Lanes';
 
 export interface PoolsProps {
-  pools?: Array<any>;
+  pools?: any[];
 }
 
-const defaultPools: Array<any> = [];
+const defaultPools: any[] = [];
 
 export default class Pools extends React.Component<PoolsProps, any> {
-  static defaultProps = {
-    pools: defaultPools,
-  }
+  static defaultProps = { pools: defaultPools };
 
   render() {
     const { pools } = this.props;
 
-    if (!pools || !pools.length) return null;
+    if (!pools || !pools.length) { return null; }
 
     return (<RaphaelBaseSet>
-      {pools.map((pool, i) => {
+      {
+        pools.map((pool, i) => {
           const { lanes, ...others } = pool;
           return (<RaphaelBaseSet key={i}>
             <Pool {...others} />
