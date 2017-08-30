@@ -36,7 +36,7 @@ export default class Event extends React.Component<EventProps, any> {
         y={y}
         width={width}
         height={height}
-        fill={stroke}
+        fill={iconFill}
         stroke={stroke}
         data={data}
       />

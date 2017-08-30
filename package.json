@@ -7,7 +7,7 @@
     "build": "webpack --progress --profile --bail",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run build",
-    "lint": "tslint -c tslint.json src/**/*.ts{,x} -t verbose",
+    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts{,x} -t verbose",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "zhou84034339@sina.com",

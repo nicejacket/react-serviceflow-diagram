@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as Raphael from 'raphael';
 import { createPaper, updatePaper } from './Utils';
 import './RaphaelBasePaper.less';
 

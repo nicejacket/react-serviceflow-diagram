@@ -23,7 +23,6 @@ import SequenceFlow from './SequenceFlow';
 import Pools from './swimlanes/Pools';
 import Association from './Association';
 import Task from './activities/Task';
-import { setTotalColors } from '../services/DiagramColorService';
 
 const PADDING_WIDTH: number = 60;
 const PADDING_HEIGHT: number = 60;
@@ -111,8 +110,8 @@ export default class Diagram extends React.Component<DiagramProps, any> {
     return (<RaphaelBasePaper
       x={diagramBeginX}
       y={diagramBeginY}
-      width={diagramWidth + 10}
-      height={diagramHeight}
+      width={diagramWidth + PADDING_WIDTH}
+      height={diagramHeight + PADDING_HEIGHT}
     >
       {elements.map(this.renderElement)}
       {flows.map((flow: DiagramFlowElementModel) => <SequenceFlow flow={flow} key={flow.id} />)}

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import BaseElementProps from '../BaseElementProps';
 import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import Pool from './Pool';
 import Lanes from './Lanes';

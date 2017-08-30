@@ -1,4 +1,3 @@
-import { RaphaelBaseAssociation } from './RaphaelBaseAssociation';
 export { RaphaelBaseArrowLeft, RaphaelBaseArrowLeftProps } from './RaphaelBaseArrowLeft';
 export { RaphaelBaseAssociation, RaphaelBaseAssociationProps } from './RaphaelBaseAssociation';
 export { RaphaelBaseCircle, RaphaelBaseCircleProps } from './RaphaelBaseCircle';

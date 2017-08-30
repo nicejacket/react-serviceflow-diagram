@@ -3,6 +3,7 @@
   "rules": {
     "linebreak-style": [false],
     "max-classes-per-file": [true, 10],
-    "no-empty": false
+    "no-empty": false,
+    "no-unused-variable": true
   }
 }

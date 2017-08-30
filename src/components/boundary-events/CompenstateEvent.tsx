@@ -45,7 +45,7 @@ export default class CompensateEvent extends React.Component<CompensateEventProp
         strokeWidth={strokeWidth}
         fill={fill}
         fillOpacity={fillOpacity}
-        radius={circleRadiusOuter}
+        radius={circleRadiusInner}
       />
       <DiagramContainerIconEvent
         x={x}

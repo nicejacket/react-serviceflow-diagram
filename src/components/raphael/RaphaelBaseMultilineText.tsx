@@ -1,7 +1,6 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
 import { RaphaelBaseText } from './RaphaelBaseText';
-import { createElement } from './Utils';
 
 const TEXT_PADDING = 3;
 

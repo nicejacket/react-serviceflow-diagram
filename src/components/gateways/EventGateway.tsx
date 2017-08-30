@@ -56,7 +56,7 @@ export default class EventGateway extends React.Component<EventGatewayProps, any
         x={x}
         y={y}
         stroke={stroke}
-        strokeWidth={strokeWidth}
+        strokeWidth={pentaStrokeWidth}
         fill={fill}
         fillOpacity={fillOpacity}
       />

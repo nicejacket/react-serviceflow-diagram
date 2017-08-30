@@ -5,7 +5,6 @@ import Tooltip from '../tooltip/Tooltip';
 import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
 import { RaphaelBaseMultilineText } from '../raphael/RaphaelBaseMultilineText';
 import { getStrokeAndFill } from '../Utils';
-import { MAIN_STROKE_COLOR, ACTIVE_STROKE_COLOR } from '../../services/DiagramColorService';
 
 export interface TaskProps extends BaseElementProps {
   radius?: number;
@@ -24,13 +23,10 @@ export default class Task extends React.Component<TaskProps, any> {
       setTimeout(this.bindEvent, 50);
     } else {
       this.rect.getElement().click(this.onClickHandler);
-      this.rect.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
       this.text.getElement().click(this.onClickHandler);
-      this.text.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
       React.Children.forEach(this.props.children, (child: any) => {
         if (child.getElement && child.getElement().click) {
           child.getElement().click(this.onClickHandler);
-          child.getElement().hover(this.onMouseOverHandler, this.onMouseOutHandler);
         }
       });
     }
@@ -42,13 +38,10 @@ export default class Task extends React.Component<TaskProps, any> {
 
   componentWillUnmount() {
     this.rect.getElement().unclick(this.onClickHandler);
-    this.rect.getElement().unhover(this.onMouseOverHandler, this.onMouseOutHandler);
     this.text.getElement().unclick(this.onClickHandler);
-    this.text.getElement().unhover(this.onMouseOverHandler, this.onMouseOutHandler);
     React.Children.forEach(this.props.children, (child: any) => {
       if (child.getElement && child.getElement().click) {
         child.getElement().unclick(this.onClickHandler);
-        child.getElement().unhover(this.onMouseOverHandler, this.onMouseOutHandler);
       }
     });
   }
@@ -57,16 +50,6 @@ export default class Task extends React.Component<TaskProps, any> {
     if (this.context.onClick) {
       this.context.onClick(this.props.data);
     }
-  }
-
-  onMouseOverHandler = () => {
-    const {strokeWidth} = getStrokeAndFill(this.props.data);
-    this.rect.getElement().attr({ 'stroke-width': strokeWidth + 2, stroke: ACTIVE_STROKE_COLOR });
-  }
-
-  onMouseOutHandler = () => {
-    const {stroke, strokeWidth} = getStrokeAndFill(this.props.data);
-    this.rect.getElement().attr({ 'stroke-width': strokeWidth, stroke });
   }
 
   render() {

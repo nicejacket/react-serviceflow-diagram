@@ -7,6 +7,12 @@ export interface RaphaelBaseRhombusProps extends BaseElementProps {}
 export class RaphaelBaseRhombus extends React.Component<RaphaelBaseRhombusProps, any> {
   static defaultProps = { x: 0, y: 0 };
 
+  element: RaphaelBasePath;
+
+  getElement = () => {
+    return this.element.getElement();
+  }
+
   render() {
     const { id, x, y, width, height, stroke, strokeWidth, fill, fillOpacity } = this.props;
     const PATH = `M${x} ${y + (height / 2)}
@@ -20,6 +26,7 @@ export class RaphaelBaseRhombus extends React.Component<RaphaelBaseRhombusProps,
       strokeWidth={strokeWidth}
       fill={fill}
       fillOpacity={fillOpacity}
+      ref={node => { this.element = node; }}
     />);
   }
 }

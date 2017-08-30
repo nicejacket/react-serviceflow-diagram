@@ -1,7 +1,6 @@
 import * as React from 'react';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import RaphaelIconTimer from '../raphael/icons/RaphaelIconTImer';
-import BaseElementProps from '../BaseElementProps';
 import Tooltip from '../tooltip/Tooltip';
 
 export interface DiagramIconTimerCircleProps {

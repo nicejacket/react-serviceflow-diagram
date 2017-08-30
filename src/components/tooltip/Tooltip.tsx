@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
+import { ACTIVE_STROKE_COLOR } from '../../services/DiagramColorService';
 import './Tooltip.less';
 
 const CLS_PREFIX = 'sf-tooltip-diagram';
@@ -26,6 +27,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   state = { visible: false };
 
+  attrsMapping: any = {};
   root: React.ReactInstance = null;
   tooltip: React.ReactInstance = null;
   leave: boolean = true;
@@ -34,7 +36,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
   componentDidMount() {
     this.unmounted = false;
     setTimeout(() => {
-      this.loopSet((this.root as RaphaelBaseSet).getSet());
+      this.loopSet((this.root as RaphaelBaseSet).getSet(), this.bindEvent);
       window.addEventListener('scroll', this.onMouseLevelAndScrollHandler, true);
       window.addEventListener('touchstart', this.onMouseLevelAndScrollHandler);
     }, 0);
@@ -46,15 +48,33 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     window.removeEventListener('touchstart', this.onMouseLevelAndScrollHandler);
   }
 
-  loopSet = (set: RaphaelSet) => {
+  bindEvent = (item: any) => {
+    item.mouseup(this.onMouseEnterHandler);
+    item.mouseover(this.onMouseEnterHandler);
+    item.touchend(this.onMouseEnterHandler);
+    item.mouseout(this.onMouseLevelAndScrollHandler);
+  }
+
+  setHoverStroke = (item: any) => {
+    if (item.node && item.node.id) {
+      if (!this.attrsMapping[item.node.id]) { this.attrsMapping[item.node.id] = { ...item.attrs }; }
+      item.attr({ stroke: ACTIVE_STROKE_COLOR, 'stroke-width': item.attrs['stroke-width'] + 1 });
+    }
+  }
+
+  resetHoverStroke = (item: any) => {
+    if (item.node && item.node.id) {
+      const attrs = this.attrsMapping[item.node.id];
+      item.attr({ stroke: attrs.stroke, 'stroke-width': attrs['stroke-width'] });
+    }
+  }
+
+  loopSet = (set: RaphaelSet, func: (item: any) => void) => {
     set.forEach((item: any) => {
       if (item.type === 'set') {
-        this.loopSet(item);
+        this.loopSet(item, func);
       } else {
-        item.mouseup(this.onMouseEnterHandler);
-        item.mouseover(this.onMouseEnterHandler);
-        item.touchend(this.onMouseEnterHandler);
-        item.mouseout(this.onMouseLevelAndScrollHandler);
+        func(item);
       }
     });
   }
@@ -106,11 +126,13 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
     }
 
     this.setState({ visible: true });
+    this.loopSet((this.root as RaphaelBaseSet).getSet(), this.setHoverStroke);
   }
 
   onHideHandler = () => {
     if (this.leave) {
       !this.unmounted && this.setState({ visible: false });
+      this.loopSet((this.root as RaphaelBaseSet).getSet(), this.resetHoverStroke);
     }
   }
 
