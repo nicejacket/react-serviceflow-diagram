@@ -56,7 +56,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
   }
 
   setHoverStroke = (item: any) => {
-    if (item.node && item.node.id) {
+    if (item.node && item.node.id && item.attrs) {
       if (!this.attrsMapping[item.node.id]) {
         this.attrsMapping[item.node.id] = { ...item.attrs };
       }
@@ -65,7 +65,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
   }
 
   resetHoverStroke = (item: any) => {
-    if (item.node && item.node.id) {
+    if (item.node && item.node.id && this.attrsMapping[item.node.id]) {
       const attrs = this.attrsMapping[item.node.id];
       item.attr({ stroke: attrs.stroke, 'stroke-width': attrs['stroke-width'] });
     }
