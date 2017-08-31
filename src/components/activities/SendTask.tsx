@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Task from './Task';
 import DiagramIconSendTask from '../icons/DiagramIconSendTask';
+import Task from './Task';
 
 export interface SendTaskProps extends BaseElementProps {
   text: string;

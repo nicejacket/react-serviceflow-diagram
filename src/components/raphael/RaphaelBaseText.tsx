@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { RaphaelBaseElement } from './RaphaelBaseElement';
 import BaseElementProps from '../BaseElementProps';
+import { RaphaelBaseElement } from './RaphaelBaseElement';
 
 export interface RaphaelBaseTextProps extends BaseElementProps {
   text?: string;

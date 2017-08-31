@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import { ACTIVE_STROKE_COLOR } from '../../services/DiagramColorService';
+import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import './Tooltip.less';
 
 const CLS_PREFIX = 'sf-tooltip-diagram';

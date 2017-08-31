@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
+import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import { RaphaelBaseText } from '../raphael/RaphaelBaseText';
 
 export interface LaneProps extends BaseElementProps {

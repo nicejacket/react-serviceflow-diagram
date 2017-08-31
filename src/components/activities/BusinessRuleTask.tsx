@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Task from './Task';
 import DiagramIconBusinessRuleTask from '../icons/DiagramIconBusinessRuleTask';
+import Task from './Task';
 
 export interface BusinessRuleTaskProps extends BaseElementProps {
   text: string;

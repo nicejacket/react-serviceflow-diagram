@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../../BaseElementProps';
-import { RaphaelBaseSet } from '../RaphaelBaseSet';
 import { RaphaelBaseArrowLeft } from '../RaphaelBaseArrowLeft';
+import { RaphaelBaseSet } from '../RaphaelBaseSet';
 
 export interface RaphaelIconCompensateProps extends BaseElementProps {}
 

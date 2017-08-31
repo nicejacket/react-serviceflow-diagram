@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Gateway from './Gateway';
-import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
-import BaseElementProps from '../BaseElementProps';
 import { getFillColour, getFillOpacity } from '../../services/DiagramColorService';
+import BaseElementProps from '../BaseElementProps';
+import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
+import Gateway from './Gateway';
 
 export interface InclusiveGatewayProps extends BaseElementProps {
   radius?: number;

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Gateway from './Gateway';
-import IconPlus from '../raphael/icons/RaphaelIconPlus';
-import BaseElementProps from '../BaseElementProps';
 import { getFillColour, getFillOpacity } from '../../services/DiagramColorService';
+import BaseElementProps from '../BaseElementProps';
+import IconPlus from '../raphael/icons/RaphaelIconPlus';
+import Gateway from './Gateway';
 
 export interface ParallelGatewayProps extends BaseElementProps {}
 

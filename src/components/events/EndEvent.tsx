@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
+import { getStrokeAndFill } from '../Utils';
 import Event from './Event';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
 
 export interface EndEventProps extends BaseElementProps {
   radius?: number;
@@ -17,10 +17,11 @@ export default class EndEvent extends React.Component<EndEventProps, any> {
 
   render() {
     const { stroke, fill, fillOpacity, data, ...others } = this.props;
+    const strokAndFill = getStrokeAndFill(data);
     return (<Event
-      stroke={getBpmnColor(data, MAIN_STROKE_COLOR)}
-      fill={getFillColour(data.id)}
-      fillOpacity={getFillOpacity()}
+      stroke={strokAndFill.stroke}
+      fill={strokAndFill.fill}
+      fillOpacity={strokAndFill.fillOpacity}
       data={data}
       {...others}
     />);

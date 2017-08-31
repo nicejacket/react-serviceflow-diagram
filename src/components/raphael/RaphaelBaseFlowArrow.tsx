@@ -1,10 +1,10 @@
+import * as Raphael from 'raphael';
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import { RaphaelBaseSet } from './RaphaelBaseSet';
+import { getStrokeAndFill } from '../Utils';
 import { Polyline } from './Polyline';
 import { RaphaelBasePath } from './RaphaelBasePath';
-import * as Raphael from 'raphael';
-import { getStrokeAndFill } from '../Utils';
+import { RaphaelBaseSet } from './RaphaelBaseSet';
 
 const ARROW_WIDTH = 4;
 const SEQUENCEFLOW_STROKE = 2;

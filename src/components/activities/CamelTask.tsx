@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Task from './Task';
 import DiagramIconCamelTask from '../icons/DiagramIconCamelTask';
+import Task from './Task';
 
 export interface CamelTaskProps extends BaseElementProps {
   text: string;

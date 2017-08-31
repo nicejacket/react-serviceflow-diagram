@@ -1,9 +1,9 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Tooltip from '../tooltip/Tooltip';
-import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
 import { RaphaelBaseMultilineText } from '../raphael/RaphaelBaseMultilineText';
+import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
+import Tooltip from '../tooltip/Tooltip';
 import { getStrokeAndFill } from '../Utils';
 
 export interface TaskProps extends BaseElementProps {

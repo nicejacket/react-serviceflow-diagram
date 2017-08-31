@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Task from './Task';
 import DiagramIconGoogleDrivePublishTask from '../icons/DiagramIconGoogleDrivePublishTask';
+import Task from './Task';
 
 export interface GoogleDrivePublishTaskProps extends BaseElementProps {
   text: string;

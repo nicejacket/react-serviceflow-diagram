@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createPaper, updatePaper } from './Utils';
 import './RaphaelBasePaper.less';
+import { createPaper, updatePaper } from './Utils';
 
 /**
  * 该包实现参照react-raphael实现

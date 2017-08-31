@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Lane from './Lane';
 import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
+import Lane from './Lane';
 
 export interface LanesProps {
   lanes?: any[];

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Gateway from './Gateway';
-import IconCross from '../raphael/icons/RaphaelIconCross';
-import BaseElementProps from '../BaseElementProps';
 import { getFillColour, getFillOpacity } from '../../services/DiagramColorService';
+import BaseElementProps from '../BaseElementProps';
+import IconCross from '../raphael/icons/RaphaelIconCross';
+import Gateway from './Gateway';
 
 export interface ExclusiveGatewayProps extends BaseElementProps { }
 

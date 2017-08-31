@@ -1,8 +1,8 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
+import { RaphaelBaseRhombus } from '../raphael/RaphaelBaseRhombus';
 import Tooltip from '../tooltip/Tooltip';
 import { getStrokeAndFill } from '../Utils';
-import { RaphaelBaseRhombus } from '../raphael/RaphaelBaseRhombus';
 
 export interface GatewayProps extends BaseElementProps {}
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import BaseElementProps from '../BaseElementProps';
 import DiagramContainerIconEvent from '../icons/DiagramContainerIconEvent';
+import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import Tooltip from '../tooltip/Tooltip';
 
 export interface EventProps extends BaseElementProps {

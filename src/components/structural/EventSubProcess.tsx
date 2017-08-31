@@ -1,8 +1,8 @@
 import * as React from 'react';
-import BaseElementProps from '../BaseElementProps';
-import Tooltip from '../tooltip/Tooltip';
-import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
 import { getBpmnColor, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import BaseElementProps from '../BaseElementProps';
+import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
+import Tooltip from '../tooltip/Tooltip';
 
 export interface EventSubProcessProps extends BaseElementProps {
   radius?: number;

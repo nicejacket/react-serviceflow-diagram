@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Task from './Task';
 import DiagramIconBoxPublishTask from '../icons/DiagramIconBoxPublishTask';
+import Task from './Task';
 
 export interface BoxPublishTaskProps extends BaseElementProps {
   text?: string;

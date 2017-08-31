@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Tooltip from '../tooltip/Tooltip';
 import RaphaelIconCompensate from '../raphael/icons/RaphaelIconCompensate';
+import Tooltip from '../tooltip/Tooltip';
 
 export interface DiagramIconCompensateProps extends BaseElementProps {}
 

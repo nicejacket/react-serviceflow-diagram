@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Gateway from './Gateway';
 import BaseElementProps from '../BaseElementProps';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import { RaphaelBasePentagon } from '../raphael/RaphaelBasePentagon';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import { getStrokeAndFill } from '../Utils';
+import Gateway from './Gateway';
 
 export interface EventGatewayProps extends BaseElementProps {
   circleRadiusInner?: number;
@@ -23,9 +23,7 @@ export default class EventGateway extends React.Component<EventGatewayProps, any
 
   render() {
     const { x, y, width, height, circleRadiusInner, circleRadiusOuter, pentaStrokeWidth, strokeWidth, data } = this.props;
-    const stroke = getBpmnColor(data, MAIN_STROKE_COLOR);
-    const fill = getFillColour(data.id);
-    const fillOpacity = getFillOpacity();
+    const { stroke, fill, fillOpacity } = getStrokeAndFill(data);
 
     return (<Gateway
       x={x}

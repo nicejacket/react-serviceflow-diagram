@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createElement, updateElement, removeElement } from './Utils';
+import { createElement, removeElement, updateElement } from './Utils';
 
 export class RaphaelBaseElement extends React.Component<any, any> {
   element: RaphaelElement;

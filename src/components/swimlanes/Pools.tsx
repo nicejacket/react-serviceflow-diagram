@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
-import Pool from './Pool';
 import Lanes from './Lanes';
+import Pool from './Pool';
 
 export interface PoolsProps {
   pools?: any[];

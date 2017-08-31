@@ -1,9 +1,9 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Tooltip from '../tooltip/Tooltip';
-import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import DiagramContainerIconEvent from '../icons/DiagramContainerIconEvent';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
+import Tooltip from '../tooltip/Tooltip';
+import { getStrokeAndFill } from '../Utils';
 
 export interface IntermediateCatchingEventProps extends BaseElementProps {
   circleRadiusInner?: number;
@@ -21,9 +21,7 @@ export default class IntermediateCatchingEvent extends React.Component<Intermedi
 
   render() {
     const { x, y, width, height, strokeWidth, circleRadiusInner, circleRadiusOuter, data } = this.props;
-    const stroke = getBpmnColor(data, MAIN_STROKE_COLOR);
-    const fill = getFillColour(data.id);
-    const fillOpacity = getFillOpacity();
+    const { stroke, fill, fillOpacity } = getStrokeAndFill(data);
 
     return (<Tooltip data={data}>
       <RaphaelIconCircle

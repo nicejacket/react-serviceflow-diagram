@@ -1,9 +1,9 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import Tooltip from '../tooltip/Tooltip';
-import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import DiagramContainerIconEvent from '../icons/DiagramContainerIconEvent';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
+import Tooltip from '../tooltip/Tooltip';
+import { getStrokeAndFill } from '../Utils';
 
 export interface ThrowEventProps extends BaseElementProps {
   circleRadiusInner?: number;
@@ -23,9 +23,7 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
 
   render() {
     const { x, y, width, height, strokeWidth, signalFill, circleRadiusInner, circleRadiusOuter, data } = this.props;
-    const stroke = getBpmnColor(data, MAIN_STROKE_COLOR);
-    const fill = getFillColour(data.id);
-    const fillOpacity = getFillOpacity();
+    const { stroke, fill, fillOpacity } = getStrokeAndFill(data);
     const type = data && data.eventDefinition && data.eventDefinition.type;
 
     return (<Tooltip data={data}>

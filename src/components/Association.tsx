@@ -1,8 +1,8 @@
 import * as React from 'react';
-import BaseElementProps from './BaseElementProps';
-import Tooltip from './tooltip/Tooltip';
 import { DiagramFlowElementModel } from '../models/DiagramModel';
+import BaseElementProps from './BaseElementProps';
 import { RaphaelBaseAssociation } from './raphael/RaphaelBaseAssociation';
+import Tooltip from './tooltip/Tooltip';
 
 export interface AssociationProps extends BaseElementProps {
   association: DiagramFlowElementModel;

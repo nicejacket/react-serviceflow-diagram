@@ -1,10 +1,10 @@
 import * as React from 'react';
-import DiagramIconTimer from './DiagramIconTimer';
-import DiagramIconError from './DiagramIconError';
-import DiagramIconSignal from './DiagramIconSignal';
-import DiagramIconMessage from './DiagramIconMessage';
 import BaseElementProps from '../BaseElementProps';
 import DiagramIconCompensate from './DiagramIconCompensate';
+import DiagramIconError from './DiagramIconError';
+import DiagramIconMessage from './DiagramIconMessage';
+import DiagramIconSignal from './DiagramIconSignal';
+import DiagramIconTimer from './DiagramIconTimer';
 
 export interface DiagramContainerIconEventProps extends BaseElementProps {
   type?: string;

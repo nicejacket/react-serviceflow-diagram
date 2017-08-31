@@ -1,8 +1,8 @@
 import * as React from 'react';
-import BaseElementProps from './BaseElementProps';
-import Tooltip from './tooltip/Tooltip';
-import { RaphaelBaseFlowArrow } from './raphael/RaphaelBaseFlowArrow';
 import { DiagramFlowElementModel } from '../models/DiagramModel';
+import BaseElementProps from './BaseElementProps';
+import { RaphaelBaseFlowArrow } from './raphael/RaphaelBaseFlowArrow';
+import Tooltip from './tooltip/Tooltip';
 
 export interface SequenceFlowProps extends BaseElementProps {
   flow: DiagramFlowElementModel;

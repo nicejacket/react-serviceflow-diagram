@@ -1,11 +1,11 @@
 import * as React from 'react';
 import BaseElementProps from '../BaseElementProps';
-import SendTask from './SendTask';
+import BoxPublishTask from './BoxPublishTask';
+import CamelTask from './CamelTask';
+import GoogleDrivePublishTask from './GoogleDrivePublishTask';
 import MuleTask from './MuleTask';
 import RestCallTask from './RestCallTask';
-import GoogleDrivePublishTask from './GoogleDrivePublishTask';
-import CamelTask from './CamelTask';
-import BoxPublishTask from './BoxPublishTask';
+import SendTask from './SendTask';
 import ServiceTask from './ServiceTask';
 
 export interface ContainerServiceTaskProps extends BaseElementProps {
