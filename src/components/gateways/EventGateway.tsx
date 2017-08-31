@@ -35,7 +35,7 @@ export default class EventGateway extends React.Component<EventGatewayProps, any
       <RaphaelIconCircle
         x={x + width / 2}
         y={y + height / 2}
-        radius={circleRadiusInner}
+        radius={circleRadiusOuter}
         stroke={stroke}
         strokeWidth={strokeWidth}
         fill={fill}
@@ -44,7 +44,7 @@ export default class EventGateway extends React.Component<EventGatewayProps, any
       <RaphaelIconCircle
         x={x + width / 2}
         y={y + height / 2}
-        radius={circleRadiusOuter}
+        radius={circleRadiusInner}
         stroke={stroke}
         strokeWidth={strokeWidth}
         fill={fill}
