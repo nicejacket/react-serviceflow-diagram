@@ -23,9 +23,7 @@
     "url": "https://github.com/nicejacket/react-serviceflow-diagram"
   },
   "devDependencies": {
-    "adf-tslint-rules": "0.0.3",
     "awesome-typescript-loader": "^3.2.2",
-    "codelyzer": "^3.1.2",
     "css-loader": "^0.28.4",
     "dts-bundle": "^0.7.3",
     "less": "^2.7.2",

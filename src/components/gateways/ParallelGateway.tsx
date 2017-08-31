@@ -2,7 +2,7 @@ import * as React from 'react';
 import Gateway from './Gateway';
 import IconPlus from '../raphael/icons/RaphaelIconPlus';
 import BaseElementProps from '../BaseElementProps';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import { getFillColour, getFillOpacity } from '../../services/DiagramColorService';
 
 export interface ParallelGatewayProps extends BaseElementProps {}
 
@@ -25,7 +25,6 @@ export default class ParallelGatway extends React.Component<ParallelGatewayProps
       <IconPlus
         x={x}
         y={y}
-        stroke={getBpmnColor(data, MAIN_STROKE_COLOR)}
         strokeWidth={strokeWidth}
         fill={getFillColour(data.id)}
         fillOpacity={getFillOpacity()}

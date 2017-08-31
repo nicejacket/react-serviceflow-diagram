@@ -26,17 +26,9 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
     const stroke = getBpmnColor(data, MAIN_STROKE_COLOR);
     const fill = getFillColour(data.id);
     const fillOpacity = getFillOpacity();
+    const type = data && data.eventDefinition && data.eventDefinition.type;
 
     return (<Tooltip data={data}>
-      <RaphaelIconCircle
-        x={x + width / 2}
-        y={y + height / 2}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        fill={fill}
-        fillOpacity={fillOpacity}
-        radius={circleRadiusInner}
-      />
       <RaphaelIconCircle
         id={data.id}
         x={x + width / 2}
@@ -47,12 +39,21 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
         fillOpacity={fillOpacity}
         radius={circleRadiusOuter}
       />
+      <RaphaelIconCircle
+        x={x + width / 2}
+        y={y + height / 2}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        fill={fill}
+        fillOpacity={fillOpacity}
+        radius={circleRadiusInner}
+      />
       <DiagramContainerIconEvent
-        x={x + 1}
-        y={y + 1}
+        x={type === 'error' ? x + 2 : x}
+        y={type === 'error' ? y + 2 : y}
         width={width}
         height={height}
-        type={data && data.eventDefinition && data.eventDefinition.type}
+        type={type}
         data={data}
         fill={signalFill}
       />

@@ -23,6 +23,7 @@ export class RaphaelBaseAssociation extends React.Component<RaphaelBaseAssociati
 
   renderLine = () => {
     const { association } = this.props;
+    if (!association.waypoints || !association.waypoints.length) { return null; }
     const { stroke } = getStrokeAndFill(association);
     const polyline = new Polyline(association.id, association.waypoints, SEQUENCEFLOW_STROKE);
     const lastLineIndex = polyline.getLinesCount() - 1;
@@ -38,7 +39,9 @@ export class RaphaelBaseAssociation extends React.Component<RaphaelBaseAssociati
   }
 
   renderArrow = () => {
-    const { stroke } = getStrokeAndFill(this.props.association);
+    const { association } = this.props;
+    if (!association.waypoints || !association.waypoints.length) { return null; }
+    const { stroke } = getStrokeAndFill(association);
     const line = this.line as any;
     const doubleArrowWidth = 2 * ARROW_WIDTH;
     const width = ARROW_WIDTH / 2 + .5;
@@ -47,7 +50,7 @@ export class RaphaelBaseAssociation extends React.Component<RaphaelBaseAssociati
     const transform = `t${line.x2},${line.y2}r${angle} 0 0`;
 
     return (<RaphaelBasePath
-      id={this.props.association.id}
+      id={association.id}
       d={arrowHead}
       stroke={stroke}
       strokeWidth={SEQUENCEFLOW_STROKE}

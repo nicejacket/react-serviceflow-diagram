@@ -2,7 +2,7 @@ import * as React from 'react';
 import Gateway from './Gateway';
 import IconCross from '../raphael/icons/RaphaelIconCross';
 import BaseElementProps from '../BaseElementProps';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import { getFillColour, getFillOpacity } from '../../services/DiagramColorService';
 
 export interface ExclusiveGatewayProps extends BaseElementProps { }
 
@@ -27,7 +27,6 @@ export default class ExclusiveGateway extends React.Component<ExclusiveGatewayPr
         y={y}
         width={width}
         height={height}
-        stroke={getBpmnColor(data, MAIN_STROKE_COLOR)}
         strokeWidth={strokeWidth}
         fill={getFillColour(data.id)}
         fillOpacity={getFillOpacity()}

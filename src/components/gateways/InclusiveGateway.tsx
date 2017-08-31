@@ -2,7 +2,7 @@ import * as React from 'react';
 import Gateway from './Gateway';
 import RaphaelIconCircle from '../raphael/icons/RaphaelIconCircle';
 import BaseElementProps from '../BaseElementProps';
-import { getBpmnColor, getFillColour, getFillOpacity, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import { getFillColour, getFillOpacity } from '../../services/DiagramColorService';
 
 export interface InclusiveGatewayProps extends BaseElementProps {
   radius?: number;
@@ -29,7 +29,6 @@ export default class InclusiveGateway extends React.Component<InclusiveGatewayPr
         x={x + width / 2}
         y={y + height / 2}
         radius={radius}
-        stroke={getBpmnColor(data, MAIN_STROKE_COLOR)}
         strokeWidth={strokeWidth}
         fill={getFillColour(data.id)}
         fillOpacity={getFillOpacity()}

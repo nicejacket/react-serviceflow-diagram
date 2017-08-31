@@ -57,7 +57,9 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   setHoverStroke = (item: any) => {
     if (item.node && item.node.id) {
-      if (!this.attrsMapping[item.node.id]) { this.attrsMapping[item.node.id] = { ...item.attrs }; }
+      if (!this.attrsMapping[item.node.id]) {
+        this.attrsMapping[item.node.id] = { ...item.attrs };
+      }
       item.attr({ stroke: ACTIVE_STROKE_COLOR, 'stroke-width': item.attrs['stroke-width'] + 1 });
     }
   }
@@ -131,8 +133,10 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
 
   onHideHandler = () => {
     if (this.leave) {
-      !this.unmounted && this.setState({ visible: false });
-      this.loopSet((this.root as RaphaelBaseSet).getSet(), this.resetHoverStroke);
+      if (!this.unmounted) {
+        this.setState({ visible: false });
+        this.loopSet((this.root as RaphaelBaseSet).getSet(), this.resetHoverStroke);
+      }
     }
   }
 
