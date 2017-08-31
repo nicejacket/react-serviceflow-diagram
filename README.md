@@ -1,5 +1,5 @@
-# react-serviceflow-explorer
-react版本的serviceflow explorer
+# react-serviceflow-explorer     
+react版本的serviceflow explorer    
 
 raphael实现参照react-raphael实现，用typescript改写    
 [react-raphael](https://github.com/liuhong1happy/react-raphael/)    
@@ -8,5 +8,8 @@ raphael实现参照react-raphael实现，用typescript改写
 `npm start`    
 
 
-diagram实现参照ng2-activiti-diagrams,用react改写
+diagram实现参照ng2-activiti-diagrams,用react改写    
 [ng2-activiti-diagrams](https://github.com/Alfresco/alfresco-ng2-components)
+
+
+兼容activiti流程图，具体使用详见demo/demo.tsx    
