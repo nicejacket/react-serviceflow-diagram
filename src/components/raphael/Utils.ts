@@ -189,6 +189,9 @@ export function updateElementProps(element: any, props: any) {
         if (typeof props[key] === 'boolean') { props.hide ? element.hide() : element.show(); }
         break;
       }
+      case 'id': {
+        if (props.id) { element.id = props.id; }
+      }
       case 'mousedown': {
         if (typeof props[key] === 'function') { element.unmousedown(); element.mousedown(props.mousedown); }
         break;
