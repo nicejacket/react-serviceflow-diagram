@@ -33,7 +33,7 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
         y={y + height / 2}
         stroke={stroke}
         strokeWidth={strokeWidth}
-        fill={fill}
+        fill={type === 'error' ? '#b22222' : fill}
         fillOpacity={fillOpacity}
         radius={circleRadiusOuter}
       />
@@ -42,13 +42,13 @@ export default class ThrowEvent extends React.Component<ThrowEventProps, any> {
         y={y + height / 2}
         stroke={stroke}
         strokeWidth={strokeWidth}
-        fill={fill}
-        fillOpacity={fillOpacity}
+        fill={type === 'error' ? '#FFF' : fill}
+        fillOpacity={type === 'error' ? 1 : fillOpacity}
         radius={circleRadiusInner}
       />
       <DiagramContainerIconEvent
-        x={type === 'error' ? x + 2 : x}
-        y={type === 'error' ? y + 2 : y}
+        x={type === 'error' ? x + 3 : x}
+        y={type === 'error' ? y + 3 : y}
         width={width}
         height={height}
         type={type}
