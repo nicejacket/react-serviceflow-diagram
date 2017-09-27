@@ -11,7 +11,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "zhou84034339@sina.com",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "keywords": [
     "activiti",
     "diagram",
@@ -49,5 +49,8 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "whatwg-fetch": "^2.0.3"
+  },
+  "peerDependencies": {
+    "@easy-webpack/core": "*"
   }
 }

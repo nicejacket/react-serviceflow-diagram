@@ -1,4 +1,4 @@
-const { CheckerPlugin } = require('awesome-typescript-loader')
+const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
 const WebpackCleanPlugin = require('webpack-clean');
 const path = require('path');
 
@@ -34,7 +34,8 @@ module.exports = {
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json"],
+    plugins: [new TsConfigPathsPlugin()],
   },
 
   module: {
