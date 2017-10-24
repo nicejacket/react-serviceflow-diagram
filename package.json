@@ -1,13 +1,13 @@
 {
   "name": "react-serviceflow-diagram",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "react版本的serviceflow diagram",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --progress --profile --bail",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run build",
-    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts{,x} -t verbose",
+    "lint": "tslint --project tsconfig.json -c tslint.json src/**/*.ts{,x} -t verbose",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "zhou84034339@sina.com",
@@ -43,14 +43,11 @@
     "@types/prop-types": "^15.5.1",
     "@types/raphael": "^2.1.30",
     "@types/react": "^16.0.2",
-    "@types/react-dom": "^15.5.2",
+    "@types/react-dom": "^16.0.2",
     "prop-types": "^15.5.10",
     "raphael": "^2.2.7",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "whatwg-fetch": "^2.0.3"
-  },
-  "peerDependencies": {
-    "@easy-webpack/core": "*"
   }
 }

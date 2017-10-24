@@ -9,11 +9,11 @@
     "baseUrl": "./",
     "declaration": true,
     "paths": {
-      "*" : ["./node_modules/@types/*", "*"]
+      "*" : ["./node_modules/@types/*"]
     },
     "types": []
   },
   "include": [
-    "./src/**/*"
+    "./src/index.ts"
   ]
 }
