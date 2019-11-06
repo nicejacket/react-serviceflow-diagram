@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { ACTIVE_STROKE_COLOR } from '../../services/DiagramColorService';
+import { CONFIG } from '../../services/DiagramColorService';
 import { RaphaelBaseSet } from '../raphael/RaphaelBaseSet';
 import './Tooltip.less';
 
@@ -60,7 +60,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
       if (!this.attrsMapping[item.node.id]) {
         this.attrsMapping[item.node.id] = { ...item.attrs };
       }
-      item.attr({ stroke: ACTIVE_STROKE_COLOR, 'stroke-width': item.attrs['stroke-width'] + 1 });
+      item.attr({ stroke: CONFIG.ACTIVE_STROKE_COLOR, 'stroke-width': item.attrs['stroke-width'] + 1 });
     }
   }
 
@@ -156,7 +156,7 @@ export default class Tooltip extends React.Component<TooltipProps, TooltipState>
         onMouseEnter={this.onMouseEnterHandler}
         onMouseLeave={this.onMouseLevelAndScrollHandler}
       >
-        <div className={`${CLS_PREFIX}-tooltip-header`}>{data.type} {data.name || data.id}</div>
+        <div className={`${CLS_PREFIX}-tooltip-header`} style={{ backgroundColor: CONFIG.TOOLTIP_COLOR}}>{data.type} {data.name || data.id}</div>
         <div className={`${CLS_PREFIX}-tooltip-body`}>
           {
             data.name ? <div className={`${CLS_PREFIX}-tooltip-name-property`}>

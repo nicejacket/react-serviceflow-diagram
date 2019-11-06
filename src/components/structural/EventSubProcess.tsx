@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getBpmnColor, MAIN_STROKE_COLOR } from '../../services/DiagramColorService';
+import { getBpmnColor, CONFIG } from '../../services/DiagramColorService';
 import BaseElementProps from '../BaseElementProps';
 import { RaphaelBaseRect } from '../raphael/RaphaelBaseRect';
 import Tooltip from '../tooltip/Tooltip';
@@ -19,7 +19,7 @@ export default class EventSubProcess extends React.Component<EventSubProcessProp
 
   render() {
     const { x, y, width, height, radius, strokeWidth, fill, fillOpacity, data } = this.props;
-    const stroke =getBpmnColor(data, MAIN_STROKE_COLOR);
+    const stroke =getBpmnColor(data, CONFIG.MAIN_STROKE_COLOR);
 
     return (<Tooltip data={data}>
       <RaphaelBaseRect

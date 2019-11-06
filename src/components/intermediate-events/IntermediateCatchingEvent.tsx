@@ -44,8 +44,8 @@ export default class IntermediateCatchingEvent extends React.Component<Intermedi
         fillOpacity={fillOpacity}
       />
       <DiagramContainerIconEvent
-        x={x}
-        y={y}
+        x={x - circleRadiusOuter + width / 2}
+        y={y - circleRadiusOuter + height / 2}
         width={width}
         height={height}
         type={data && data.eventDefinition && data.eventDefinition.type}

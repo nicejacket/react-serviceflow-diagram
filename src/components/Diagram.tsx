@@ -17,7 +17,8 @@ import EventGateway from './gateways/EventGateway';
 import ExclusiveGateway from './gateways/ExclusiveGateway';
 import InclusiveGateway from './gateways/InclusiveGateway';
 import ParallelGatway from './gateways/ParallelGateway';
-import IntermediateCatchingEvent from './intermediate-catching-events/IntermediateCatchingEvent';
+import IntermediateCatchingEvent from './intermediate-events/IntermediateCatchingEvent';
+import IntermediateThrowingEvent from './intermediate-events/IntermediateThrowingEvent';
 import { RaphaelBasePaper } from './raphael/RaphaelBasePaper';
 import SequenceFlow from './SequenceFlow';
 import EventSubProcess from './structural/EventSubProcess';
@@ -31,6 +32,7 @@ export interface DiagramProps {
   diagram: DiagramModel;
   customerActivities?: (ele: DiagramElementModel) => any;
   onClick?: (e: any) => void;
+  onHover?: (e: any) => void;
 }
 
 export default class Diagram extends React.Component<DiagramProps, any> {
@@ -98,6 +100,8 @@ export default class Diagram extends React.Component<DiagramProps, any> {
       return <ThrowEvent {...props} key={id} />;
     case 'IntermediateCatchEvent':
       return <IntermediateCatchingEvent {...props} key={id} />;
+    case 'IntermediateThrowEvent':
+      return <IntermediateThrowingEvent {...props} key={id} />;
     case 'SubProcess':
       return <SubProcess {...props} key={id} />;
     case 'EventSubProcess':

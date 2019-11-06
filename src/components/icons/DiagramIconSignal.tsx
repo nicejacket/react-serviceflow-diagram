@@ -16,6 +16,7 @@ export default class DiagramIconSignal extends React.Component<DiagramIconSignal
 
   render() {
     const { x, y, stroke, strokeWidth, fill, fillOpacity } = this.props;
+
     return (<RaphaelIconSignal
       x={x - 1}
       y={y - 1}
