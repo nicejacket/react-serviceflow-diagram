@@ -35,7 +35,7 @@
     "tslint-react": "^3.2.0",
     "tslint-react-recommended": "^1.0.15",
     "typescript": "^2.4.2",
-    "webpack": "^3.5.2",
+    "webpack": "^5.75.0",
     "webpack-clean": "^1.0.0",
     "webpack-dev-server": "^2.7.1"
   },
